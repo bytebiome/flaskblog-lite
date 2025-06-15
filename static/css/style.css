@@ -1,0 +1,222 @@
+/* Stili Generali per il Body e Font */
+body {
+    font-family: 'Arial', sans-serif; /* Un font leggibile e comune */
+    line-height: 1.6; /* Migliora la leggibilità del testo */
+    margin: 20px; /* Un po' di spazio dai bordi della finestra */
+    background-color: #f4f4f4; /* Un leggero colore di sfondo per distinguere il contenuto */
+    color: #333; /* Colore del testo scuro ma non nero puro */
+}
+
+/* Contenitore Principale per il Contenuto */
+.container {
+    max-width: 960px; /* Larghezza massima del contenuto per non farlo allungare troppo */
+    margin: 0 auto; /* Centra il contenitore nella pagina */
+    background-color: #fff; /* Sfondo bianco per il contenuto principale */
+    padding: 20px; /* Spazio interno al contenitore */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Una leggera ombra per dare profondità */
+    border-radius: 8px; /* Bordi leggermente arrotondati */
+}
+
+/* Stili per Intestazioni (H1, H2, H3) */
+h1, h2, h3 {
+    color: #2c3e50; /* Un colore scuro ma distinto per i titoli */
+    margin-bottom: 15px; /* Spazio sotto i titoli */
+    border-bottom: 1px solid #eee; /* Una sottile linea sotto i titoli per separarli */
+    padding-bottom: 10px; /* Spazio tra il titolo e la linea */
+}
+
+h1 {
+    font-size: 2.5em; /* Dimensione grande per il titolo principale */
+    text-align: center; /* Centra il titolo del blog */
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+/* Stili per Paragrafi */
+p {
+    margin-bottom: 1em; /* Spazio sotto ogni paragrafo */
+}
+
+/* Stili per Link */
+a {
+    color: #3498db; /* Un bel blu per i link */
+    text-decoration: none; /* Rimuove la sottolineatura di default */
+}
+
+a:hover {
+    text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+}
+
+/* Stili per Liste (non ordinate e ordinate) */
+ul, ol {
+    margin-bottom: 1em;
+    padding-left: 20px; /* Indenta le voci di lista */
+}
+
+ul li, ol li {
+    margin-bottom: 5px;
+}
+
+/* Stili per Form (sezione di input e bottoni) */
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block; /* Ogni etichetta su una nuova riga */
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: calc(100% - 22px); /* Larghezza completa meno padding e bordo */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
+}
+
+.form-group textarea {
+    resize: vertical; /* Permette di ridimensionare solo verticalmente */
+    min-height: 100px;
+}
+
+button[type="submit"], .btn {
+    background-color: #28a745; /* Verde per i bottoni di azione positiva */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease; /* Effetto al passaggio del mouse */
+}
+
+button[type="submit"]:hover, .btn:hover {
+    background-color: #218838;
+}
+
+/* Stili per Messaggi Flash (successo, errore, info) */
+.flash-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Stili per Navbar/Header del Blog (se presente) */
+.navbar {
+    background-color: #333;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.navbar ul li a:hover {
+    color: #ddd;
+    text-decoration: none;
+}
+
+/* Stili per i Post del Blog */
+.blog-post {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.blog-post h2 {
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.blog-post .meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.blog-post .meta a {
+    color: #777;
+}
+
+.blog-post .read-more {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.blog-post .read-more:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Stili per il Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    color: #777;
+    font-size: 0.9em;
+}

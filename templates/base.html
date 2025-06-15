@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{% block title %}Fblog-lite{% endblock %}</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="navbar">
+            <ul class="nav-items">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Articles</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contacts</a></li>
+            </ul>
+        </header>
+    </div>
+
+  {% block content %} {% endblock %}
+
+</body>
+
+</html>
