@@ -55,13 +55,29 @@ def __repr__(self):
     
 
 #user model
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(28), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     
-    post = db.relationship('Post', backref='author', lazy='true')
+    post = db.relationship('Post', backref='author', lazy='dynamic')
+    
+    @property
+    def is_active(self):
+        return True
+    
+    @property
+    def is_authenticated(self):
+        return True
+    
+    @property
+    def is_anonymous(self):
+        return False
+    
+    # @property
+    # def get_id(self):
+    #     return str(self.id)
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -115,7 +131,7 @@ def register():
         flash('Your account has been created!', 'success')
         return redirect(url_for('login'))
     
-    return render_template('register', title="Register")
+    return render_template('register.html', title="Register")
 
 #login route
 @app.route('/login', methods=['GET', 'POST'])
@@ -126,11 +142,12 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        remember = True if request.form.get('remember') else False 
         
         user = User.query.filter_by(email=email).first()
     
         if user and user.check_password(password):
-            login_user(user)
+            login_user(user, remember=remember)
             flash('Successfully logged in!', 'success')
         
             next_page = request.args.get('next')
@@ -153,3 +170,9 @@ def logout():
 @login_required
 def dashboard():
     return render_template('dashboard.html', title='dashboard')
+
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)

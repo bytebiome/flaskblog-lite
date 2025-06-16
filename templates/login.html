@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Flask-Blog{% endblock %}
+
+{% block content %}
+    <h1>Login</h1>
+    <form method="POST" action="{{ url_for('login') }}">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Ricordami</label>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}

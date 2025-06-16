@@ -1,33 +1,38 @@
+/* static/style.css - Tema Chiaro */
+
 /* Stili Generali per il Body e Font */
 body {
-    font-family: 'Arial', sans-serif; /* Un font leggibile e comune */
-    line-height: 1.6; /* Migliora la leggibilità del testo */
-    margin: 20px; /* Un po' di spazio dai bordi della finestra */
-    background-color: #f4f4f4; /* Un leggero colore di sfondo per distinguere il contenuto */
-    color: #333; /* Colore del testo scuro ma non nero puro */
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4; /* Sfondo chiaro per il body */
+    color: #333; /* Testo scuro */
+    transition: background-color 0.5s ease, color 0.5s ease; /* Transizione per il cambio tema */
 }
 
 /* Contenitore Principale per il Contenuto */
 .container {
-    max-width: 960px; /* Larghezza massima del contenuto per non farlo allungare troppo */
-    margin: 0 auto; /* Centra il contenitore nella pagina */
+    max-width: 960px;
+    margin: 0 auto;
     background-color: #fff; /* Sfondo bianco per il contenuto principale */
-    padding: 20px; /* Spazio interno al contenitore */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Una leggera ombra per dare profondità */
-    border-radius: 8px; /* Bordi leggermente arrotondati */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 /* Stili per Intestazioni (H1, H2, H3) */
 h1, h2, h3 {
-    color: #2c3e50; /* Un colore scuro ma distinto per i titoli */
-    margin-bottom: 15px; /* Spazio sotto i titoli */
-    border-bottom: 1px solid #eee; /* Una sottile linea sotto i titoli per separarli */
-    padding-bottom: 10px; /* Spazio tra il titolo e la linea */
+    color: #2c3e50; /* Colore scuro per i titoli */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    transition: color 0.5s ease, border-color 0.5s ease;
 }
 
 h1 {
-    font-size: 2.5em; /* Dimensione grande per il titolo principale */
-    text-align: center; /* Centra il titolo del blog */
+    font-size: 2.5em;
+    text-align: center;
     margin-bottom: 30px;
 }
 
@@ -41,23 +46,24 @@ h3 {
 
 /* Stili per Paragrafi */
 p {
-    margin-bottom: 1em; /* Spazio sotto ogni paragrafo */
+    margin-bottom: 1em;
 }
 
 /* Stili per Link */
 a {
     color: #3498db; /* Un bel blu per i link */
-    text-decoration: none; /* Rimuove la sottolineatura di default */
+    text-decoration: none;
+    transition: color 0.5s ease;
 }
 
 a:hover {
-    text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+    text-decoration: underline;
 }
 
 /* Stili per Liste (non ordinate e ordinate) */
 ul, ol {
     margin-bottom: 1em;
-    padding-left: 20px; /* Indenta le voci di lista */
+    padding-left: 20px;
 }
 
 ul li, ol li {
@@ -71,6 +77,7 @@ form {
     border-radius: 5px;
     margin-bottom: 20px;
     border: 1px solid #eee;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .form-group {
@@ -78,36 +85,38 @@ form {
 }
 
 .form-group label {
-    display: block; /* Ogni etichetta su una nuova riga */
+    display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    transition: color 0.5s ease;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"],
 .form-group textarea {
-    width: calc(100% - 22px); /* Larghezza completa meno padding e bordo */
+    width: calc(100% - 22px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Include padding e bordo nella larghezza totale */
+    box-sizing: border-box;
+    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
 }
 
 .form-group textarea {
-    resize: vertical; /* Permette di ridimensionare solo verticalmente */
+    resize: vertical;
     min-height: 100px;
 }
 
 button[type="submit"], .btn {
-    background-color: #28a745; /* Verde per i bottoni di azione positiva */
+    background-color: #28a745;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s ease; /* Effetto al passaggio del mouse */
+    transition: background-color 0.3s ease, color 0.5s ease;
 }
 
 button[type="submit"]:hover, .btn:hover {
@@ -121,6 +130,7 @@ button[type="submit"]:hover, .btn:hover {
     border-radius: 4px;
     font-weight: bold;
     text-align: center;
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
 .flash-success {
@@ -141,12 +151,13 @@ button[type="submit"]:hover, .btn:hover {
     border: 1px solid #bee5eb;
 }
 
-/* Stili per Navbar/Header del Blog (se presente) */
+/* Stili per Navbar/Header del Blog (per Tema Chiaro) */
 .navbar {
-    background-color: #333;
+    background-color: #333; /* Sfondo scuro per la navbar in modalità giorno */
     padding: 15px 0;
     margin-bottom: 20px;
     border-radius: 8px;
+    transition: background-color 0.5s ease;
 }
 
 .navbar ul {
@@ -161,15 +172,33 @@ button[type="submit"]:hover, .btn:hover {
 }
 
 .navbar ul li a {
-    color: white;
+    color: rgb(39, 39, 39); 
     font-weight: bold;
     font-size: 1.1em;
+    transition: color 0.5s ease;
 }
 
 .navbar ul li a:hover {
     color: #ddd;
     text-decoration: none;
 }
+
+/* Stili per il pulsante del tema nella navbar */
+#theme-toggle {
+    background-color: #007bff; /* Un blu per il pulsante */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: #0056b3;
+}
+
 
 /* Stili per i Post del Blog */
 .blog-post {
@@ -178,6 +207,7 @@ button[type="submit"]:hover, .btn:hover {
     margin-bottom: 25px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .blog-post h2 {
@@ -190,10 +220,12 @@ button[type="submit"]:hover, .btn:hover {
     font-size: 0.9em;
     color: #777;
     margin-bottom: 10px;
+    transition: color 0.5s ease;
 }
 
 .blog-post .meta a {
     color: #777;
+    transition: color 0.5s ease;
 }
 
 .blog-post .read-more {
@@ -204,6 +236,7 @@ button[type="submit"]:hover, .btn:hover {
     color: white;
     border-radius: 4px;
     text-decoration: none;
+    transition: background-color 0.3s ease, color 0.5s ease;
 }
 
 .blog-post .read-more:hover {
@@ -219,4 +252,5 @@ button[type="submit"]:hover, .btn:hover {
     border-top: 1px solid #eee;
     color: #777;
     font-size: 0.9em;
+    transition: border-top-color 0.5s ease, color 0.5s ease;
 }
