@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Flaskblog-lite{% endblock %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    {% if current_user.is_authenticated %}
+        <p>Welcome, {{ current_user.username }}!</p>
+        <p>This is your personal area.</p>
+        <a href="{{ url_for('create_post') }}" class="btn">Crea Nuovo Post</a>
+        {% else %}
+        <p>You need to be logged in to see this page.</p>
+        <p><a href="{{ url_for('login') }}">Accedi qui</a> o <a href="{{ url_for('register') }}">Registrati</a>.</p>
+    {% endif %}
+{% endblock %}
