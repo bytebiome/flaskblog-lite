@@ -175,24 +175,37 @@ def dashboard():
 @login_required 
 def create_post():
     if request.method == 'POST':
-        title = request.form.get('title')
-        content = request.form.get('content')
+        title = request.form.get('post_title')
+        content = request.form.get('text_content')
         
         if not title or not content:
-            flash('Titolo e contenuto non possono essere vuoti!', 'error')
+            flash('Content and title cannot be empty!', 'error')
             return render_template('create_post.html', title='Crea Post') # Ricarica il form con l'errore
             
-        # QUI ANDRÀ LA LOGICA PER CREARE E SALVARE UN NUOVO OGGETTO Post NEL DB
-        # Esempio (NON completo, solo per mostrare il punto):
-        # new_post = Post(title=title, content=content, author=current_user)
-        # db.session.add(new_post)
-        # db.session.commit()
+        if not content:
+            flash('This cannot be empty', 'error')
+            return render_template('create_post.html', title="Create posts")
+        
+        new_post = Post(
+            title=title,
+            content=content,
+            author=current_user,
+            creation_date=datetime.now()
+        )
+        
+        try:
+            db.session.add(new_post)
+            db.session.commit()
+            flash('Your post has been successfully added!', 'success')
+            return redirect(url_for('index'))
+        except Exception as e:
+            db.session.rollback()
+            flash('An error occurred', 'error')
+            app.logger.error(f'Error during the creation of post: {e}')
+            return render_template('create_post.html', title='Create post')
 
-        flash(f'Post "{title}" creato con successo (simulato)!', 'success')
-        return redirect(url_for('home')) # Reindirizza alla homepage dopo la creazione
-    
-    # Se la richiesta è GET, mostra il form per creare un post
-    return render_template('create_post.html', title='Create Post')
+    return render_template('create_post.html', title='Create post')
+
 
 if __name__ == '__main__':
     with app.app_context():

@@ -3,9 +3,28 @@
 {% block title %}Home - Fblog-lite {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Flaskblog-Lite</h1>
-        <p>Welcome to flaskblog lite, a light and fast Flask-based Blog!</p>
+<div class="container">
+    <h1>Flaskblog-Lite</h1>
+    <p>Welcome to flaskblog lite, a light and fast Flask-based Blog!</p>
+
+    <h2 class="posts">My articles</h2>
+    <div class="posts-lists">
+        {% if posts %}
+        {% for post in posts%}
+
+        <ul>
+            <li>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <h6><i>{{ post.author }}</i></h6>
+                <small> {{ post.creation_date }}</small>
+            </li>
+        </ul>
+
+        {% endfor %}
+        {% endif %}
     </div>
+</div>
+
 
 {% endblock %}
