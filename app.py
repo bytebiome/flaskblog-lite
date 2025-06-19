@@ -23,6 +23,12 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 #______class / models_____
+#tags table 
+post_tags = db.Table('post_tags',
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
 #Post model
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,6 +36,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts', lazy='dynamic'))
     
     def __repr__(self):
         return f"<Text: {self.id}, title: {self.title}>"
@@ -206,7 +213,16 @@ def create_post():
 
     return render_template('create_post.html', title='Create post')
 
+#defining a route for viewing a single text
+@app.route('/view/<int:post_id>')
+def view_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('view.html', post=post)
+    
+    
 
+
+#initializing database
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

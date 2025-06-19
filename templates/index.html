@@ -12,14 +12,12 @@
         {% if posts %}
         {% for post in posts%}
 
-        <ul>
-            <li>
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.content }}</p>
-                <h6><i>{{ post.author }}</i></h6>
-                <small> {{ post.creation_date }}</small>
-            </li>
-        </ul>
+        <article class="blog-post">
+            <h3><a href="{{ url_for('view_post', post_id=post.id)}}">{{ post.title }}</a></h3>
+            <p>{{ post.content | truncate(200) }}</p>
+            <p><i>Author: {{ post.author.username }}</i></p>
+            <small>Posted on {{ post.creation_date.strftime('%d/%m/%Y alle %H:%M') }}</small>
+        </article>
 
         {% endfor %}
         {% endif %}

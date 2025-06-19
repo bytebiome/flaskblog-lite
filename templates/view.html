@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} View Post - Fblog-lite {% endblock %}
+
+{% block content %}
+
+<div class="container">
+<article class="blog-post">
+
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <br>
+    <p><i> Author: {{ post.author.username }}</i></p>
+    <small>Posted on: {{ post.creation_date.strftime('%d/%m/%Y alle %H:%M')}}</small>
+
+</article>
+</div>
+
+{% endblock%}
