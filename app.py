@@ -44,7 +44,7 @@ class Post(db.Model):
 #tag model
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    tag_name = db.Column(db.String(28), nullable=True, unique=True, default="uncatogorized")
+    tag_name = db.Column(db.String(28), nullable=False, unique=True)
     
     def __repr__(self):
         return f"<Tag: {self.id} named {self.tag_name}>"
@@ -82,10 +82,6 @@ class User(db.Model, UserMixin):
     def is_anonymous(self):
         return False
     
-    # @property
-    # def get_id(self):
-    #     return str(self.id)
-    
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
         
@@ -95,7 +91,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'<User: {self.username} email: {self.email}'
     
-    
+#ROUTES
 @app.route('/')
 @app.route('/index')
 def index():
@@ -184,6 +180,7 @@ def create_post():
     if request.method == 'POST':
         title = request.form.get('post_title')
         content = request.form.get('text_content')
+        tags_string = request.form.get('tags_input', '')
         
         if not title or not content:
             flash('Content and title cannot be empty!', 'error')
@@ -201,6 +198,21 @@ def create_post():
         )
         
         try:
+            new_post = Post(
+                title=title,
+                content=content,
+                author=current_user,
+                creation_date=datetime.now()
+            )
+            
+            tags_list = [tag.strip().lower() for tag in tags_string.split('.') if tag.strip()]
+            for tag_name in tags_list:
+                tag = Tag.query.filter_by(tag_name=tag_name).first()
+                if not tag:
+                    tag = Tag(tag_name=tag_name)
+                    db.session.add(tag)
+                new_post.tags.append(tag)
+            
             db.session.add(new_post)
             db.session.commit()
             flash('Your post has been successfully added!', 'success')
@@ -209,7 +221,7 @@ def create_post():
             db.session.rollback()
             flash('An error occurred', 'error')
             app.logger.error(f'Error during the creation of post: {e}')
-            return render_template('create_post.html', title='Create post')
+            return render_template('create_post.html', title='Create post', post_title=title, post_content=content, post_tags=tags_string)
 
     return render_template('create_post.html', title='Create post')
 

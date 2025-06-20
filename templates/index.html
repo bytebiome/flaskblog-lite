@@ -16,6 +16,14 @@
             <h3><a href="{{ url_for('view_post', post_id=post.id)}}">{{ post.title }}</a></h3>
             <p>{{ post.content | truncate(200) }}</p>
             <p><i>Author: {{ post.author.username }}</i></p>
+            {% if post.tags %}
+                    <span class="tags">
+                        Tag:
+                        {% for tag in post.tags %}
+                            <a href="#">#{{ tag.tag_name }}</a>{# to implement search page with tags!!! #}
+                        {% endfor %}
+                    </span>
+                {% endif %}
             <small>Posted on {{ post.creation_date.strftime('%d/%m/%Y alle %H:%M') }}</small>
         </article>
 
