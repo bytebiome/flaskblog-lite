@@ -64,6 +64,7 @@ def __repr__(self):
 #user model
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    is_admin = db.Column(db.Boolean, default=False)
     username = db.Column(db.String(28), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
@@ -208,7 +209,7 @@ def create_post():
                 creation_date=datetime.now()
             )
             
-            tags_list = [tag.strip().lower() for tag in tags_string.split('.') if tag.strip()]
+            tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
             for tag_name in tags_list:
                 tag = Tag.query.filter_by(tag_name=tag_name).first()
                 if not tag:
@@ -242,7 +243,7 @@ def delete(post_id):
     if request.method == 'POST':
         try:
             post_to_delete = Post.query.get_or_404(post_id)
-            if post_to_delete.user_id != current_user.id:
+            if post_to_delete.user_id != current_user.id and not current_user.is_admin: #try this logic
                 flash('You do not have the permission to delete this post', 'danger')
                 return redirect(url_for('dashboard'))
         
@@ -294,7 +295,14 @@ def edit_post(post_id):
     current_tags = ', '.join([tag.tag_name for tag in post.tags])
     return render_template('edit_post.html', title = 'Edit post', post=post, current_tags=current_tags)
     
+#route for posts by tags
+@app.route('/tag/<string:tag_name>')
+def posts_by_tags(tag_name):
+    page = request.args.get('page', 1, type=int)
+    tag = Tag.query.filter_by(tag_name=tag_name).first_or_404()
+    tagged_posts = tag.posts.order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
     
+    return render_template('tagged_post.html', title = f'Post with tag {tag.tag_name}', tag=tag, posts=tagged_posts)
 
 
 #initializing database

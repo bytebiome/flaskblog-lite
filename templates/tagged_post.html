@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Flaskblog Lite {% endblock %}
+
+{% block content %}
+    <h2>Post with tag: #{{ tag.tag_name }}</h2> 
+    <p>Here all posts with tag "{{ tag.tag_name }}".</p>
+
+    {% for post in posts.items %}
+        <article class="blog-post">
+            <h2><a href="{{ url_for('view_post', post_id=post.id)}}">{{ post.title }}</a></h2>
+            <p class="meta">
+                Published on {{ post.creation_date.strftime('%d/%m/%Y alle %H:%M') }} da
+                <a href="#">{{ post.author.username }}</a>
+                {% if post.tags %}
+                    <span class="tags">
+                        Tag:
+                        {% for t in post.tags %} 
+                            <a href="{{ url_for('posts_by_tags', tag_name=t.tag_name) }}">#{{ t.tag_name }}</a>
+                        {% endfor %}
+                    </span>
+                {% endif %}
+            </p>
+            <p>{{ post.content | truncate(200) }}</p>
+            <a href="{{ url_for('view_post', post_id=post.id)}}" class="read-more">Read all &rarr;</a>
+            
+            {# Bottoni Modifica/Elimina (opzionale, se vuoi mostrarli anche qui) #}
+            {% if current_user.is_authenticated and (current_user.id == post.user_id or current_user.is_admin) %}
+                <div style="margin-top: 10px;">
+                    <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn" style="background-color: #007bff; color: white; font-size: 0.8em; padding: 5px 10px;">Modifica</a>
+                    <form action="{{ url_for('delete', post_id=post.id) }}" method="POST" style="display:inline; margin-left: 5px;">
+                        <button type="submit" class="btn" style="background-color: #dc3545; color: white; font-size: 0.8em; padding: 5px 10px;" onclick="return confirm('Sei sicuro di voler eliminare questo post? Questa azione è irreversibile!');">Elimina</button>
+                    </form>
+                </div>
+            {% endif %}
+        </article>
+    {% else %}
+        <p>No post with this tag.</p>
+    {% endfor %}
+
+    {# --- INIZIO NAVIGAZIONE PAGINAZIONE --- #}
+    <div class="pagination">
+        {% if posts.has_prev %}
+            <a href="{{ url_for('posts_by_tag', tag_name=tag.tag_name, page=posts.prev_num) }}" class="btn">Previous</a>
+        {% endif %}
+        
+        {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+            {% if page_num %}
+                {% if posts.page == page_num %}
+                    <a href="{{ url_for('posts_by_tags', tag_name=tag.tag_name, page=page_num) }}" class="btn active">{{ page_num }}</a>
+                {% else %}
+                    <a href="{{ url_for('posts_by_tags', tag_name=tag.tag_name, page=page_num) }}" class="btn">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                <span>...</span>
+            {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+            <a href="{{ url_for('posts_by_tags', tag_name=tag.tag_name, page=posts.next_num) }}" class="btn">Next</a>
+        {% endif %}
+    </div>
+    {# --- FINE NAVIGAZIONE PAGINAZIONE --- #}
+{% endblock %}

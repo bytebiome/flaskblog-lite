@@ -8,13 +8,13 @@
 <article class="blog-post">
     <h2><a href="{{ url_for('view_post', post_id=post.id)}}">{{ post.title }}</a></h2>
     <p class="meta">
-        Published on {{ post.creation_date.strftime('%d/%m/%Y alle %H:%M') }} da
+        Published on {{ post.creation_date.strftime('%d/%m/%Y at %H:%M') }} Author:
         <a href="#">{{ post.author.username }}</a>
         {% if post.tags %}
         <span class="tags">
             Tag:
             {% for tag in post.tags %}
-            <a href="#">#{{ tag.tag_name }}</a>
+            <a href="{{ url_for('posts_by_tags', tag_name=tag.tag_name) }}">#{{ tag.tag_name }}</a>
             {% endfor %}
         </span>
         {% endif %}
@@ -23,7 +23,7 @@
     <a href="{{ url_for('view_post', post_id=post.id)}}" class="read-more">Read more &rarr;</a>
 </article>
 {% else %}
-<p>No post available. Let's write!</p>
+<p>No post available.</p>
 {% endfor %}
 
 {# pagination #}

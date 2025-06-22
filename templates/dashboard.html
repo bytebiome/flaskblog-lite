@@ -3,11 +3,11 @@
 {% block title %}Dashboard - Flaskblog-lite{% endblock %}
 
 {% block content %}
- <h1>Dashboard Utente</h1>
+ <h2>Your Dashboard</h2>
     {% if current_user.is_authenticated %}
-        <p>Benvenuto, {{ current_user.username }}!</p>
-        <p>Questa è la tua area personale.</p>
-        <a href="{{ url_for('create_post') }}" class="btn">Crea Nuovo Post</a>
+        <p>Welcome, {{ current_user.username }}!</p>
+        <p>This is your personal area.</p>
+        <a href="{{ url_for('create_post') }}" class="btn">New Post</a>
 
         <h3>I Tuoi Post:</h3>
         {% if user_posts.items %} {# Controlla se ci sono post nella pagina corrente #}
@@ -18,22 +18,22 @@
                         <p>{{ post.creation_date.strftime('%d/%m/%Y alle %H:%M') }}</p>
                         {# Bottoni Modifica ed Elimina #}
                         {% if current_user.is_authenticated and (current_user.id == post.user_id or current_user.is_admin) %}
-                            <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn" style="background-color: #007bff; color: white; font-size: 0.8em; padding: 5px 10px;">Modifica</a>
+                            <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn" style="background-color: #007bff; color: white; font-size: 0.8em; padding: 5px 10px;">Edit</a>
                             <form action="{{ url_for('delete', post_id=post.id) }}" method="POST" style="display:inline; margin-left: 5px;">
-                                <button type="submit" class="btn" style="background-color: #dc3545; color: white; font-size: 0.8em; padding: 5px 10px;" onclick="return confirm('Sei sicuro di voler eliminare questo post? Questa azione è irreversibile!');">Elimina</button>
+                                <button type="submit" class="btn" style="background-color: #dc3545; color: white; font-size: 0.8em; padding: 5px 10px;" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
                             </form>
                         {% endif %}
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>Non hai ancora scritto nessun post.</p>
+            <p>There is nothing here.</p>
         {% endif %}
 
-        {# --- INIZIO NAVIGAZIONE PAGINAZIONE PER DASHBOARD --- #}
+        {# --- pagination --- #}
         <div class="pagination">
             {% if user_posts.has_prev %}
-                <a href="{{ url_for('dashboard', page=user_posts.prev_num) }}" class="btn">Precedente</a>
+                <a href="{{ url_for('dashboard', page=user_posts.prev_num) }}" class="btn">Previous</a>
             {% endif %}
             
             {% for page_num in user_posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
@@ -49,14 +49,14 @@
             {% endfor %}
 
             {% if user_posts.has_next %}
-                <a href="{{ url_for('dashboard', page=user_posts.next_num) }}" class="btn">Successivo</a>
+                <a href="{{ url_for('dashboard', page=user_posts.next_num) }}" class="btn">Next</a>
             {% endif %}
         </div>
         {# --- FINE NAVIGAZIONE PAGINAZIONE PER DASHBOARD --- #}
 
     {% else %}
-        <p>Devi essere loggato per vedere questa pagina.</p>
-        <p><a href="{{ url_for('login') }}">Accedi qui</a> o <a href="{{ url_for('register') }}">Registrati</a>.</p>
+        <p>You need to be logged in to see this page.</p>
+        <p><a href="{{ url_for('login') }}">Login here</a> o <a href="{{ url_for('register') }}">Register</a>.</p>
     {% endif %}
 
 
