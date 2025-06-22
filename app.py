@@ -95,7 +95,8 @@ class User(db.Model, UserMixin):
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = Post.query.all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
     return render_template('index.html', posts=posts)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -172,7 +173,9 @@ def logout():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', title='dashboard')
+    page = request.args.get('page', 1, type=int)
+    user_posts = current_user.post.order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
+    return render_template('dashboard.html', title='dashboard', user_posts=user_posts)
 
 @app.route("/post/new", methods=['GET', 'POST'])
 @login_required 
@@ -230,6 +233,66 @@ def create_post():
 def view_post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('view.html', post=post)
+
+
+#delete post
+@app.route('/delete/<int:post_id>', methods=['POST'])
+@login_required
+def delete(post_id):
+    if request.method == 'POST':
+        try:
+            post_to_delete = Post.query.get_or_404(post_id)
+            if post_to_delete.user_id != current_user.id:
+                flash('You do not have the permission to delete this post', 'danger')
+                return redirect(url_for('dashboard'))
+        
+            db.session.delete(post_to_delete)
+            db.session.commit()
+            flash('Your post have been successfully deleted!', 'success')
+            return redirect(url_for('dashboard'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'error while deleting', 'error')
+            print(f'error while deleting {post_id} error {e}')
+            return 'Error during the elimination of the content', 500
+        
+    return redirect(url_for('dashboard'))
+    
+#edit post
+@app.route('/post/<int:post_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    
+    if post.user_id != current_user.id and not current_user.is_admin:
+        flash('You do not have the authorization to edit this post', 'danger')
+        return redirect(url_for('dashboard'))
+    if request.method == 'POST':
+        post.title = request.form.get('title')
+        post.content = request.form.get('content')
+        
+        tags_string = request.form.get('tags_input', '')
+        tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
+        
+        post.tags.clear()
+        for tag_name in tags_list:
+            tag = Tag.query.filter_by(tag_name=tag_name).first()
+            if not tag:
+                tag = Tag(tag_name=tag_name)
+                db.session.add(tag)
+            post.tags.append(tag)
+            
+        try:
+            db.session.commit()
+            flash('Your post have been successfully updated!', 'success')
+            return redirect(url_for('view_post', post_id=post.id))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'An error occurred while editing the post: {e}', 'error')
+            print(f'Error during the updating {e}')
+            return render_template('edit_post.html', title='Edit post', post=post)
+    current_tags = ', '.join([tag.tag_name for tag in post.tags])
+    return render_template('edit_post.html', title = 'Edit post', post=post, current_tags=current_tags)
     
     
 
