@@ -4,8 +4,18 @@ from flask_migrate import Migrate
 from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+import uuid
+import os
 
 app = Flask(__name__)
+
+#IMG UPLOAD PATH CONFIG
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpeg', 'gif', 'webp'}
+app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
+app.config['MAX_CONTENT_LENGHT'] = 3 * 1024 * 1024
 
 #db: setting and initializing
 app.config['SECRET_KEY'] = 'DEV_SECRET_KEY_123'
@@ -36,6 +46,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    image_file = db.Column(db.String(28), nullable=True, default='default.jpg')
     tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts', lazy='dynamic'))
     
     def __repr__(self):
@@ -91,8 +102,26 @@ class User(db.Model, UserMixin):
     
     def __repr__(self):
         return f'<User: {self.username} email: {self.email}'
+
+
+#_______FUNCTIONS_______
+
+#import img logic
+#1) check file extention
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENTIONS']
+
+#save the load image
+def save_picture(form_picture):
+    random_hex = str(uuid.uuid4())
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.config['UPLOAD_FOLDER'], picture_fn)
+    form_picture.save(picture_path)
     
-#ROUTES
+    return picture_fn
+
+#______ROUTES_______
 @app.route('/')
 @app.route('/index')
 def index():
@@ -186,27 +215,48 @@ def create_post():
         content = request.form.get('text_content')
         tags_string = request.form.get('tags_input', '')
         
-        if not title or not content:
-            flash('Content and title cannot be empty!', 'error')
-            return render_template('create_post.html', title='Crea Post') # Ricarica il form con l'errore
+        picture_file = 'default.jpg'
+        
+        if not title:
+            flash('Title cannot be empty!', 'error')
+            return render_template('create_post.html', title='Crea Post',
+                                   post_title=title, post_content=content,
+                                   post_tags=tags_string) 
             
         if not content:
-            flash('This cannot be empty', 'error')
-            return render_template('create_post.html', title="Create posts")
+            flash('Content cannot be empty', 'error')
+            return render_template('create_post.html', title='Crea Post',
+                                   post_title=title, post_content=content,
+                                   post_tags=tags_string) 
         
-        new_post = Post(
-            title=title,
-            content=content,
-            author=current_user,
-            creation_date=datetime.now()
-        )
+        #file uploading logic
+        
+        if 'post_picture' in request.files:
+            picture = request.files['post_picture']
+            if picture.filename != '':
+                if allowed_file(picture.filename):
+                    try:
+                        picture_file = save_picture(picture)
+                    except Exception as e:
+                        flash(f'Error during uploading image: {e}')
+                        print(f'Error during uploading file {e}')
+                        return render_template('create_post.html', title='Create new post', 
+                                               post_title=title, post_content=content,
+                                               post_tags=tags_string)
+                else:
+                    flash('File type not supported (png, jpg, jpeg, gif, webp)', 'error')
+                    return render_template('create_post.html', title='Create post',
+                                           post_title=title, post_content=content,
+                                           post_tags=tags_string)  
+    
         
         try:
             new_post = Post(
                 title=title,
                 content=content,
                 author=current_user,
-                creation_date=datetime.now()
+                creation_date=datetime.now(),
+                image_file=picture_file
             )
             
             tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
@@ -219,8 +269,10 @@ def create_post():
             
             db.session.add(new_post)
             db.session.commit()
+            
             flash('Your post has been successfully added!', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for('view_post', post_id=new_post.id))
+        
         except Exception as e:
             db.session.rollback()
             flash('An error occurred', 'error')
