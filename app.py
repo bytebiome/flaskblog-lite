@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, request, flash
+from flask import Flask, render_template, url_for, redirect, request, flash, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
@@ -109,7 +109,7 @@ class User(db.Model, UserMixin):
 #import img logic
 #1) check file extention
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENTIONS']
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 #save the load image
 def save_picture(form_picture):
@@ -211,6 +211,7 @@ def dashboard():
 @login_required 
 def create_post():
     if request.method == 'POST':
+        # print(f'DEBUG: request.files content {request.files}') #DEBUG!!!!!!!!
         title = request.form.get('post_title')
         content = request.form.get('text_content')
         tags_string = request.form.get('tags_input', '')
@@ -259,6 +260,8 @@ def create_post():
                 image_file=picture_file
             )
             
+            db.session.add(new_post)
+            
             tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
             for tag_name in tags_list:
                 tag = Tag.query.filter_by(tag_name=tag_name).first()
@@ -267,7 +270,6 @@ def create_post():
                     db.session.add(tag)
                 new_post.tags.append(tag)
             
-            db.session.add(new_post)
             db.session.commit()
             
             flash('Your post has been successfully added!', 'success')
@@ -320,13 +322,46 @@ def edit_post(post_id):
     if post.user_id != current_user.id and not current_user.is_admin:
         flash('You do not have the authorization to edit this post', 'danger')
         return redirect(url_for('dashboard'))
+    
     if request.method == 'POST':
+        # print(f'DEBUG: request.files content {request.files}') #DEBUG!!!!!!!!
         post.title = request.form.get('title')
         post.content = request.form.get('content')
-        
         tags_string = request.form.get('tags_input', '')
-        tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
         
+        
+        #image upload logic
+        if 'post_picture' in request.files:
+            picture = request.files['post_picture']
+            
+            if picture.filename != '':
+                if allowed_file(picture.filename):
+                    if post.image_file and post.image_file != 'default.jpg':
+                        old_picture_path = os.path.join(current_app.config['UPLOAD_FOLDER'], post.image_file)
+                        if os.path.exists(old_picture_path):
+                            try:
+                                os.remove(old_picture_path)
+                                current_app.logger.info(f'Old image {post.image_file} deleted')
+                                
+                            except OSError as e:
+                                current_app.logger.info(f'Error while deleting {post.image_file}: {e}')
+                                
+                    try:
+                        post.image_file = save_picture(picture)
+                    except Exception as e:
+                        current_app.logger.error(f'error during saving new picture: {e}')
+                        flash('Error while uploading the image.')
+                        current_tags = ', '.join([t.tag_name for t in post.tags])
+                        return render_template('edit_post.html', title = 'Edit post',
+                                               post=post, current_tags=current_tags)
+                
+                else:
+                    flash('File type not allowed (accepting: jpg, jpeg, png, gif, webp)', 'danger')
+                    current_tags = ', '.join([t.tag_name for t in post.tags])
+                    return render_template('edit_post.html', title = 'Edit post',
+                                               post=post, current_tags=current_tags)
+        
+        tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
         post.tags.clear()
         for tag_name in tags_list:
             tag = Tag.query.filter_by(tag_name=tag_name).first()

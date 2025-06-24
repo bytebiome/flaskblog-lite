@@ -3,7 +3,8 @@
 {% block title %}Create Post - Flaskblog-lite{% endblock %}
 
 {% block content %}
-<h1>Create new post</h1>
+<div class="form-container">
+    <h1>Create new post</h1>
 <form action="{{ url_for('create_post') }}" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="post_title">Post title</label>
@@ -14,11 +15,12 @@
         <input type="text" name="tags_input" id="tags_input" value="{{ post_tags if post_tags else ''}}" placeholder="Es. poertry, narrative, notes...">
         <textarea name="text_content" id="editor" rows="20" cols="80" placeholder="Start writing..."></textarea>
         <label for="post_picture">Image (opional)</label>
-        <input type="file" id="post_picture" name="post-picture" accept="image/*">
+        <input type="file" id="post_picture" name="post_picture" accept="image/*">
     <button type="submit" id="save">Publish</button>
     </div>
     
 </form>
 
+</div>
 
 {% endblock %}

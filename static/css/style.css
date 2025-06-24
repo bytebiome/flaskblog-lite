@@ -1,256 +1,425 @@
-/* static/style.css - Tema Chiaro */
+/* static/css/style.css */
 
-/* Stili Generali per il Body e Font */
+/* --- Stili Generali --- */
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    margin: 20px;
-    background-color: #f4f4f4; /* Sfondo chiaro per il body */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Grigio chiaro di sfondo */
     color: #333; /* Testo scuro */
-    transition: background-color 0.5s ease, color 0.5s ease; /* Transizione per il cambio tema */
 }
 
-/* Contenitore Principale per il Contenuto */
 .container {
-    max-width: 960px;
-    margin: 0 auto;
-    background-color: #fff; /* Sfondo bianco per il contenuto principale */
+    max-width: 960px; /* Larghezza massima del contenuto */
+    margin: 0 auto; /* Centra il contenitore */
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
-/* Stili per Intestazioni (H1, H2, H3) */
-h1, h2, h3 {
-    color: #2c3e50; /* Colore scuro per i titoli */
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
     margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    transition: color 0.5s ease, border-color 0.5s ease;
 }
 
-h1 {
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-h2 {
-    font-size: 1.8em;
-}
-
-h3 {
-    font-size: 1.4em;
-}
-
-/* Stili per Paragrafi */
-p {
-    margin-bottom: 1em;
-}
-
-/* Stili per Link */
 a {
-    color: #3498db; /* Un bel blu per i link */
+    color: #007bff; /* Blu per i link */
     text-decoration: none;
-    transition: color 0.5s ease;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Stili per Liste (non ordinate e ordinate) */
-ul, ol {
-    margin-bottom: 1em;
-    padding-left: 20px;
-}
-
-ul li, ol li {
-    margin-bottom: 5px;
-}
-
-/* Stili per Form (sezione di input e bottoni) */
-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #eee;
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    transition: color 0.5s ease;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group textarea {
-    width: calc(100% - 22px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-button[type="submit"], .btn {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease, color 0.5s ease;
-}
-
-button[type="submit"]:hover, .btn:hover {
-    background-color: #218838;
-}
-
-/* Stili per Messaggi Flash (successo, errore, info) */
-.flash-message {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
-}
-
-.flash-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.flash-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-.flash-info {
-    background-color: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
-}
-
-/* Stili per Navbar/Header del Blog (per Tema Chiaro) */
+/* --- Navbar (Intestazione) --- */
 .navbar {
-    background-color: #333; /* Sfondo scuro per la navbar in modalità giorno */
+    background-color: #333; /* Sfondo scuro per la navbar */
+    color: #fff; /* Testo bianco */
     padding: 15px 0;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    transition: background-color 0.5s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombra leggera */
 }
 
-.navbar ul {
-    list-style: none;
+.navbar .container {
+    display: flex; /* Allinea elementi in riga */
+    justify-content: space-between; /* Spazia gli elementi */
+    align-items: center; /* Centra verticalmente */
+}
+
+.nav-items {
+    list-style: none; /* Rimuove i pallini della lista */
+    margin: 0;
     padding: 0;
-    text-align: center;
+    display: flex; /* Allinea gli elementi della nav in riga */
+    flex-wrap: wrap; /* Permette il wrap su schermi piccoli */
 }
 
-.navbar ul li {
-    display: inline-block;
-    margin: 0 15px;
+.nav-items li {
+    margin-right: 20px; /* Spazio tra gli elementi */
 }
 
-.navbar ul li a {
-    color: rgb(39, 39, 39); 
+.nav-items li:last-child {
+    margin-right: 0; /* Nessun margine all'ultimo elemento */
+}
+
+.nav-items a {
+    color: #fff;
     font-weight: bold;
-    font-size: 1.1em;
-    transition: color 0.5s ease;
+    padding: 5px 0;
+    transition: color 0.3s ease; /* Transizione colore al passaggio del mouse */
 }
 
-.navbar ul li a:hover {
-    color: #ddd;
+.nav-items a:hover {
+    color: #007bff; /* Colore blu al hover */
     text-decoration: none;
 }
 
-/* Stili per il pulsante del tema nella navbar */
-#theme-toggle {
-    background-color: #007bff; /* Un blu per il pulsante */
-    color: white;
-    padding: 8px 12px;
+/* --- Bottoni (Classe .btn e ID #theme-toggle, #save) --- */
+.btn, #theme-toggle, #save {
+    display: inline-block;
+    background-color: #007bff; /* Colore primario */
+    color: #fff;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Rimuovi sottolineatura per i link btn */
+    white-space: nowrap; /* Evita il wrapping del testo sul bottone */
 }
 
+.btn:hover, #theme-toggle:hover, #save:hover {
+    background-color: #0056b3; /* Colore più scuro al hover */
+    text-decoration: none;
+}
+
+/* Colori specifici per i bottoni di modifica/eliminazione */
+.btn.edit-post {
+    background-color: #007bff; /* Blu */
+}
+.btn.delete-post {
+    background-color: #dc3545; /* Rosso */
+}
+
+/* Bottone per la modalità notturna */
+#theme-toggle {
+    background-color: #6c757d; /* Grigio scuro per Nightmode */
+}
 #theme-toggle:hover {
-    background-color: #0056b3;
+    background-color: #5a6268;
 }
 
+/* --- Flash Messages --- */
+.flash-messages-container {
+    margin-top: 20px;
+}
 
-/* Stili per i Post del Blog */
+.flash-message {
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.flash-success {
+    background-color: #28a745; /* Verde */
+}
+
+.flash-error, .flash-danger { /* Sia 'error' che 'danger' */
+    background-color: #dc3545; /* Rosso */
+}
+
+.flash-info {
+    background-color: #17a2b8; /* Azzurro */
+}
+
+/* --- Stili per i Post (Index, Dashboard, View) --- */
 .blog-post {
     background-color: #fff;
-    padding: 20px;
-    margin-bottom: 25px;
+    padding: 25px;
+    margin-bottom: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombra più pronunciata */
 }
 
 .blog-post h2 {
+    font-size: 2em;
     margin-top: 0;
-    border-bottom: none;
-    padding-bottom: 0;
+    margin-bottom: 10px;
+}
+
+.blog-post h2 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.blog-post h2 a:hover {
+    color: #007bff;
 }
 
 .blog-post .meta {
     font-size: 0.9em;
     color: #777;
-    margin-bottom: 10px;
-    transition: color 0.5s ease;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
 }
 
 .blog-post .meta a {
-    color: #777;
-    transition: color 0.5s ease;
+    color: #555;
+    font-weight: bold;
+}
+
+.blog-post .meta a:hover {
+    color: #007bff;
+}
+
+.blog-post .tags {
+    display: inline-block; /* Permette margine e padding */
+    margin-left: 15px; /* Spazio dai metadati */
+}
+
+.blog-post .tags a {
+    background-color: #e2e6ea; /* Sfondo leggero per i tag */
+    color: #495057; /* Testo scuro */
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    margin-right: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.blog-post .tags a:hover {
+    background-color: #d1d6db;
+    text-decoration: none;
+}
+
+/* Stile per l'immagine del post */
+.img-fluid {
+    max-width: 100%; /* Immagine responsiva */
+    height: auto; /* Mantieni le proporzioni */
+    display: block; /* Rimuovi spazio extra sotto l'immagine */
+    margin-bottom: 20px; /* Spazio sotto l'immagine */
+    border-radius: 5px; /* Angoli leggermente arrotondati */
+    border: 1px solid #ddd;
+}
+
+/* Stile per il contenuto del post */
+.blog-post p {
+    margin-bottom: 1em;
 }
 
 .blog-post .read-more {
+    font-weight: bold;
+    color: #007bff;
     display: inline-block;
-    margin-top: 15px;
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.5s ease;
+    margin-top: 10px;
 }
 
-.blog-post .read-more:hover {
-    background-color: #0056b3;
-    text-decoration: none;
+/* Stile per l'autore e la data nel single post view */
+.blog-post p i {
+    font-style: normal; /* Rimuove l'italico se non desiderato */
+    color: #555;
+    font-size: 0.95em;
 }
 
-/* Stili per il Footer */
-.footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    border-top: 1px solid #eee;
+.blog-post small {
+    display: block; /* Metti la data su una nuova riga */
     color: #777;
-    font-size: 0.9em;
-    transition: border-top-color 0.5s ease, color 0.5s ease;
+    margin-top: 10px;
+}
+
+/* Linea divisoria per i bottoni */
+.blog-post hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+/* --- Paginazione --- */
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px; /* Spazio sotto la paginazione */
+}
+
+.pagination .btn {
+    margin: 0 5px;
+    min-width: 40px; /* Larghezza minima per i bottoni */
+}
+
+.pagination .btn.active {
+    background-color: #6c757d; /* Grigio scuro per la pagina attiva */
+    color: #fff;
+    cursor: default; /* Non mostrare il puntatore di link */
+}
+
+.pagination .btn.active:hover {
+    background-color: #6c757d; /* Nessun cambio al hover per la pagina attiva */
+}
+
+.pagination span {
+    display: inline-block;
+    padding: 10px 15px;
+    color: #777;
+}
+
+/* --- Stili per i Form (Login, Register, Create Post, Edit Post) --- */
+/* Applicheremo 'form-container' manualmente a div che avvolgono i form */
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 500px; /* Larghezza massima per i form */
+    margin: 30px auto; /* Centra il form */
+}
+
+.form-container h1, .form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.form-container .form-group { /* Stile per i div che contengono label e input */
+    margin-bottom: 15px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: calc(100% - 22px); /* Larghezza completa meno padding/border */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #fff; /* Sfondo input */
+    color: #333; /* Colore testo input */
+}
+
+.form-container textarea {
+    resize: vertical; /* Permette ridimensionamento verticale */
+    min-height: 120px;
+}
+
+.form-container input[type="file"] {
+    margin-top: 10px; /* Spazio sopra l'input file */
+    margin-bottom: 15px;
+}
+
+.form-container .btn, .form-container #save {
+    width: 100%; /* Bottone a larghezza piena */
+    margin-top: 10px;
+}
+
+/* Stile per le immagini nelle pagine di modifica/profilo */
+.post-image-thumbnail {
+    max-width: 150px; /* Larghezza massima per l'anteprima */
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* --- Stili specifici per la Dashboard --- */
+.dashboard-posts-list {
+    list-style: none; /* Rimuove i pallini della lista */
+    padding: 0;
+    margin-top: 20px;
+}
+
+.dashboard-posts-list li {
+    background-color: #fff;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Ombra più leggera */
+    display: flex; /* Flexbox per allineare titolo/data e bottoni */
+    flex-wrap: wrap; /* Permette il wrap su schermi piccoli */
+    align-items: center; /* Allinea verticalmente */
+    justify-content: space-between; /* Spazia gli elementi */
+}
+
+.dashboard-posts-list li h4 {
+    margin: 0;
+    font-size: 1.2em;
+    flex-grow: 1; /* Permette al titolo di occupare lo spazio disponibile */
+    margin-right: 15px; /* Spazio tra titolo e data/bottoni */
+}
+
+.dashboard-posts-list li h4 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.dashboard-posts-list li h4 a:hover {
+    color: #007bff;
+}
+
+.dashboard-posts-list li p {
+    margin: 0 15px 0 0; /* Margine a destra della data */
+    font-size: 0.85em;
+    color: #777;
+    flex-shrink: 0; /* Impedisce che la data si restringa */
+}
+
+.dashboard-posts-list li .btn {
+    font-size: 0.75em; /* Bottoni più piccoli per la dashboard */
+    padding: 5px 10px;
+    margin-left: 5px; /* Spazio tra i bottoni */
+    margin-top: 5px; /* Per schermi piccoli, se vanno a capo */
+}
+
+/* --- Responsività (Media Queries) --- */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column; /* Impila gli elementi della navbar */
+        text-align: center;
+    }
+    .nav-items {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .nav-items li {
+        margin-right: 0;
+        margin-bottom: 10px; /* Spazio tra gli elementi impilati */
+    }
+    .blog-post, .form-container {
+        padding: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .container {
+        padding: 10px;
+    }
+
+    /* Regolazioni per la dashboard su schermi piccoli */
+    .dashboard-posts-list li {
+        flex-direction: column; /* Impila gli elementi della lista */
+        align-items: flex-start;
+    }
+    .dashboard-posts-list li h4,
+    .dashboard-posts-list li p {
+        margin-right: 0; /* Rimuovi margine orizzontale */
+        margin-bottom: 5px; /* Aggiungi margine verticale */
+        width: 100%; /* Occupano tutta la larghezza */
+    }
+    .dashboard-posts-list li .btn {
+        margin-left: 0;
+        margin-right: 10px; /* Spazio tra bottoni se impilati */
+    }
 }
