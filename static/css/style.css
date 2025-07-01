@@ -198,7 +198,7 @@ a:hover {
 
 /* Stile per l'immagine del post */
 .img-fluid {
-    max-width: 100%; /* Immagine responsiva */
+    width: 95%; /* Immagine responsiva */
     height: auto; /* Mantieni le proporzioni */
     display: block; /* Rimuovi spazio extra sotto l'immagine */
     margin-bottom: 20px; /* Spazio sotto l'immagine */

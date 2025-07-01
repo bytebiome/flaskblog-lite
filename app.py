@@ -1,12 +1,18 @@
-from flask import Flask, render_template, url_for, redirect, request, flash, current_app
+from flask import Flask, render_template, url_for, redirect, request, flash, current_app, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, IntegerField, SubmitField
+from wtforms.validators import DataRequired, Email, Length, ValidationError
 from flask_migrate import Migrate
 from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from PIL import Image
+import secrets
 import uuid
 import os
+import random
 
 app = Flask(__name__)
 
@@ -103,6 +109,19 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'<User: {self.username} email: {self.email}'
 
+
+#contact
+class ContactMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    subject = db.Column(db.String(200), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    is_read = db.Column(db.Boolean, default=False)
+    
+    def __repr__(self):
+        return f"ContactMessage('{self.name}, {self.subject}, {self.timestamp})"
 
 #_______FUNCTIONS_______
 
@@ -390,6 +409,81 @@ def posts_by_tags(tag_name):
     tagged_posts = tag.posts.order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
     
     return render_template('tagged_post.html', title = f'Post with tag {tag.tag_name}', tag=tag, posts=tagged_posts)
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = ContactForm() 
+
+    if request.method == 'GET':
+
+        session['correct_math_answer'] = form.correct_result
+
+        session['math_num1'] = form.num1
+        session['math_num2'] = form.num2
+        session['math_operation'] = form.operation
+        
+    elif form.validate_on_submit():
+       
+        correct_answer_from_session = session.pop('correct_math_answer', None) # .pop() rimuove la chiave dalla sessione dopo averla letta
+        
+        user_answer = form.math_question.data
+        if correct_answer_from_session is None or user_answer != correct_answer_from_session:
+            flash('Incorrect answer to the math question. Please try again.', 'danger')
+           
+            new_form = ContactForm()
+            session['correct_math_answer'] = new_form.correct_result
+            session['math_num1'] = new_form.num1
+            session['math_num2'] = new_form.num2
+            session['math_operation'] = new_form.operation
+            return render_template('contact.html', form=new_form)
+
+
+        new_message = ContactMessage(
+            name=form.name.data,
+            email=form.email.data,
+            subject=form.subject.data,
+            message=form.message.data
+        )
+        db.session.add(new_message)
+        db.session.commit()
+        flash('Your message has been sent successfully!', 'success')
+     
+        session.pop('correct_math_answer', None) 
+        session.pop('math_num1', None)
+        session.pop('math_num2', None)
+        session.pop('math_operation', None)
+        return redirect(url_for('contact')) 
+    
+
+    return render_template('contact.html', form=form)
+
+#______FORMS______
+class ContactForm(FlaskForm):
+    name = StringField('Your Name', validators=[DataRequired(), Length(max=100)])
+    email = StringField('Your Email', validators=[DataRequired(), Email(), Length(max=120)])
+    subject = StringField('Subject', validators=[DataRequired(), Length(max=200)])
+    message = TextAreaField('Your Message', validators=[DataRequired(), Length(min=10, max=1000)])
+    
+    math_question = IntegerField('Math Question', validators=[DataRequired()]) 
+    
+    submit = SubmitField('Send Message')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Prova a recuperare i numeri e l'operazione dalla sessione
+        # Se non sono in sessione (prima volta che carichi la pagina), generane di nuovi
+        self.num1 = session.get('math_num1', random.randint(1, 10))
+        self.num2 = session.get('math_num2', random.randint(1, 10))
+        self.operation = session.get('math_operation', random.choice(['+', '-']))
+        
+        if self.operation == '+':
+            self.correct_result = self.num1 + self.num2
+        else:
+            self.correct_result = self.num1 - self.num2
+        
+        # Aggiorna l'etichetta del campo della domanda matematica
+        self.math_question.label.text = f'What is {self.num1} {self.operation} {self.num2}?'
 
 
 #initializing database
