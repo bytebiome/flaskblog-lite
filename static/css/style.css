@@ -423,3 +423,84 @@ a:hover {
         margin-right: 10px; /* Spazio tra bottoni se impilati */
     }
 }
+
+/* static/css/style.css */
+
+/* ... (i tuoi stili esistenti) ... */
+
+.message-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.message-item {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: relative; /* Per posizionare lo status */
+}
+
+.message-item.unread {
+    background-color: #fffde7; /* Sfondo giallo chiaro per i messaggi non letti */
+    border-color: #ffeb3b; /* Bordo giallo per i messaggi non letti */
+}
+
+.message-header {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.message-status {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #555;
+    background-color: #eee;
+    padding: 3px 8px;
+    border-radius: 3px;
+    float: right;
+}
+
+.message-item.unread .message-status {
+    color: #c67b00; /* Colore testo più scuro per new */
+    background-color: #ffecb3; /* Sfondo più scuro per new */
+}
+
+
+.message-body p {
+    margin: 0;
+    line-height: 1.6;
+    white-space: pre-wrap; /* Mantiene la formattazione dei salti di riga */
+}
+
+.message-actions {
+    margin-top: 15px;
+    text-align: right;
+}
+
+/* Stili per i bottoni nella dashboard dei messaggi */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    line-height: 1;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Clearfix per pulire i float, se necessario */
+.message-actions::after {
+    content: "";
+    display: table;
+    clear: both;
+}

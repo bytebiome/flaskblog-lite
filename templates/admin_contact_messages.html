@@ -1,0 +1,42 @@
+{# templates/admin_contact_messages.html #}
+
+{% extends "base.html" %}
+
+{% block title %}Admin - Contact Messages{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Admin Dashboard - Contact Messages</h1>
+    <p>Here you can view messages submitted through the contact form.</p>
+
+    {% if messages %}
+        <ul class="message-list">
+            {% for message in messages %}
+            <li class="message-item {% if message.is_read %}read{% else %}unread{% endif %}">
+                <div class="message-header">
+                    <span class="message-status">{% if message.is_read %}(Read){% else %}(New){% endif %}</span>
+                    <strong>From:</strong> {{ message.name }} ({{ message.email }})<br>
+                    <strong>Subject:</strong> {{ message.subject }}<br>
+                    <strong>Received:</strong> {{ message.timestamp.strftime('%d/%m/%Y at %H:%M') }}
+                </div>
+                <div class="message-body">
+                    <p>{{ message.message }}</p>
+                </div>
+                <div class="message-actions">
+                    {% if not message.is_read %}
+                        <form action="{{ url_for('mark_message_read', message_id=message.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-sm">Mark as Read</button>
+                        </form>
+                    {% endif %}
+                    <form action="{{ url_for('delete_contact_message', message_id=message.id) }}" method="POST" style="display:inline; margin-left: 10px;">
+                        <button type="submit" class="btn btn-sm btn-delete" onclick="return confirm('Are you sure you want to delete this message?');">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No contact messages received yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

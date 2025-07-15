@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, request, flash, current_app, session
+from flask import Flask, render_template, url_for, redirect, request, flash, current_app, session, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField, SubmitField
@@ -457,6 +457,44 @@ def contact():
 
     return render_template('contact.html', form=form)
 
+#____admin contact messages____
+@app.route("/admin/contact_messages")
+@login_required
+def admin_contact_messages():
+    if not current_user.is_admin:
+        abort(403) #forbidden
+    
+    messages = ContactMessage.query.order_by(ContactMessage.timestamp.desc()).all()
+    return render_template('admin_contact_messages.html', messages=messages)
+
+#___mark read messages___
+@app.route("/admin/contact_messages/<int:message_id>/read", methods=["POST"])
+@login_required
+def mark_message_read(message_id):
+    if not current_user.is_admin:
+        abort(403)
+    
+    message = ContactMessage.query.get_or_404(message_id)
+    message.is_read = True
+    db.session.commit()
+    flash('Message marked as read!', 'success')
+    return redirect(url_for("admin_contact_messages"))
+
+#___delete messages___
+@app.route("/admin/contact_messages/<int:message_id>/delete", methods=["POST"])
+@login_required
+def delete_contact_message(message_id):
+    if not current_user.is_admin:
+        abort(403)
+        
+    message = ContactMessage.query.get_or_404(message_id)
+    db.session.delete(message)
+    db.session.commit()
+    flash('Message deleted successfully!', 'success')
+    return redirect(url_for('admin_contact_messages'))
+ 
+
+
 #______FORMS______
 class ContactForm(FlaskForm):
     name = StringField('Your Name', validators=[DataRequired(), Length(max=100)])
@@ -476,6 +514,12 @@ class ContactForm(FlaskForm):
         self.num1 = session.get('math_num1', random.randint(1, 10))
         self.num2 = session.get('math_num2', random.randint(1, 10))
         self.operation = session.get('math_operation', random.choice(['+', '-']))
+        
+        # --- avoid negative nums ---
+        if self.operation == '-':
+            if self.num1 < self.num2:
+                self.num1, self.num2 = self.num2, self.num1 # Scambia i valori
+            # --- end logic---
         
         if self.operation == '+':
             self.correct_result = self.num1 + self.num2

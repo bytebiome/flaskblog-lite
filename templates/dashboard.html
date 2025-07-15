@@ -9,7 +9,16 @@
         <p>This is your personal area.</p>
         <a href="{{ url_for('create_post') }}" class="btn">New Post</a>
 
-        <h3>I Tuoi Post:</h3>
+        {# ONLY IF USER IS ADMIN #}
+        {% if current_user.is_admin %}
+        <h3 style="margin-top: 30px;">Admin Tools:</h3>
+        <ul class="admin-tools-list">
+            <li><a href="{{ url_for('admin_contact_messages') }}" class="btn">View Contact Messages</a></li>
+            {# other tools can be added below #}
+        </ul>
+        {% endif %}
+
+        <h3>Your posts:</h3>
         {% if user_posts.items %} {# Controlla se ci sono post nella pagina corrente #}
             <ul class="dashboard-posts-list">
                 {% for post in user_posts.items %} {# <-- Itera sui post della pagina corrente #}
