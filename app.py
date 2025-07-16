@@ -8,13 +8,35 @@ from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from PIL import Image
-import secrets
+import bleach
 import uuid
 import os
 import random
 
 app = Flask(__name__)
+
+#cleaning HTML in input using bleach
+ALLOWED_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 'li', 'ol', 'p',
+    'strong', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'hr', 'img', 'div',
+    'span', 'pre', 'code']
+
+ALLOWED_ATTRIBUTES = {
+    'a': ['href', 'title'],
+    'abbr': ['title'],
+    'acronym': ['title'],
+    'img': ['src', 'alt', 'width', 'height'],
+    'div': ['class'],
+    'span': ['class']
+}
+
+def sanitize_html(html_content):
+    return bleach.clean(
+        html_content,
+        tags=ALLOWED_TAGS,
+        attributes=ALLOWED_ATTRIBUTES,
+        strip=True,
+        strip_comments=True
+    )
 
 #IMG UPLOAD PATH CONFIG
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
@@ -52,7 +74,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    image_file = db.Column(db.String(28), nullable=True, default='default.jpg')
+    image_file = db.Column(db.String(28), nullable=True, default=None)
     tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts', lazy='dynamic'))
     
     def __repr__(self):
@@ -145,8 +167,17 @@ def save_picture(form_picture):
 @app.route('/index')
 def index():
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
-    return render_template('index.html', posts=posts)
+    search_query = request.args.get('q', type=str)
+    
+    if search_query:
+        posts = Post.query.filter(
+            (Post.title.ilike(f'%{search_query}%')) |
+            (Post.content.ilike(f'%{search_query}%'))
+        ).order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
+        return render_template('index.html', posts=posts, search_query=search_query)
+    else:
+        posts = Post.query.order_by(Post.creation_date.desc()).paginate(page=page, per_page=5)
+        return render_template('index.html', posts=posts, search_query="")
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -235,7 +266,8 @@ def create_post():
         content = request.form.get('text_content')
         tags_string = request.form.get('tags_input', '')
         
-        picture_file = 'default.jpg'
+        # picture_file = 'default.jpg'
+        new_post_image_file = None
         
         if not title:
             flash('Title cannot be empty!', 'error')
@@ -256,7 +288,7 @@ def create_post():
             if picture.filename != '':
                 if allowed_file(picture.filename):
                     try:
-                        picture_file = save_picture(picture)
+                        new_post_image_file = save_picture(picture)
                     except Exception as e:
                         flash(f'Error during uploading image: {e}')
                         print(f'Error during uploading file {e}')
@@ -271,12 +303,13 @@ def create_post():
     
         
         try:
+            sanitized_content = sanitize_html(content)
             new_post = Post(
                 title=title,
-                content=content,
+                content=sanitized_content,
                 author=current_user,
                 creation_date=datetime.now(),
-                image_file=picture_file
+                image_file=new_post_image_file
             )
             
             db.session.add(new_post)
@@ -297,7 +330,7 @@ def create_post():
         except Exception as e:
             db.session.rollback()
             flash('An error occurred', 'error')
-            app.logger.error(f'Error during the creation of post: {e}')
+            current_app.logger.error(f'Error during the creation of post: {e}')
             return render_template('create_post.html', title='Create post', post_title=title, post_content=content, post_tags=tags_string)
 
     return render_template('create_post.html', title='Create post')
@@ -345,9 +378,10 @@ def edit_post(post_id):
     if request.method == 'POST':
         # print(f'DEBUG: request.files content {request.files}') #DEBUG!!!!!!!!
         post.title = request.form.get('title')
-        post.content = request.form.get('content')
+        content = request.form.get('content')
         tags_string = request.form.get('tags_input', '')
         
+        sanitized_content = sanitize_html(content)
         
         #image upload logic
         if 'post_picture' in request.files:
@@ -369,7 +403,7 @@ def edit_post(post_id):
                         post.image_file = save_picture(picture)
                     except Exception as e:
                         current_app.logger.error(f'error during saving new picture: {e}')
-                        flash('Error while uploading the image.')
+                        flash('Error while uploading the image.', 'error')
                         current_tags = ', '.join([t.tag_name for t in post.tags])
                         return render_template('edit_post.html', title = 'Edit post',
                                                post=post, current_tags=current_tags)
@@ -380,6 +414,7 @@ def edit_post(post_id):
                     return render_template('edit_post.html', title = 'Edit post',
                                                post=post, current_tags=current_tags)
         
+        post.content = sanitized_content
         tags_list = [tag.strip().lower() for tag in tags_string.split(',') if tag.strip()]
         post.tags.clear()
         for tag_name in tags_list:
@@ -396,7 +431,7 @@ def edit_post(post_id):
         except Exception as e:
             db.session.rollback()
             flash(f'An error occurred while editing the post: {e}', 'error')
-            print(f'Error during the updating {e}')
+            current_app.logger.error(f'Error during updating the post {post.id}: {e}')
             return render_template('edit_post.html', title='Edit post', post=post)
     current_tags = ', '.join([tag.tag_name for tag in post.tags])
     return render_template('edit_post.html', title = 'Edit post', post=post, current_tags=current_tags)

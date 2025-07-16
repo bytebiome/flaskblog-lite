@@ -6,11 +6,11 @@
 
 <div class="container">
     <article class="blog-post">
-
         <h2>{{ post.title }}</h2>
-        <img src="{{ url_for('static', filename='uploads/' + post.image_file) }}" alt="{{ post.title }}"
-            class="img-fluid">
-        <p>{{ post.content }}</p>
+         {% if post.image_file and post.image_file != 'default.jpg' %}
+            <img src="{{ url_for('static', filename='uploads/' + post.image_file) }}" alt="{{ post.title }}" class="post-image">
+        {% endif %}
+        <p>{{ post.content | safe }}</p>
         <br>
         <p><i> Author: {{ post.author.username }}</i></p>
         {% if post.tags %}
