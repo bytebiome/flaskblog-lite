@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 import bleach
 import uuid
 import os
+import secrets
 import random
 
 app = Flask(__name__)
@@ -48,7 +49,8 @@ app.config['MAX_CONTENT_LENGHT'] = 3 * 1024 * 1024
 #db: setting and initializing
 app.config['SECRET_KEY'] = 'DEV_SECRET_KEY_123'
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///db.sqlite'
-app.config["SQLITE_TRACK_MODIFICATIONS"]= False
+app.config["SQLITE_TRACK_MODIFICATIONS"] = False
+app.config['REGISTRATION_SECRET_TOKEN'] = "EiMXK6wo1tRuG8nFhl3KJdP-UOaQ9kJM9bkNGmaeAlc"
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -60,7 +62,6 @@ login_manager.login_message_category = 'info'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-#______class / models_____
 #tags table 
 post_tags = db.Table('post_tags',
     db.Column('post_id', db.Integer, db.ForeignKey('post.id'), primary_key=True),
@@ -181,7 +182,20 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    expected_token = current_app.config.get("REGISTRATION_SECRET_TOKEN")
+    provided_token = request.args.get('token')
+    
+    if not expected_token:
+        current_app.logger.error('REGISTRATION_SECRET_TOKEN is not set in app configuration')
+        flash('Registration is currently unavailable due to a configuration error', 'danger')
+        return redirect(url_for('index'))
+    
+    if not provided_token or provided_token != expected_token:
+        flash('Access denied. Invalid or missing registration token', 'danger')
+        return redirect(url_for('login'))
+        
     if current_user.is_authenticated:
+        flash('You are already logged in', 'info')
         return redirect(url_for('index'))
     
     if request.method=='POST':
@@ -193,27 +207,32 @@ def register():
         #basics checks
         if not username or not email or not password or not confirm_password:
             flash('All fields are mandatory', 'error')
-            return redirect(url_for('register'))
+            return redirect(url_for('register', token = provided_token))
         
         if password != confirm_password:
             flash('Passwords are not matching, try again', 'error')
-            return redirect(url_for('register'))
+            return redirect(url_for('register', token = provided_token))
         
         if User.query.filter_by(username=username).first():
             flash('This username already exists', 'error')
-            return redirect(url_for('register'))
+            return redirect(url_for('register', token = provided_token))
         
         if User.query.filter_by(email=email).first():
             flash('This email already exists', 'error')
-            return redirect(url_for('register'))
+            return redirect(url_for('register', token = provided_token))
         
-        new_user = User(username=username, email=email)
-        new_user.set_password(password)
-        db.session.add(new_user)
-        db.session.commit()
-        
-        flash('Your account has been created!', 'success')
-        return redirect(url_for('login'))
+        try:  
+            new_user = User(username=username, email=email)
+            new_user.set_password(password)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Your account has been created!', 'success')
+            return redirect(url_for('login'))
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(f'Error during user registration {e}')
+            flash('An error occurred during registration. Pleaase, try again', ' error')
+            return redirect(url_for('register', token = provided_token))           
     
     return render_template('register.html', title="Register")
 
