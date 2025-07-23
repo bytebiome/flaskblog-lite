@@ -8,6 +8,7 @@ body {
     padding: 0;
     background-color: #f4f4f4; /* Grigio chiaro di sfondo */
     color: #333; /* Testo scuro */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .container {
@@ -19,11 +20,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: #333;
     margin-bottom: 15px;
+    transition: color 0.5s ease;
 }
 
 a {
     color: #007bff; /* Blu per i link */
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -36,6 +39,7 @@ a:hover {
     color: #fff; /* Testo bianco */
     padding: 15px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombra leggera */
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5 ease;
 }
 
 .navbar .container {
@@ -82,7 +86,7 @@ a:hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Modificato */
     text-align: center;
     text-decoration: none; /* Rimuovi sottolineatura per i link btn */
     white-space: nowrap; /* Evita il wrapping del testo sul bottone */
@@ -120,6 +124,7 @@ a:hover {
     border-radius: 5px;
     font-weight: bold;
     color: #fff;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .flash-success {
@@ -141,12 +146,14 @@ a:hover {
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombra più pronunciata */
+    transition: background-color 0.5s ease, box-shadow 0.5 ease, border-color 0.5s ease;
 }
 
 .blog-post h2 {
     font-size: 2em;
     margin-top: 0;
     margin-bottom: 10px;
+    transition: color 0.3 ease;
 }
 
 .blog-post h2 a {
@@ -164,6 +171,7 @@ a:hover {
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
+    transition: color 0.5s ease, border-color 0.5s ease;
 }
 
 .blog-post .meta a {
@@ -188,7 +196,7 @@ a:hover {
     font-size: 0.85em;
     margin-right: 5px;
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .blog-post .tags a:hover {
@@ -204,11 +212,13 @@ a:hover {
     margin-bottom: 20px; /* Spazio sotto l'immagine */
     border-radius: 5px; /* Angoli leggermente arrotondati */
     border: 1px solid #ddd;
+    transition: border-color 0.5s ease;
 }
 
 /* Stile per il contenuto del post */
 .blog-post p {
     margin-bottom: 1em;
+    transition: color 0.5s ease;
 }
 
 .blog-post .read-more {
@@ -216,6 +226,7 @@ a:hover {
     color: #007bff;
     display: inline-block;
     margin-top: 10px;
+    transition: color 0.3s ease;
 }
 
 /* Stile per l'autore e la data nel single post view */
@@ -223,12 +234,14 @@ a:hover {
     font-style: normal; /* Rimuove l'italico se non desiderato */
     color: #555;
     font-size: 0.95em;
+    transition: color 0.5s ease;
 }
 
 .blog-post small {
     display: block; /* Metti la data su una nuova riga */
     color: #777;
     margin-top: 10px;
+    transition: color 0.5s ease;
 }
 
 /* Linea divisoria per i bottoni */
@@ -237,6 +250,7 @@ a:hover {
     margin-bottom: 25px;
     border: 0;
     border-top: 1px solid #eee;
+    transition: border-color 0.5s ease;
 }
 
 /* --- Paginazione --- */
@@ -249,6 +263,7 @@ a:hover {
 .pagination .btn {
     margin: 0 5px;
     min-width: 40px; /* Larghezza minima per i bottoni */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .pagination .btn.active {
@@ -265,6 +280,7 @@ a:hover {
     display: inline-block;
     padding: 10px 15px;
     color: #777;
+    transition: color 0.5s ease;
 }
 
 /* --- Stili per i Form (Login, Register, Create Post, Edit Post) --- */
@@ -276,12 +292,14 @@ a:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     max-width: 500px; /* Larghezza massima per i form */
     margin: 30px auto; /* Centra il form */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 .form-container h1, .form-container h2 {
     text-align: center;
     margin-bottom: 25px;
     color: #333;
+    transition: color 0.5s ease;
 }
 
 .form-container .form-group { /* Stile per i div che contengono label e input */
@@ -293,6 +311,7 @@ a:hover {
     margin-bottom: 8px;
     font-weight: bold;
     color: #555;
+    transition: color 0.5s ease;
 }
 
 .form-container input[type="text"],
@@ -306,6 +325,7 @@ a:hover {
     font-size: 1em;
     background-color: #fff; /* Sfondo input */
     color: #333; /* Colore testo input */
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
 .form-container textarea {
@@ -332,6 +352,7 @@ a:hover {
     margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    transition: border-color 0.5s ease;
 }
 
 /* --- Stili specifici per la Dashboard --- */
@@ -351,6 +372,7 @@ a:hover {
     flex-wrap: wrap; /* Permette il wrap su schermi piccoli */
     align-items: center; /* Allinea verticalmente */
     justify-content: space-between; /* Spazia gli elementi */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 .dashboard-posts-list li h4 {
@@ -374,6 +396,7 @@ a:hover {
     font-size: 0.85em;
     color: #777;
     flex-shrink: 0; /* Impedisce che la data si restringa */
+    transition: color 0.5s ease;
 }
 
 .dashboard-posts-list li .btn {
@@ -442,17 +465,20 @@ a:hover {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     position: relative; /* Per posizionare lo status */
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .message-item.unread {
     background-color: #fffde7; /* Sfondo giallo chiaro per i messaggi non letti */
     border-color: #ffeb3b; /* Bordo giallo per i messaggi non letti */
+    transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .message-header {
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px dashed #ddd;
+    transition: border-bottom-color 0.5s ease;
 }
 
 .message-status {
@@ -463,6 +489,7 @@ a:hover {
     padding: 3px 8px;
     border-radius: 3px;
     float: right;
+    transition: color 0.5s ease, background-color 0.5s ease;
 }
 
 .message-item.unread .message-status {
@@ -475,6 +502,7 @@ a:hover {
     margin: 0;
     line-height: 1.6;
     white-space: pre-wrap; /* Mantiene la formattazione dei salti di riga */
+    transition: color 0.5s ease;
 }
 
 .message-actions {
@@ -518,6 +546,7 @@ a:hover {
     border-radius: 25px; /* Bordi arrotondati */
     overflow: hidden; /* Nasconde gli angoli del bordo per i figli */
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .search-input {
@@ -526,10 +555,12 @@ a:hover {
     padding: 10px 20px;
     font-size: 1em;
     outline: none; /* Rimuove il bordo al focus */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .search-input::placeholder {
     color: #aaa;
+    transition: color 0.5s ease;
 }
 
 .search-button {
@@ -541,7 +572,7 @@ a:hover {
     font-size: 1em;
     font-weight: bold;
     border-radius: 0 25px 25px 0; /* Angoli arrotondati solo a destra */
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .search-button:hover {
@@ -565,3 +596,229 @@ a:hover {
         border-radius: 8px 8px 0 0; /* Arrotonda solo in alto */
     }
 }
+
+/* Stili per il toggle della modalità notte */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Spazia dal menu di navigazione */
+    font-size: 0.9em;
+    /* Puoi aggiungere padding o margini se necessario per l'allineamento */
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 48px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    position: absolute;
+    transition: .4s;
+    transition: background-color 0.4s ease;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: transform 0.4s ease, background-color 0.4s ease;
+    width: 16px;
+}
+
+input:checked + .slider {
+    background-color: #2196F3; /* Colore blu quando attivo */
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Bordi arrotondati */
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.theme-text {
+    margin-left: 8px;
+    color: #333; /* Colore del testo per il tema chiaro */
+    transition: color 0.5s ease;
+}
+
+/* Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') */
+body.dark-mode {
+    background-color: #282c36; /* Sfondo scuro principale */
+    color: #e0e0e0; /* Testo chiaro generale */
+}
+
+body.dark-mode header {
+    background-color: #3a404c;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+body.dark-mode nav a.logo,
+body.dark-mode .nav-links a,
+body.dark-mode .nav-items a { /* Aggiunto .nav-items per la tua struttura attuale */
+    color: #f0f0f0; /* Link della navbar più chiari */
+}
+
+body.dark-mode .nav-links a:hover,
+body.dark-mode .nav-items a:hover { /* Aggiunto .nav-items per la tua struttura attuale */
+    color: #90caf9; /* Hover sui link della navbar */
+}
+
+body.dark-mode .theme-text {
+    color: #f0f0f0; /* Testo "Dark Mode" più chiaro */
+}
+
+body.dark-mode main {
+    background-color: #2f343e; /* Sfondo del contenuto principale */
+    border: 1px solid #444; /* Bordo più scuro */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .blog-post,
+body.dark-mode .message-item,
+body.dark-mode .form-container {
+    background-color: #3c424f; /* Sfondo dei post, messaggi, form */
+    border-color: #555;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .blog-post h2 a {
+    color: #90caf9; /* Titoli dei post */
+}
+
+body.dark-mode .blog-post .meta,
+body.dark-mode .message-header strong {
+    color: #a0a0a0; /* Metadati e testo secondario */
+}
+
+body.dark-mode .blog-post .meta a,
+body.dark-mode .message-header strong a {
+    color: #bbdefb; /* Link nei metadati */
+}
+
+body.dark-mode .read-more {
+    color: #90caf9; /* Link "Read more" */
+}
+
+body.dark-mode footer {
+    background-color: #3a404c;
+    color: #a0a0a0;
+}
+
+/* Stili per i campi di input e textarea nei form */
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"],
+body.dark-mode input[type="email"],
+body.dark-mode textarea {
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-mode input[type="text"]::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #999;
+}
+
+/* Bottone generico */
+body.dark-mode .btn {
+    background-color: #555;
+    color: #e0e0e0;
+    border: 1px solid #666;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #666;
+    border-color: #777;
+}
+
+/* Bottone di invio */
+body.dark-mode .btn[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+body.dark-mode .btn[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Messaggi Flash */
+body.dark-mode .alert {
+    border: none;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode .alert-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+body.dark-mode .alert-danger,
+body.dark-mode .alert-error {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Paginazione */
+body.dark-mode .pagination .btn {
+    background-color: #444;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .pagination .btn.active-page {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+body.dark-mode .pagination .btn:hover {
+    background-color: #666;
+}
+
+/* Ricerca */
+body.dark-mode .search-form {
+    border-color: #555;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .search-input {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-input::placeholder {
+    color: #999;
+}
+
+body.dark-mode .search-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+body.dark-mode .search-button:hover {
+    background-color: #0056b3;
+}
+/* --- FINE STILI MODALITÀ NOTTE --- */

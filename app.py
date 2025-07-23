@@ -546,7 +546,12 @@ def delete_contact_message(message_id):
     db.session.commit()
     flash('Message deleted successfully!', 'success')
     return redirect(url_for('admin_contact_messages'))
- 
+
+
+#____about___ (for now a static page)
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
 
 #______FORMS______
