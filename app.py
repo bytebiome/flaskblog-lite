@@ -9,6 +9,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import bleach
+import markdown
 import uuid
 import os
 import secrets
@@ -50,7 +51,7 @@ app.config['MAX_CONTENT_LENGHT'] = 3 * 1024 * 1024
 app.config['SECRET_KEY'] = 'DEV_SECRET_KEY_123'
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///db.sqlite'
 app.config["SQLITE_TRACK_MODIFICATIONS"] = False
-app.config['REGISTRATION_SECRET_TOKEN'] = "EiMXK6wo1tRuG8nFhl3KJdP-UOaQ9kJM9bkNGmaeAlc"
+app.config['REGISTRATION_SECRET_TOKEN'] = "MY_SECRET_TOKEN"
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -105,10 +106,10 @@ def __repr__(self):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     is_admin = db.Column(db.Boolean, default=False)
+    is_banned = db.Column(db.Boolean, default=False, nullable=False)
     username = db.Column(db.String(28), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    
     post = db.relationship('Post', backref='author', lazy='dynamic')
     
     @property
@@ -250,13 +251,15 @@ def login():
         user = User.query.filter_by(email=email).first()
     
         if user and user.check_password(password):
-            login_user(user, remember=remember)
-            flash('Successfully logged in!', 'success')
-        
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('index'))
+            if user.is_banned:
+                flash('Your account has been suspended. Please, contact the administrator.', 'Error')
+            else:
+                login_user(user, remember=remember)
+                flash('Successfully logged in!', 'success')
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
-            flash('Access deniet. Check email and password', 'error')
+            flash('Access denied. Check email and password', 'error')
 
     return render_template('login.html', title='login')
 
