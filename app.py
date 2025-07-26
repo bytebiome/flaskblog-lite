@@ -22,11 +22,13 @@ ALLOWED_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 'l
     'strong', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'hr', 'img', 'div',
     'span', 'pre', 'code']
 
-ALLOWED_ATTRIBUTES = {
+ALLOWED_ATTR
+
+IBUTES = {
     'a': ['href', 'title'],
     'abbr': ['title'],
     'acronym': ['title'],
-    'img': ['src', 'alt', 'width', 'height'],
+    'img': ['src', 'alt', 'width', 'height', 'style'],
     'div': ['class'],
     'span': ['class']
 }
@@ -39,6 +41,10 @@ def sanitize_html(html_content):
         strip=True,
         strip_comments=True
     )
+#rendering of html for preview
+def render_content_for_preview(text_content):
+    rendered_html = sanitize_html(text_content)
+    return rendered_html
 
 #IMG UPLOAD PATH CONFIG
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
@@ -555,6 +561,16 @@ def delete_contact_message(message_id):
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+#___preview post___ !!!!!! TO CHECK
+@app.route('/preview_post', methods=["POST"])
+def preview_post():
+    title = request.form.get('post_title') or request.form.get('title')
+    content = request.form.get('text_content') or request.form.get('content')
+    rendered_preview_content = render_content_for_preview(content)
+    author = current_user.username
+    return render_template('post_preview.html', title=title, content_html=rendered_preview_content, author=author)
 
 
 #______FORMS______

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} View Post - Fblog-lite {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <article class="blog-post">
+        <h2>{{ title }}</h2>
+
+        <p>{{ content_html | safe }}</p>
+        <br>
+        <p><i> Author: {{ author }}</i></p>
+
+        </form>
+
+    </article>
+</div>
+
+{% endblock%}

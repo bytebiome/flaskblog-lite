@@ -355,6 +355,30 @@ a:hover {
     transition: border-color 0.5s ease;
 }
 
+/* static/css/main.css */
+
+.featured-image {
+    width: 100%;       /* Rende l'immagine responsive rispetto al suo contenitore */
+    max-height: 400px; /* Imposta un'altezza massima per uniformare */
+    object-fit: cover; /* Ritaglia l'immagine per coprire l'area senza distorcerla */
+    display: block;    /* Rimuove lo spazio extra sotto l'immagine se è un elemento inline */
+    margin-bottom: 20px; /* Spazio sotto l'immagine */
+    border-radius: 8px; /* Bordo arrotondato, se vuoi */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombra leggera */
+}
+
+/* Puoi aggiungere uno stile diverso per l'immagine di default, se la usi */
+.default-featured-image {
+    background-color: #f0f0f0; /* Sfondo grigio chiaro per il default */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 1.2em;
+    text-align: center;
+    height: 200px; /* Altezza per il placeholder */
+}
+
 /* --- Stili specifici per la Dashboard --- */
 .dashboard-posts-list {
     list-style: none; /* Rimuove i pallini della lista */
