@@ -20,7 +20,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: #333;
     margin-bottom: 15px;
-    transition: color 0.5s ease;
+    transition: color 0.5s ease; /* Transizione per il colore */
 }
 
 a {
@@ -39,7 +39,7 @@ a:hover {
     color: #fff; /* Testo bianco */
     padding: 15px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombra leggera */
-    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5 ease;
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .navbar .container {
@@ -86,10 +86,10 @@ a:hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Modificato */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     text-align: center;
-    text-decoration: none; /* Rimuovi sottolineatura per i link btn */
-    white-space: nowrap; /* Evita il wrapping del testo sul bottone */
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .btn:hover, #theme-toggle:hover, #save:hover {
@@ -146,19 +146,20 @@ a:hover {
     margin-bottom: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombra più pronunciata */
-    transition: background-color 0.5s ease, box-shadow 0.5 ease, border-color 0.5s ease;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 .blog-post h2 {
     font-size: 2em;
     margin-top: 0;
     margin-bottom: 10px;
-    transition: color 0.3 ease;
+    transition: color 0.3s ease; /* Transizione per il colore */
 }
 
 .blog-post h2 a {
     color: #333;
     text-decoration: none;
+    transition: color 0.3s ease; /* Transizione per il colore */
 }
 
 .blog-post h2 a:hover {
@@ -355,8 +356,6 @@ a:hover {
     transition: border-color 0.5s ease;
 }
 
-/* static/css/main.css */
-
 .featured-image {
     width: 100%;       /* Rende l'immagine responsive rispetto al suo contenitore */
     max-height: 400px; /* Imposta un'altezza massima per uniformare */
@@ -409,6 +408,7 @@ a:hover {
 .dashboard-posts-list li h4 a {
     color: #333;
     text-decoration: none;
+    transition: color 0.3s ease; /* Transizione per il colore */
 }
 
 .dashboard-posts-list li h4 a:hover {
@@ -471,10 +471,6 @@ a:hover {
     }
 }
 
-/* static/css/style.css */
-
-/* ... (i tuoi stili esistenti) ... */
-
 .message-list {
     list-style: none;
     padding: 0;
@@ -520,7 +516,6 @@ a:hover {
     color: #c67b00; /* Colore testo più scuro per new */
     background-color: #ffecb3; /* Sfondo più scuro per new */
 }
-
 
 .message-body p {
     margin: 0;
@@ -684,29 +679,43 @@ input:checked + .slider:before {
 
 .theme-text {
     margin-left: 8px;
-    color: #333; /* Colore del testo per il tema chiaro */
+    color: #666; /* Modificato: Colore del testo per il tema chiaro, ora più visibile */
     transition: color 0.5s ease;
 }
 
-/* Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') */
+/* --- Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') --- */
 body.dark-mode {
     background-color: #282c36; /* Sfondo scuro principale */
     color: #e0e0e0; /* Testo chiaro generale */
 }
 
-body.dark-mode header {
+body.dark-mode header,
+body.dark-mode .navbar { /* Aggiornato per includere la navbar direttamente */
     background-color: #3a404c;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-body.dark-mode nav a.logo,
-body.dark-mode .nav-links a,
-body.dark-mode .nav-items a { /* Aggiunto .nav-items per la tua struttura attuale */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #f0f0f0; /* Modificato: Titoli in chiaro su sfondo scuro */
+}
+
+body.dark-mode a {
+    color: #90caf9; /* Link generali più chiari in dark mode */
+}
+body.dark-mode a:hover {
+    color: #bbdefb;
+}
+
+body.dark-mode .nav-items a {
     color: #f0f0f0; /* Link della navbar più chiari */
 }
 
-body.dark-mode .nav-links a:hover,
-body.dark-mode .nav-items a:hover { /* Aggiunto .nav-items per la tua struttura attuale */
+body.dark-mode .nav-items a:hover {
     color: #90caf9; /* Hover sui link della navbar */
 }
 
@@ -722,24 +731,40 @@ body.dark-mode main {
 
 body.dark-mode .blog-post,
 body.dark-mode .message-item,
-body.dark-mode .form-container {
-    background-color: #3c424f; /* Sfondo dei post, messaggi, form */
+body.dark-mode .form-container,
+body.dark-mode .dashboard-posts-list li { /* Aggiunto dashboard-posts-list li */
+    background-color: #3c424f; /* Sfondo dei post, messaggi, form, e item dashboard */
     border-color: #555;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-body.dark-mode .blog-post h2 a {
-    color: #90caf9; /* Titoli dei post */
+body.dark-mode .blog-post h2 a,
+body.dark-mode .dashboard-posts-list li h4 a { /* Modificato: Titoli dei post e dashboard link */
+    color: #90caf9;
 }
 
 body.dark-mode .blog-post .meta,
-body.dark-mode .message-header strong {
-    color: #a0a0a0; /* Metadati e testo secondario */
+body.dark-mode .message-header strong,
+body.dark-mode .blog-post p i,
+body.dark-mode .blog-post small,
+body.dark-mode .pagination span,
+body.dark-mode .dashboard-posts-list li p,
+body.dark-mode label { /* Modificato: Metadati e testo secondario e labels in dark mode */
+    color: #a0a0a0;
 }
 
 body.dark-mode .blog-post .meta a,
 body.dark-mode .message-header strong a {
     color: #bbdefb; /* Link nei metadati */
+}
+
+body.dark-mode .blog-post .tags a { /* Modificato: Stili dei tag in dark mode */
+    background-color: #5a6268; /* Sfondo più scuro per i tag */
+    color: #f0f0f0; /* Testo chiaro per i tag */
+}
+
+body.dark-mode .blog-post .tags a:hover {
+    background-color: #6c757d;
 }
 
 body.dark-mode .read-more {
@@ -761,8 +786,13 @@ body.dark-mode textarea {
     border: 1px solid #555;
 }
 
+body.dark-mode input[type="file"] {
+    color: #e0e0e0; /* Rendi il testo dell'input file visibile in dark mode */
+}
+
 body.dark-mode input[type="text"]::placeholder,
-body.dark-mode textarea::placeholder {
+body.dark-mode textarea::placeholder,
+body.dark-mode .search-input::placeholder { /* Inserito anche per la ricerca */
     color: #999;
 }
 
@@ -789,21 +819,26 @@ body.dark-mode .btn[type="submit"]:hover {
 }
 
 /* Messaggi Flash */
-body.dark-mode .alert {
+body.dark-mode .flash-message { /* Cambiato da .alert a .flash-message */
     border: none;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-body.dark-mode .alert-success {
+body.dark-mode .flash-success {
     background-color: #28a745;
     color: #fff;
 }
 
-body.dark-mode .alert-danger,
-body.dark-mode .alert-error {
+body.dark-mode .flash-error,
+body.dark-mode .flash-danger {
     background-color: #dc3545;
     color: #fff;
 }
+body.dark-mode .flash-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
 
 /* Paginazione */
 body.dark-mode .pagination .btn {
@@ -812,7 +847,7 @@ body.dark-mode .pagination .btn {
     color: #e0e0e0;
 }
 
-body.dark-mode .pagination .btn.active-page {
+body.dark-mode .pagination .btn.active { /* Corretto da active-page ad active */
     background-color: #007bff;
     border-color: #007bff;
     color: #fff;
@@ -833,10 +868,6 @@ body.dark-mode .search-input {
     color: #e0e0e0;
 }
 
-body.dark-mode .search-input::placeholder {
-    color: #999;
-}
-
 body.dark-mode .search-button {
     background-color: #007bff;
     color: #fff;
@@ -845,4 +876,10 @@ body.dark-mode .search-button {
 body.dark-mode .search-button:hover {
     background-color: #0056b3;
 }
+
+/* Stile per le immagini nelle pagine di modifica/profilo - thumbnail */
+body.dark-mode .post-image-thumbnail {
+    border-color: #555;
+}
+
 /* --- FINE STILI MODALITÀ NOTTE --- */

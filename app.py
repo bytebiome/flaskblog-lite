@@ -22,9 +22,7 @@ ALLOWED_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 'l
     'strong', 'ul', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'hr', 'img', 'div',
     'span', 'pre', 'code']
 
-ALLOWED_ATTR
-
-IBUTES = {
+ALLOWED_ATTRIBUTES = {
     'a': ['href', 'title'],
     'abbr': ['title'],
     'acronym': ['title'],

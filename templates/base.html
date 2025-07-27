@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/noir.css') }}">
     <title>{% block title %}Flaskblog-lite{% endblock %}</title>
+
 </head>
 
 <body>
@@ -23,7 +25,7 @@
                     {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
-                     <li class="theme-switch-wrapper">
+                    <li class="theme-switch-wrapper">
                         <label class="theme-switch" for="checkbox">
                             <input type="checkbox" id="checkbox" />
                             <div class="slider round"></div>

@@ -1,0 +1,893 @@
+/* static/css/subtle-elegance.css (o il tuo main CSS) */
+
+/* --- Stili Generali --- */
+body {
+    font-family: 'Lato', sans-serif; /* Un font moderno e pulito */
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: #e0e0e0; /* Grigio medio-chiaro per la day mode */
+    color: #4a4a4a; /* Testo grigio scuro */
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+.container {
+    max-width: 1040px; /* Ancora più spazio */
+    margin: 0 auto;
+    padding: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif; /* Font con grazie per i titoli, elegante */
+    font-weight: 700;
+    color: #333333; /* Grigio molto scuro per i titoli */
+    margin-bottom: 25px;
+    line-height: 1.3;
+    transition: color 0.6s ease;
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 2.4em; }
+h3 { font-size: 1.9em; }
+
+p {
+    margin-bottom: 1.2em;
+}
+
+a {
+    color: #5d5d5d; /* Grigio medio-scuro per i link, elegante e non troppo invadente */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #333333;
+    text-decoration: underline;
+}
+
+/* --- Navbar (Intestazione) --- */
+.navbar {
+    background-color: #f8f8f8; /* Bianco sporco per la navbar */
+    color: #4a4a4a;
+    padding: 20px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Ombra appena percettibile */
+    border-bottom: 1px solid #dcdcdc; /* Bordo sottile */
+    transition: background-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease, border-bottom-color 0.6s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.nav-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-items li {
+    margin-right: 30px;
+}
+
+.nav-items li:last-child {
+    margin-right: 0;
+}
+
+.nav-items a {
+    color: #6a6a6a; /* Grigio per i link della navbar */
+    font-weight: 600;
+    padding: 5px 0;
+}
+
+.nav-items a:hover {
+    color: #333333;
+    text-decoration: none;
+}
+
+/* --- Bottoni --- */
+.btn, #theme-toggle, #save {
+    display: inline-block;
+    background-color: #5a5a5a; /* Grigio scuro per i bottoni principali */
+    color: #ffffff;
+    padding: 14px 30px; /* Padding generoso */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    letter-spacing: 0.05em; /* Spaziatura leggera per le lettere */
+    text-transform: uppercase; /* Testo in maiuscolo */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn:hover, #theme-toggle:hover, #save:hover {
+    background-color: #333333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn.edit-post {
+    background-color: #6c757d; /* Grigio scuro per edit */
+}
+.btn.edit-post:hover {
+    background-color: #5a6268;
+}
+.btn.delete-post {
+    background-color: #b76e79; /* Rosa antico/ruggine per delete */
+}
+.btn.delete-post:hover {
+    background-color: #a35d68;
+}
+
+#theme-toggle {
+    background-color: #8a8a8a; /* Grigio più chiaro per il toggle */
+}
+#theme-toggle:hover {
+    background-color: #6a6a6a;
+}
+
+/* --- Flash Messages --- */
+.flash-messages-container {
+    margin-top: 30px;
+}
+
+.flash-message {
+    padding: 15px 30px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #ffffff;
+    border: 1px solid transparent;
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+
+.flash-success {
+    background-color: #388e3c; /* Verde scuro */
+    border-color: #2e7d32;
+}
+.flash-error, .flash-danger {
+    background-color: #d32f2f; /* Rosso scuro */
+    border-color: #c62828;
+}
+.flash-info {
+    background-color: #1976d2; /* Blu scuro */
+    border-color: #1565c0;
+}
+
+/* --- Stili per i Post (Index, Dashboard, View) --- */
+.blog-post {
+    background-color: #ffffff;
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #dcdcdc;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.blog-post h2 {
+    font-size: 2.6em;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.blog-post h2 a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.blog-post h2 a:hover {
+    color: #5d5d5d;
+}
+
+.blog-post .meta {
+    font-size: 0.95em;
+    color: #6a6a6a;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 15px;
+    transition: color 0.6s ease, border-color 0.6s ease;
+}
+
+.blog-post .meta a {
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+.blog-post .meta a:hover {
+    color: #5d5d5d;
+}
+
+.blog-post .tags {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.blog-post .tags a {
+    background-color: #e5e5e5;
+    color: #6a6a6a;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.blog-post .tags a:hover {
+    background-color: #dcdcdc;
+    text-decoration: none;
+}
+
+/* Stile per l'immagine del post */
+.img-fluid {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: border-color 0.6s ease;
+}
+
+.blog-post p {
+    margin-bottom: 1.4em;
+    line-height: 1.9;
+    font-size: 1.05em;
+    transition: color 0.6s ease;
+}
+
+.blog-post .read-more {
+    font-weight: 600;
+    color: #5d5d5d;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.blog-post p i {
+    font-style: normal;
+    color: #6a6a6a;
+    font-size: 0.95em;
+    transition: color 0.6s ease;
+}
+
+.blog-post small {
+    display: block;
+    color: #6a6a6a;
+    margin-top: 15px;
+    transition: color 0.6s ease;
+}
+
+.blog-post hr {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    border: 0;
+    border-top: 1px solid #e5e5e5;
+    transition: border-color 0.6s ease;
+}
+
+/* --- Paginazione --- */
+.pagination {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
+.pagination .btn {
+    margin: 0 10px;
+    min-width: 50px;
+    padding: 12px 20px;
+    font-size: 0.9em;
+}
+
+.pagination .btn.active {
+    background-color: #5d5d5d;
+    color: #fff;
+    cursor: default;
+}
+
+.pagination .btn.active:hover {
+    background-color: #5d5d5d;
+}
+
+.pagination span {
+    display: inline-block;
+    padding: 12px 20px;
+    color: #6a6a6a;
+    font-weight: 600;
+    transition: color 0.6s ease;
+}
+
+/* --- Stili per i Form --- */
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #dcdcdc;
+    max-width: 600px;
+    margin: 50px auto;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.form-container h1, .form-container h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #333333;
+}
+
+.form-container .form-group {
+    margin-bottom: 25px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #4a4a4a;
+    transition: color 0.6s ease;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: calc(100% - 28px);
+    padding: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1.05em;
+    background-color: #fcfcfc;
+    color: #4a4a4a;
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+
+.form-container textarea {
+    resize: vertical;
+    min-height: 180px;
+}
+
+.form-container input[type="file"] {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.form-container .btn, .form-container #save {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Stile per le immagini nelle pagine di modifica/profilo */
+.post-image-thumbnail {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.6s ease;
+}
+
+.featured-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #dcdcdc;
+}
+
+.default-featured-image {
+    background-color: #dcdcdc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b0b0b0;
+    font-size: 1.6em;
+    text-align: center;
+    height: 300px;
+    border-radius: 8px;
+}
+
+/* --- Stili specifici per la Dashboard --- */
+.dashboard-posts-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.dashboard-posts-list li {
+    background-color: #ffffff;
+    padding: 22px 30px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+    border: 1px solid #dcdcdc;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.dashboard-posts-list li h4 {
+    margin: 0;
+    font-size: 1.3em;
+    flex-grow: 1;
+    margin-right: 25px;
+}
+
+.dashboard-posts-list li h4 a {
+    color: #4a4a4a;
+    text-decoration: none;
+}
+
+.dashboard-posts-list li h4 a:hover {
+    color: #5d5d5d;
+}
+
+.dashboard-posts-list li p {
+    margin: 0 25px 0 0;
+    font-size: 0.9em;
+    color: #6a6a6a;
+    flex-shrink: 0;
+}
+
+.dashboard-posts-list li .btn {
+    font-size: 0.8em;
+    padding: 8px 15px;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+/* --- Responsività (Media Queries) --- */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px;
+    }
+    .nav-items {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .nav-items li {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .blog-post, .form-container {
+        padding: 25px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .container {
+        padding: 20px;
+    }
+
+    .dashboard-posts-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .dashboard-posts-list li h4,
+    .dashboard-posts-list li p {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .dashboard-posts-list li .btn {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+}
+
+.message-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.message-item {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+    position: relative;
+    transition: background-color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.message-item.unread {
+    background-color: #fdfae7; /* Sfondo giallo tenue */
+    border-color: #f7e099;
+}
+
+.message-header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #e5e5e5;
+    transition: border-bottom-color 0.6s ease;
+}
+
+.message-status {
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #6a6a6a;
+    background-color: #e5e5e5;
+    padding: 5px 12px;
+    border-radius: 3px;
+    float: right;
+    text-transform: uppercase;
+    transition: color 0.6s ease, background-color 0.6s ease;
+}
+
+.message-item.unread .message-status {
+    color: #9c6c00;
+    background-color: #f7e099;
+}
+
+.message-body p {
+    margin: 0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    transition: color 0.6s ease;
+}
+
+.message-actions {
+    margin-top: 25px;
+    text-align: right;
+}
+
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+
+.btn-delete {
+    background-color: #b76e79;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #a35d68;
+}
+
+.message-actions::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.search-bar-container {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+    border-radius: 35px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    outline: none;
+    background-color: #fcfcfc;
+    color: #4a4a4a;
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+.search-input::placeholder {
+    color: #b0b0b0;
+    transition: color 0.6s ease;
+}
+
+.search-button {
+    background-color: #5a5a5a;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 0 35px 35px 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #333333;
+}
+
+@media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+        border-radius: 8px;
+    }
+
+    .search-button {
+        width: 100%;
+        border-radius: 0 0 8px 8px;
+        margin-top: 15px;
+    }
+
+    .search-input {
+        border-radius: 8px 8px 0 0;
+    }
+}
+
+/* Stili per il toggle della modalità notte */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    font-size: 0.95em;
+    color: #6a6a6a;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 28px;
+    position: relative;
+    width: 56px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #b0b0b0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    position: absolute;
+    transition: background-color 0.4s ease;
+}
+
+.slider:before {
+    background-color: #ffffff;
+    bottom: 4px;
+    content: "";
+    height: 20px;
+    left: 4px;
+    position: absolute;
+    transition: transform 0.4s ease, background-color 0.4s ease;
+    width: 20px;
+}
+
+input:checked + .slider {
+    background-color: #5d5d5d;
+}
+
+input:checked + .slider:before {
+    transform: translateX(28px);
+}
+
+.slider.round {
+    border-radius: 28px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.theme-text {
+    margin-left: 12px;
+    color: #6a6a6a;
+    transition: color 0.6s ease;
+}
+
+/* --- Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') --- */
+body.dark-mode {
+    background-color: #2c2c2c; /* Grigio molto scuro per la dark mode */
+    color: #e0e0e0; /* Testo chiaro */
+}
+
+body.dark-mode header,
+body.dark-mode .navbar {
+    background-color: #3a3a3a; /* Navbar più scura */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    border-bottom-color: #4c4c4c;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #f5f5f5; /* Titoli più chiari */
+}
+
+body.dark-mode a {
+    color: #a0a0a0; /* Link generali grigio chiaro */
+}
+body.dark-mode a:hover {
+    color: #c0c0c0;
+}
+
+body.dark-mode .nav-items a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-items a:hover {
+    color: #a0a0a0;
+}
+
+body.dark-mode .theme-text {
+    color: #e0e0e0;
+}
+
+body.dark-mode .blog-post,
+body.dark-mode .message-item,
+body.dark-mode .form-container,
+body.dark-mode .dashboard-posts-list li {
+    background-color: #3a3a3a;
+    border-color: #4c4c4c;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .blog-post h2 a,
+body.dark-mode .dashboard-posts-list li h4 a {
+    color: #a0a0a0;
+}
+
+body.dark-mode .blog-post .meta,
+body.dark-mode .message-header strong,
+body.dark-mode .blog-post p i,
+body.dark-mode .blog-post small,
+body.dark-mode .pagination span,
+body.dark-mode .dashboard-posts-list li p,
+body.dark-mode label {
+    color: #b0b0b0;
+}
+
+body.dark-mode .blog-post .meta a,
+body.dark-mode .message-header strong a {
+    color: #c0c0c0;
+}
+
+body.dark-mode .blog-post .tags a {
+    background-color: #4c4c4c;
+    color: #e0e0e0;
+}
+
+body.dark-mode .blog-post .tags a:hover {
+    background-color: #5a5a5a;
+}
+
+body.dark-mode .read-more {
+    color: #a0a0a0;
+}
+
+body.dark-mode footer {
+    background-color: #3a3a3a;
+    color: #b0b0b0;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"],
+body.dark-mode input[type="email"],
+body.dark-mode textarea {
+    background-color: #4c4c4c;
+    color: #e0e0e0;
+    border-color: #5a5a5a;
+}
+
+body.dark-mode input[type="file"] {
+    color: #e0e0e0;
+}
+
+body.dark-mode input[type="text"]::placeholder,
+body.dark-mode textarea::placeholder,
+body.dark-mode .search-input::placeholder {
+    color: #b0b0b0;
+}
+
+body.dark-mode .btn {
+    background-color: #6a6a6a;
+    color: #e0e0e0;
+    border-color: #7a7a7a;
+    box-shadow: none;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #7a7a7a;
+    border-color: #8a8a8a;
+    box-shadow: none;
+}
+
+body.dark-mode .btn[type="submit"] {
+    background-color: #5a5a5a;
+    color: #fff;
+}
+
+body.dark-mode .btn[type="submit"]:hover {
+    background-color: #333333;
+}
+
+body.dark-mode .flash-success {
+    background-color: #2e7d32;
+    color: #fff;
+    border-color: #1b5e20;
+}
+
+body.dark-mode .flash-error,
+body.dark-mode .flash-danger {
+    background-color: #c62828;
+    color: #fff;
+    border-color: #b71c1c;
+}
+body.dark-mode .flash-info {
+    background-color: #1565c0;
+    color: #fff;
+    border-color: #0d47a1;
+}
+
+body.dark-mode .pagination .btn {
+    background-color: #4c4c4c;
+    border-color: #5a5a5a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .pagination .btn.active {
+    background-color: #5d5d5d;
+    border-color: #5d5d5d;
+    color: #fff;
+}
+
+body.dark-mode .pagination .btn:hover {
+    background-color: #5a5a5a;
+}
+
+body.dark-mode .search-form {
+    border-color: #4c4c4c;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .search-input {
+    background-color: #4c4c4c;
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-button {
+    background-color: #5a5a5a;
+    color: #fff;
+}
+
+body.dark-mode .search-button:hover {
+    background-color: #333333;
+}
+
+body.dark-mode .post-image-thumbnail {
+    border-color: #4c4c4c;
+}
+
+/* --- FINE STILI MODALITÀ NOTTE PER TEMA SUBTLE ELEGANCE --- */
