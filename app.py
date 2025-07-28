@@ -8,14 +8,18 @@ from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from PIL import Image
 import bleach
-import markdown
 import uuid
 import os
 import secrets
 import random
 
 app = Flask(__name__)
+
+
+#setting images per page in gallery
+IMAGES_PER_PAGE = 20
 
 #cleaning HTML in input using bleach
 ALLOWED_TAGS = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 'li', 'ol', 'p',
@@ -114,6 +118,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(28), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+    # role = db.Column(db.String(20), default='contributor', nullable=False)
+    # profile_picture = db.Column(db.String(50), nullable=False, default='default.png')
+    # bio = db.Column(db.Text, nullable=True)
+    # links = db.Column(db.Text, nullable=True)
     post = db.relationship('Post', backref='author', lazy='dynamic')
     
     @property
@@ -160,6 +168,8 @@ def allowed_file(filename):
 
 #save the load image
 def save_picture(form_picture):
+    if not allowed_file(form_picture.filename):
+        raise ValueError('File type not allowed.')
     random_hex = str(uuid.uuid4())
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
@@ -570,6 +580,70 @@ def preview_post():
     author = current_user.username
     return render_template('post_preview.html', title=title, content_html=rendered_preview_content, author=author)
 
+
+#___gallery___
+@app.route('/gallery', methods=['GET', 'POST'])
+@login_required
+def gallery():
+    if request.method == 'POST':
+        if 'image_file' not in request.files:
+            flash('No images selected', 'danger')
+            return redirect(url_for('gallery'))
+        
+        file = request.files['image_file']
+        if file.filename == '':
+            flash('No file selected', 'danger')
+            return redirect(url_for('gallery'))
+            
+        try:
+            filename = save_picture(file)
+            flash(f'Image {filename} successfully uploaded!', 'success')
+        except Exception as e:
+            flash(f'An unexpected error occurred during the upload {e}', 'danger')
+        return redirect(url_for('gallery'))
+    
+    all_image_files = []
+    for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+        if allowed_file(filename):
+            all_image_files.append(filename)
+            
+    all_image_files.sort(reverse=True)
+    
+    page = request.args.get('page', 1, type=int)
+    
+    total_images = len(all_image_files)
+    total_pages = (total_images + IMAGES_PER_PAGE -1) // IMAGES_PER_PAGE
+    start_index = (page -1) * IMAGES_PER_PAGE
+    end_index = start_index + IMAGES_PER_PAGE
+    
+    current_page_files = all_image_files[start_index:end_index]
+    
+    image_files = []
+    for filename in current_page_files:
+        image_files.append({
+            'filename': filename,
+            'url': url_for('static', filename='uploads/' + filename)
+        })
+        
+    return render_template('gallery.html', image_files=image_files, title='File manager', page=page,
+                           total_pages=total_pages, total_images=total_images)
+
+#____delete images____
+@app.route('/gallery/delete/<string:filename>', methods=['POST'])
+@login_required
+def delete_uploaded_image(filename):
+    if not current_user.is_admin:
+        abort(403)
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    if os.path.exists(file_path) and allowed_file(filename):
+        try:
+            os.remove(file_path)
+            flash(f'File {filename} successfully removed!', 'success')
+        except Exception as e:
+            flash(f'An error occurred during the elimination of the file {e}', 'danger')
+    else:
+        flash(f'File {filename} not found or extension is not allowed.', 'danger')
+    return redirect(url_for('gallery'))
 
 #______FORMS______
 class ContactForm(FlaskForm):

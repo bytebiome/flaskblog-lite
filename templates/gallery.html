@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container file-manager-container">
+        <h1>File manager</h1>
+
+        <div class="upload-section blog-post">
+            <h3>Upload a new image</h3>
+            <form method="POST" action="{{ url_for('gallery') }}" enctype="multipart/form-data" class="upload-form">
+                <div class="form-group">
+                    <label for="image-upload">Select a file (max 2MB, allowed: JPG, PNG, GIF, WEBP):</label>
+                    <input type="file" name="image_file" id="image-upload" accept="image/png, image/jpeg, image/jpg, image/gif" required class="form-control-file">
+                </div>
+                <button type="submit" class="btn">Upload image</button>
+            </form>
+        </div>
+
+        <div class="image-gallery blog-post">
+            <h3>Gallery (Page {{ page }} of {{ total_pages }})</h3>
+            {% if image_files %}
+                <div class="gallery-grid">
+                    {% for img in image_files %}
+                        <div class="gallery-item">
+                            <img src="{{ img.url }}" alt="{{ img.filename }}" class="gallery-thumbnail">
+                            <p class="image-filename">{{ img.filename }}</p>
+                            <div class="gallery-actions">
+                                <button class="btn btn-sm copy-url-btn" data-url="{{ img.url }}">Copia URL</button>
+                                {% if current_user.is_admin %}
+                                <form method="POST" action="{{ url_for('delete_uploaded_image', filename=img.filename) }}" style="display:inline-block;">
+                                    <button type="submit" class="btn btn-sm btn-delete" onclick="return confirm('Sei sicuro di voler eliminare questa immagine? L\'azione è irreversibile!');">Elimina</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {# --- Controlli di Paginazione --- #}
+                <div class="pagination-controls">
+                    {% if page > 1 %}
+                        <a href="{{ url_for('gallery', page=page - 1) }}" class="btn pagination-btn">Previous</a>
+                    {% else %}
+                        <span class="btn pagination-btn disabled">Previous</span>
+                    {% endif %}
+
+                    {# Link per i numeri di pagina #}
+                    {% for p_num in range(1, total_pages + 1) %}
+                        {% if p_num == page %}
+                            <span class="btn pagination-btn current">{{ p_num }}</span>
+                        {% else %}
+                            <a href="{{ url_for('gallery', page=p_num) }}" class="btn pagination-btn">{{ p_num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page < total_pages %}
+                        <a href="{{ url_for('gallery', page=page + 1) }}" class="btn pagination-btn">Successiva</a>
+                    {% else %}
+                        <span class="btn pagination-btn disabled">Next</span>
+                    {% endif %}
+                </div>
+
+            {% else %}
+                <p>There is nothing here! Upload something.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.copy-url-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const url = this.dataset.url;
+                navigator.clipboard.writeText(url).then(() => {
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = 'Copy URL';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Error while copying: ', err);
+                    alert('Is not possible to copy the url automatically. Copy manually ' + url);
+                });
+            });
+        });
+    </script>
+{% endblock %}

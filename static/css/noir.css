@@ -1,60 +1,169 @@
-/* static/css/noir-elegance-refined.css (o il tuo main CSS) */
+/* static/css/noir-elegance-refined.css */
 
-/* --- Stili Generali (Modalità Giorno - Ancora più Chiara e Caratteri Raffinati) --- */
+/* --- Variabili Colore (Migliora la Razionalizzazione) --- */
+/* Definisci i colori base per il tema chiaro e scuro.
+   Questo rende più facile modificare i colori in futuro e mantenere la consistenza. */
+:root {
+    /* Colori Modalità Giorno (Light/Default) */
+    --body-bg-day: #555555;
+    --text-color-day: #f5f5f5;
+    --heading-color-day: #ffffff;
+    --link-color-day: #d8d8d8;
+    --link-hover-color-day: #c4a484; /* Accento bronzo */
+    --navbar-bg-day: #4a4a4a;
+    --navbar-border-day: #6a6a6a;
+    --post-bg-day: #4a4a4a;
+    --post-border-day: #6a6a6a;
+    --meta-color-day: #d8d8d8;
+    --meta-border-day: #7a7a7a;
+    --tag-bg-day: #6a6a6a;
+    --tag-text-day: #d8d8d8;
+    --tag-hover-bg-day: #7a7a7a;
+    --form-input-bg-day: #6a6a6a;
+    --form-input-border-day: #808080;
+    --form-input-text-day: #f5f5f5;
+    --button-bg-day: #6a6a6a;
+    --button-border-day: #808080;
+    --button-text-day: #f5f5f5;
+    --button-hover-bg-day: #5a5a5a;
+    --button-hover-border-day: #c4a484;
+    --button-hover-text-day: #c4a484;
+    --btn-edit-bg-day: #7a7a7a;
+    --btn-edit-border-day: #909090;
+    --btn-delete-bg-day: #850000;
+    --btn-delete-border-day: #9a0000;
+    --flash-success-bg-day: #28a745; /* Corretto al verde originale */
+    --flash-success-border-day: #218838; /* Corretto al verde originale */
+    --flash-danger-bg-day: #dc3545; /* Corretto al rosso originale */
+    --flash-danger-border-day: #c82333; /* Corretto al rosso originale */
+    --flash-info-bg-day: #405055;
+    --flash-info-border-day: #4a5a60;
+    --search-bg-day: #6a6a6a;
+    --search-text-day: #f5f5f5;
+    --search-placeholder-day: #a8a8a8;
+    --search-btn-bg-day: #7a7a7a;
+    --search-btn-hover-bg-day: #6a6a6a;
+
+    /* Colori Modalità Notte (Dark Mode) */
+    --body-bg-dark: #1a1a1a;
+    --text-color-dark: #f0f0f0;
+    --heading-color-dark: #f8f8f8;
+    --link-color-dark: #d4b080;
+    --link-hover-color-dark: #e6c2a0;
+    --navbar-bg-dark: #121212;
+    --navbar-border-dark: #2a2a2a;
+    --post-bg-dark: #242424;
+    --post-border-dark: #3a3a3a;
+    --meta-color-dark: #d0d0d0;
+    --meta-border-dark: #3a3a3a;
+    --tag-bg-dark: #3a3a3a;
+    --tag-text-dark: #d0d0d0;
+    --tag-hover-bg-dark: #4a4a4a;
+    --form-input-bg-dark: #3a3a3a;
+    --form-input-border-dark: #5a5a5a;
+    --form-input-text-dark: #f0f0f0;
+    --button-bg-dark: #5a5a5a;
+    --button-border-dark: #6a6a6a;
+    --button-text-dark: #f0f0f0;
+    --button-hover-bg-dark: #4a4a4a;
+    --button-hover-border-dark: #e6c2a0;
+    --button-hover-text-dark: #e6c2a0;
+    --btn-submit-bg-dark: #c4a484; /* Specifico per submit in dark mode */
+    --btn-submit-text-dark: #1a1a1a;
+    --btn-submit-hover-bg-dark: #e6c2a0;
+    --btn-submit-hover-text-dark: #121212;
+    --flash-success-bg-dark: #456060; /* Corretto per dark mode */
+    --flash-success-border-dark: #507070; /* Corretto per dark mode */
+    --flash-danger-bg-dark: #950000; /* Corretto per dark mode */
+    --flash-danger-border-dark: #a50000; /* Corretto per dark mode */
+    --flash-info-bg-dark: #50606a;
+    --flash-info-border-dark: #60707a;
+    --search-bg-dark: #3a3a3a;
+    --search-text-dark: #f0f0f0;
+    --search-placeholder-dark: #a0a0a0;
+    --search-btn-bg-dark: #4a4a4a;
+    --search-btn-hover-bg-dark: #3a3a3a;
+    --gallery-section-bg-dark: #242424; /* Nuovo per sezioni galleria */
+    --gallery-section-border-dark: #3a3a3a;
+    --gallery-item-bg-dark: #242424; /* Nuovo per elementi galleria */
+    --gallery-item-border-dark: #3a3a3a;
+    --file-input-bg-dark: #3a3a3a;
+    --file-input-border-dark: #5a5a5a;
+    --file-selector-btn-bg-dark: #4a4a4a;
+    --file-selector-btn-text-dark: #f0f0f0;
+    --file-selector-btn-hover-bg-dark: #3a3a3a;
+    --file-selector-btn-hover-text-dark: #e6c2a0;
+    --thumbnail-border-dark: #3a3a3a;
+    --thumbnail-bg-dark: #3a3a3a;
+    --pagination-btn-bg-dark: #3a3a3a;
+    --pagination-btn-border-dark: #5a5a5a;
+    --pagination-btn-text-dark: #f0f0f0;
+    --pagination-btn-hover-bg-dark: #4a4a4a;
+    --pagination-btn-hover-border-dark: #e6c2a0;
+    --pagination-btn-hover-text-dark: #e6c2a0;
+    --pagination-current-bg-dark: #e6c2a0;
+    --pagination-current-text-dark: #121212;
+    --pagination-disabled-bg-dark: #2a2a2a;
+    --pagination-disabled-border-dark: #3a3a3a;
+    --pagination-disabled-text-dark: #777777;
+}
+
+/* --- Stili Generali (Modalità Giorno - Valori di Default) --- */
 body {
-    font-family: 'Merriweather', serif; /* Font serif leggibile per il corpo del testo */
+    font-family: 'Merriweather', serif;
     line-height: 1.7;
     margin: 0;
     padding: 0;
-    background-color: #555555; /* Grigio medio per la day mode, leggermente più chiaro */
-    color: #f5f5f5; /* Grigio quasi bianco per il testo */
-    font-size: 0.95em; /* Dimensione base dei caratteri leggermente ridotta */
+    background-color: var(--body-bg-day);
+    color: var(--text-color-day);
+    font-size: 0.95em;
     transition: background-color 0.8s ease, color 0.8s ease, font-size 0.8s ease;
 }
 
 .container {
-    max-width: 880px; /* Larghezza studiata per un aspetto pulito */
+    max-width: 880px;
     margin: 0 auto;
-    padding: 55px 35px; /* Padding generoso */
+    padding: 55px 35px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif; /* Font serif elegante per i titoli */
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: #ffffff; /* Bianco puro/quasi puro per i titoli, per farli spiccare */
-    margin-bottom: 25px; /* Spazio leggermente ridotto sotto i titoli */
+    color: var(--heading-color-day);
+    margin-bottom: 25px;
     line-height: 1.25;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Ombra sottile, meno intensa */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     transition: color 0.8s ease, text-shadow 0.8s ease;
 }
 
-h1 { font-size: 2.6em; } /* Dimensioni dei titoli adattate */
+h1 { font-size: 2.6em; }
 h2 { font-size: 2.0em; }
 h3 { font-size: 1.6em; }
 
 p {
-    margin-bottom: 1.3em; /* Spazio leggermente ridotto sotto i paragrafi */
-    font-size: 1em; /* Mantiene la dimensione relativa alla base */
+    margin-bottom: 1.3em;
+    font-size: 1em;
+    color: var(--text-color-day);
 }
 
 a {
-    color: #d8d8d8; /* Grigio chiaro per i link, discreto */
+    color: var(--link-color-day);
     text-decoration: none;
     transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 a:hover {
-    color: #c4a484; /* Accento color ottone/bronzo sottile all'hover */
+    color: var(--link-hover-color-day);
     text-decoration: underline;
 }
 
 /* --- Navbar (Intestazione) --- */
 .navbar {
-    background-color: #4a4a4a; /* Nero molto scuro per la navbar, più chiaro */
-    color: #f5f5f5;
-    padding: 20px 0; /* Padding leggermente ridotto */
-    box-shadow: 0 1px 5px rgba(0,0,0,0.5); /* Ombra definita, meno intensa */
-    border-bottom: 1px solid #6a6a6a; /* Bordo leggermente più chiaro per contrasto */
+    background-color: var(--navbar-bg-day);
+    color: var(--text-color-day);
+    padding: 20px 0;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    border-bottom: 1px solid var(--navbar-border-day);
     transition: background-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease, border-bottom-color 0.8s ease;
 }
 
@@ -62,7 +171,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px; /* Padding leggermente ridotto */
+    padding: 0 30px;
 }
 
 /* Logo */
@@ -73,10 +182,10 @@ a:hover {
 }
 
 .navbar .logo img {
-    height: 40px; /* Dimensione del logo, leggermente ridotta */
+    height: 40px;
     width: auto;
-    margin-right: 12px; /* Margine leggermente ridotto */
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.08)); /* Leggero bagliore */
+    margin-right: 12px;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.08));
     transition: filter 0.3s ease;
 }
 
@@ -86,9 +195,9 @@ a:hover {
 
 .navbar .logo h1 {
     margin: 0;
-    font-size: 1.7em; /* Dimensione del testo del logo adattata */
-    color: #f5f5f5;
-    text-shadow: none; /* Rimuovi l'ombra del testo dal logo */
+    font-size: 1.7em;
+    color: var(--text-color-day);
+    text-shadow: none;
 }
 
 .nav-items {
@@ -100,7 +209,7 @@ a:hover {
 }
 
 .nav-items li {
-    margin-right: 25px; /* Spazio ridotto tra gli elementi */
+    margin-right: 25px;
 }
 
 .nav-items li:last-child {
@@ -108,166 +217,164 @@ a:hover {
 }
 
 .nav-items a {
-    color: #d8d8d8; /* Grigio per i link della navbar */
+    color: var(--link-color-day);
     font-weight: 400;
-    padding: 4px 0; /* Padding leggermente ridotto */
+    padding: 4px 0;
     text-transform: uppercase;
-    letter-spacing: 0.03em; /* Spaziatura lettere leggermente ridotta */
+    letter-spacing: 0.03em;
 }
 
 .nav-items a:hover {
-    color: #c4a484;
+    color: var(--link-hover-color-day);
     text-decoration: none;
 }
 
-/* --- Bottoni --- */
+/* --- Bottoni Generici (Consolidati) --- */
 .btn, #theme-toggle, #save {
     display: inline-block;
-    background-color: #6a6a6a; /* Grigio medio per i bottoni, più chiaro */
-    color: #f5f5f5;
-    padding: 12px 25px; /* Padding leggermente ridotto */
-    border: 1px solid #808080; /* Bordo leggermente più chiaro */
+    background-color: var(--button-bg-day);
+    color: var(--button-text-day);
+    padding: 12px 25px;
+    border: 1px solid var(--button-border-day);
     border-radius: 3px;
     cursor: pointer;
-    font-size: 0.8em; /* Dimensione font leggermente ridotta */
-    font-family: 'Merriweather', serif; /* Font dei bottoni coerente */
+    font-size: 0.8em;
+    font-family: 'Merriweather', serif;
     font-weight: 700;
-    letter-spacing: 0.04em; /* Spaziatura lettere leggermente ridotta */
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.4); /* Ombra meno intensa */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .btn:hover, #theme-toggle:hover, #save:hover {
-    background-color: #5a5a5a;
-    border-color: #c4a484; /* Bordo color bronzo all'hover */
-    color: #c4a484;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.6); /* Ombra più definita */
+    background-color: var(--button-hover-bg-day);
+    border-color: var(--button-hover-border-day);
+    color: var(--button-hover-text-day);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }
 
 .btn.edit-post {
-    background-color: #7a7a7a; /* Grigio più chiaro per edit */
-    border-color: #909090;
+    background-color: var(--btn-edit-bg-day);
+    border-color: var(--btn-edit-border-day);
 }
 .btn.edit-post:hover {
-    background-color: #6a6a6a;
-    border-color: #c4a484;
+    background-color: var(--button-hover-bg-day);
+    border-color: var(--button-hover-border-day);
+    color: var(--button-hover-text-day);
 }
 .btn.delete-post {
-    background-color: #850000; /* Rosso scuro, meno saturo */
-    border-color: #9a0000;
+    background-color: var(--btn-delete-bg-day);
+    border-color: var(--btn-delete-border-day);
+    color: white;
 }
 .btn.delete-post:hover {
-    background-color: #700000;
-    border-color: #c4a484;
-}
-
-#theme-toggle {
-    background-color: #6a6a6a;
-    border-color: #808080;
-}
-#theme-toggle:hover {
-    background-color: #5a5a5a;
-    border-color: #c4a484;
+    background-color: var(--btn-delete-bg-day);
+    border-color: var(--button-hover-border-day);
+    color: var(--button-hover-text-day);
 }
 
 /* --- Flash Messages --- */
 .flash-messages-container {
-    margin-top: 30px; /* Margine leggermente ridotto */
+    margin-top: 30px;
+    text-align: center;
 }
 
 .flash-message {
-    padding: 14px 25px; /* Padding leggermente ridotto */
-    margin-bottom: 20px; /* Margine leggermente ridotto */
-    border-radius: 3px;
+    padding: 15px 25px; /* Modificato leggermente per coerenza con la tua versione */
+    margin-bottom: 20px;
+    border-radius: 5px; /* Modificato a 5px per coerenza */
     font-weight: 600;
     color: #ffffff;
     border: 1px solid transparent;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3); /* Ombra meno intensa */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
     transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
+    display: inline-block;
+    max-width: 90%;
+    line-height: 1.4;
 }
 
 .flash-success {
-    background-color: #3a5050; /* Verde-blu scuro */
-    border-color: #456060;
+    background-color: var(--flash-success-bg-day);
+    border-color: var(--flash-success-border-day);
 }
 .flash-error, .flash-danger {
-    background-color: #850000;
-    border-color: #9a0000;
+    background-color: var(--flash-danger-bg-day);
+    border-color: var(--flash-danger-border-day);
 }
 .flash-info {
-    background-color: #405055; /* Blu ardesia scuro */
-    border-color: #4a5a60;
+    background-color: var(--flash-info-bg-day);
+    border-color: var(--flash-info-border-day);
 }
 
 /* --- Stili per i Post (Index, Dashboard, View) --- */
 .blog-post {
-    background-color: #4a4a4a; /* Grigio medio-scuro per i post, più chiaro */
-    padding: 40px; /* Padding leggermente ridotto */
-    margin-bottom: 40px; /* Margine leggermente ridotto */
+    background-color: var(--post-bg-day);
+    padding: 40px;
+    margin-bottom: 40px;
     border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.6); /* Ombra meno intensa */
-    border: 1px solid #6a6a6a; /* Bordo leggermente più chiaro */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    border: 1px solid var(--post-border-day);
     transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
 }
 
 .blog-post h2 {
-    font-size: 2.3em; /* Dimensione titolo adattata */
+    font-size: 2.3em;
     margin-top: 0;
-    margin-bottom: 20px; /* Spazio leggermente ridotto */
-    color: #ffffff;
+    margin-bottom: 20px;
+    color: var(--heading-color-day);
 }
 
 .blog-post h2 a {
-    color: #ffffff;
+    color: var(--heading-color-day);
     text-decoration: none;
 }
 
 .blog-post h2 a:hover {
-    color: #c4a484;
+    color: var(--link-hover-color-day);
 }
 
 .blog-post .meta {
-    font-size: 0.85em; /* Dimensione meta info leggermente ridotta */
-    color: #d8d8d8;
-    margin-bottom: 25px; /* Spazio leggermente ridotto */
-    border-bottom: 1px dashed #7a7a7a; /* Linea tratteggiata leggermente più chiara */
-    padding-bottom: 15px; /* Padding leggermente ridotto */
+    font-size: 0.85em;
+    color: var(--meta-color-day);
+    margin-bottom: 25px;
+    border-bottom: 1px dashed var(--meta-border-day);
+    padding-bottom: 15px;
     transition: color 0.8s ease, border-bottom-color 0.8s ease;
 }
 
 .blog-post .meta a {
-    color: #e5e5e5;
+    color: var(--text-color-day);
     font-weight: 600;
 }
 
 .blog-post .meta a:hover {
-    color: #c4a484;
+    color: var(--link-hover-color-day);
 }
 
 .blog-post .tags {
     display: inline-block;
-    margin-left: 25px; /* Margine leggermente ridotto */
+    margin-left: 25px;
 }
 
 .blog-post .tags a {
-    background-color: #6a6a6a; /* Sfondo tag leggermente più chiaro */
-    color: #d8d8d8;
-    padding: 6px 12px; /* Padding leggermente ridotto */
+    background-color: var(--tag-bg-day);
+    color: var(--tag-text-day);
+    padding: 6px 12px;
     border-radius: 3px;
-    font-size: 0.7em; /* Dimensione font tag leggermente ridotta */
-    margin-right: 10px; /* Margine leggermente ridotto */
+    font-size: 0.7em;
+    margin-right: 10px;
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .blog-post .tags a:hover {
-    background-color: #7a7a7a;
-    color: #c4a484;
+    background-color: var(--tag-hover-bg-day);
+    color: var(--link-hover-color-day);
     text-decoration: none;
 }
 
@@ -276,122 +383,126 @@ a:hover {
     width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 30px; /* Margine leggermente ridotto */
+    margin-bottom: 30px;
     border-radius: 4px;
-    border: 1px solid #6a6a6a;
+    border: 1px solid var(--post-border-day);
     box-shadow: 0 1px 7px rgba(0,0,0,0.5);
-    /* filter: grayscale(90%) contrast(120%); Effetto bianco e nero intenso, quasi monocromatico */
     transition: border-color 0.8s ease, filter 0.8s ease;
 }
 
 .blog-post p {
-    margin-bottom: 1.4em; /* Margine leggermente ridotto */
-    line-height: 1.75; /* Altezza linea leggermente ridotta per compattezza */
-    font-size: 1em; /* Mantiene la dimensione relativa alla base */
-    color: #f5f5f5;
+    margin-bottom: 1.4em;
+    line-height: 1.75;
+    font-size: 1em;
+    color: var(--text-color-day);
     transition: color 0.8s ease;
-}
-
-.blog-post .read-more {
-    font-weight: 700;
-    color: #c4a484;
-    display: inline-block;
-    margin-top: 25px; /* Margine leggermente ridotto */
 }
 
 .blog-post p i {
     font-style: italic;
-    color: #d8d8d8;
-    font-size: 0.95em; /* Dimensione testo italico leggermente ridotta */
+    color: var(--meta-color-day);
+    font-size: 0.95em;
     transition: color 0.8s ease;
 }
 
 .blog-post small {
     display: block;
-    color: #d8d8d8;
-    margin-top: 15px; /* Margine leggermente ridotto */
+    color: var(--meta-color-day);
+    margin-top: 15px;
     transition: color 0.8s ease;
 }
 
 .blog-post hr {
-    margin-top: 35px; /* Margine leggermente ridotto */
-    margin-bottom: 35px; /* Margine leggermente ridotto */
+    margin-top: 35px;
+    margin-bottom: 35px;
     border: 0;
-    border-top: 1px dashed #7a7a7a;
+    border-top: 1px dashed var(--meta-border-day);
     transition: border-top-color 0.8s ease;
 }
 
-/* --- Paginazione --- */
-.pagination {
+/* --- Paginazione (Generica, non solo per blog post) --- */
+.pagination-controls, .pagination {
+    margin-top: 40px;
     text-align: center;
-    margin-top: 45px; /* Margine leggermente ridotto */
-    margin-bottom: 60px; /* Margine leggermente ridotto */
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
 }
 
-.pagination .btn {
-    margin: 0 8px; /* Margine leggermente ridotto */
-    min-width: 45px; /* Larghezza minima leggermente ridotta */
-    padding: 10px 18px; /* Padding leggermente ridotto */
-    font-size: 0.75em; /* Dimensione font leggermente ridotta */
-    background-color: #6a6a6a;
-    border-color: #808080;
-    color: #f5f5f5;
+.pagination-controls .btn, .pagination .btn {
+    padding: 10px 18px;
+    font-size: 1em;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--button-text-day);
+    background-color: var(--button-bg-day);
+    border: 1px solid var(--button-border-day);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    min-width: 45px;
 }
 
+.pagination-controls .btn:hover:not(.disabled):not(.current),
+.pagination .btn:hover:not(.active):not(.disabled) {
+    background-color: var(--button-hover-bg-day);
+    border-color: var(--button-hover-border-day);
+    color: var(--button-hover-text-day);
+}
+
+.pagination-controls .btn.current,
 .pagination .btn.active {
-    background-color: #c4a484;
-    border-color: #c4a484;
-    color: #4a4a4a;
+    background-color: var(--link-hover-color-day);
+    border-color: var(--link-hover-color-day);
+    color: #333333;
+    font-weight: bold;
     cursor: default;
 }
 
-.pagination .btn.active:hover {
-    background-color: #c4a484;
-    border-color: #c4a484;
-    color: #4a4a4a;
-}
-
-.pagination .btn:hover {
-    background-color: #7a7a7a;
-    border-color: #c4a484;
-    color: #c4a484;
+.pagination-controls .btn.disabled,
+.pagination .btn.disabled {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #999999;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .pagination span {
     display: inline-block;
-    padding: 10px 18px; /* Padding leggermente ridotto */
-    color: #d8d8d8;
+    padding: 10px 18px;
+    color: var(--meta-color-day);
     font-weight: 600;
     transition: color 0.8s ease;
 }
 
 /* --- Stili per i Form --- */
 .form-container {
-    background-color: #4a4a4a;
-    padding: 40px; /* Padding leggermente ridotto */
+    background-color: var(--post-bg-day);
+    padding: 40px;
     border-radius: 4px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-    border: 1px solid #6a6a6a;
+    border: 1px solid var(--post-border-day);
     max-width: 650px;
-    margin: 45px auto; /* Margine leggermente ridotto */
+    margin: 45px auto;
     transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
 }
 
 .form-container h1, .form-container h2 {
     text-align: center;
-    margin-bottom: 35px; /* Margine leggermente ridotto */
-    color: #ffffff;
+    margin-bottom: 35px;
+    color: var(--heading-color-day);
 }
 
 .form-container .form-group {
-    margin-bottom: 25px; /* Margine leggermente ridotto */
+    margin-bottom: 25px;
 }
 
 .form-container label {
     display: block;
-    margin-bottom: 10px; /* Margine leggermente ridotto */
+    margin-bottom: 10px;
     font-weight: 600;
-    color: #f5f5f5;
+    color: var(--text-color-day);
     transition: color 0.8s ease;
 }
 
@@ -399,67 +510,65 @@ a:hover {
 .form-container input[type="password"],
 .form-container input[type="email"],
 .form-container textarea {
-    width: calc(100% - 24px); /* Larghezza adattata al padding ridotto */
-    padding: 12px; /* Padding leggermente ridotto */
-    border: 1px solid #808080;
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid var(--form-input-border-day);
     border-radius: 3px;
-    font-size: 0.95em; /* Dimensione font leggermente ridotta */
-    background-color: #6a6a6a;
-    color: #f5f5f5;
+    font-size: 0.95em;
+    background-color: var(--form-input-bg-day);
+    color: var(--form-input-text-day);
     transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
 }
 
 .form-container textarea {
     resize: vertical;
-    min-height: 160px; /* Altezza minima leggermente ridotta */
+    min-height: 160px;
 }
 
 .form-container input[type="file"] {
-    margin-top: 12px; /* Margine leggermente ridotto */
-    margin-bottom: 18px; /* Margine leggermente ridotto */
-    color: #f5f5f5;
+    margin-top: 12px;
+    margin-bottom: 18px;
+    color: var(--form-input-text-day);
 }
 
 .form-container .btn, .form-container #save {
     width: 100%;
-    margin-top: 22px; /* Margine leggermente ridotto */
+    margin-top: 22px;
 }
 
 /* Stile per le immagini nelle pagine di modifica/profilo */
 .post-image-thumbnail {
-    max-width: 180px; /* Dimensione leggermente ridotta */
+    max-width: 180px;
     height: auto;
     display: block;
-    margin-top: 22px; /* Margine leggermente ridotto */
-    margin-bottom: 25px; /* Margine leggermente ridotto */
+    margin-top: 22px;
+    margin-bottom: 25px;
     border-radius: 4px;
-    border: 1px solid #6a6a6a;
+    border: 1px solid var(--post-border-day);
     box-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    /* filter: grayscale(90%) contrast(120%); */
     transition: border-color 0.8s ease, filter 0.8s ease;
 }
 
 .featured-image {
     width: 100%;
-    max-height: 450px; /* Altezza massima leggermente ridotta */
+    max-height: 450px;
     object-fit: cover;
     display: block;
-    margin-bottom: 35px; /* Margine leggermente ridotto */
+    margin-bottom: 35px;
     border-radius: 4px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.6);
-    border: 1px solid #6a6a6a;
-    /* filter: grayscale(90%) contrast(120%); */
+    border: 1px solid var(--post-border-day);
 }
 
 .default-featured-image {
-    background-color: #6a6a6a;
+    background-color: var(--form-input-bg-day);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #909090;
-    font-size: 1.6em; /* Dimensione font leggermente ridotta */
+    font-size: 1.6em;
     text-align: center;
-    height: 280px; /* Altezza leggermente ridotta */
+    height: 280px;
     border-radius: 4px;
 }
 
@@ -467,16 +576,16 @@ a:hover {
 .dashboard-posts-list {
     list-style: none;
     padding: 0;
-    margin-top: 30px; /* Margine leggermente ridotto */
+    margin-top: 30px;
 }
 
 .dashboard-posts-list li {
-    background-color: #4a4a4a;
-    padding: 22px 30px; /* Padding leggermente ridotto */
-    margin-bottom: 18px; /* Margine leggermente ridotto */
+    background-color: var(--post-bg-day);
+    padding: 22px 30px;
+    margin-bottom: 18px;
     border-radius: 4px;
     box-shadow: 0 1px 9px rgba(0,0,0,0.55);
-    border: 1px solid #6a6a6a;
+    border: 1px solid var(--post-border-day);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -486,33 +595,48 @@ a:hover {
 
 .dashboard-posts-list li h4 {
     margin: 0;
-    font-size: 1.2em; /* Dimensione font leggermente ridotta */
+    font-size: 1.2em;
     flex-grow: 1;
-    margin-right: 20px; /* Margine leggermente ridotto */
-    color: #ffffff;
+    margin-right: 20px;
+    color: var(--heading-color-day);
 }
 
 .dashboard-posts-list li h4 a {
-    color: #ffffff;
+    color: var(--heading-color-day);
     text-decoration: none;
 }
 
 .dashboard-posts-list li h4 a:hover {
-    color: #c4a484;
+    color: var(--link-hover-color-day);
 }
 
 .dashboard-posts-list li p {
-    margin: 0 20px 0 0; /* Margine leggermente ridotto */
-    font-size: 0.85em; /* Dimensione font leggermente ridotta */
-    color: #d8d8d8;
+    margin: 0 20px 0 0;
+    font-size: 0.85em;
+    color: var(--meta-color-day);
     flex-shrink: 0;
 }
 
 .dashboard-posts-list li .btn {
-    font-size: 0.65em; /* Dimensione font leggermente ridotta */
-    padding: 8px 14px; /* Padding leggermente ridotto */
-    margin-left: 8px; /* Margine leggermente ridotto */
-    margin-top: 7px; /* Margine leggermente ridotto */
+    font-size: 0.65em;
+    padding: 8px 14px;
+    margin-left: 8px;
+    margin-top: 7px;
+}
+
+/* --- Spazio Verticale per admin-tools-list --- */
+.admin-tools-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-tools-list li {
+    margin-bottom: 15px;
+}
+
+.admin-tools-list li:last-child {
+    margin-bottom: 0;
 }
 
 /* --- Responsività (Media Queries) --- */
@@ -520,24 +644,24 @@ a:hover {
     .navbar .container {
         flex-direction: column;
         text-align: center;
-        padding: 0 18px; /* Padding ridotto */
+        padding: 0 18px;
     }
     .nav-items {
         flex-direction: column;
         width: 100%;
-        margin-top: 12px; /* Margine ridotto */
+        margin-top: 12px;
     }
     .nav-items li {
         margin-right: 0;
-        margin-bottom: 10px; /* Margine ridotto */
+        margin-bottom: 10px;
     }
     .blog-post, .form-container {
-        padding: 25px; /* Padding ridotto */
-        margin-left: 10px; /* Margine ridotto */
-        margin-right: 10px; /* Margine ridotto */
+        padding: 25px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
     .container {
-        padding: 18px; /* Padding ridotto */
+        padding: 18px;
     }
 
     .dashboard-posts-list li {
@@ -547,36 +671,36 @@ a:hover {
     .dashboard-posts-list li h4,
     .dashboard-posts-list li p {
         margin-right: 0;
-        margin-bottom: 8px; /* Margine ridotto */
+        margin-bottom: 8px;
         width: 100%;
     }
     .dashboard-posts-list li .btn {
         margin-left: 0;
-        margin-right: 10px; /* Margine ridotto */
+        margin-right: 10px;
     }
 
     .navbar .logo {
         flex-direction: column;
-        margin-bottom: 12px; /* Margine ridotto */
+        margin-bottom: 12px;
     }
 
     .navbar .logo img {
         margin-right: 0;
-        margin-bottom: 8px; /* Margine ridotto */
+        margin-bottom: 8px;
     }
 }
 
 .message-list {
     list-style: none;
     padding: 0;
-    margin-top: 30px; /* Margine ridotto */
+    margin-top: 30px;
 }
 
 .message-item {
-    background-color: #4a4a4a;
-    border: 1px solid #6a6a6a;
-    padding: 25px; /* Padding ridotto */
-    margin-bottom: 25px; /* Margine ridotto */
+    background-color: var(--post-bg-day);
+    border: 1px solid var(--post-border-day);
+    padding: 25px;
+    margin-bottom: 25px;
     border-radius: 4px;
     box-shadow: 0 1px 9px rgba(0,0,0,0.55);
     position: relative;
@@ -584,23 +708,23 @@ a:hover {
 }
 
 .message-item.unread {
-    background-color: #5a5552; /* Tono marrone più caldo per non letti, leggermente più chiaro */
+    background-color: #5a5552;
     border-color: #6a605d;
 }
 
 .message-header {
-    margin-bottom: 15px; /* Margine ridotto */
-    padding-bottom: 15px; /* Padding ridotto */
-    border-bottom: 1px dashed #7a7a7a;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--meta-border-day);
     transition: border-bottom-color 0.8s ease;
 }
 
 .message-status {
-    font-size: 0.75em; /* Dimensione font ridotta */
+    font-size: 0.75em;
     font-weight: 700;
-    color: #d8d8d8;
-    background-color: #6a6a6a;
-    padding: 5px 10px; /* Padding ridotto */
+    color: var(--meta-color-day);
+    background-color: var(--tag-bg-day);
+    padding: 5px 10px;
     border-radius: 3px;
     float: right;
     text-transform: uppercase;
@@ -608,36 +732,50 @@ a:hover {
 }
 
 .message-item.unread .message-status {
-    color: #c4a484;
+    color: var(--link-hover-color-day);
     background-color: #6a605d;
 }
 
 .message-body p {
     margin: 0;
-    line-height: 1.7; /* Altezza linea ridotta */
+    line-height: 1.7;
     white-space: pre-wrap;
-    color: #f5f5f5;
+    color: var(--text-color-day);
     transition: color 0.8s ease;
 }
 
 .message-actions {
-    margin-top: 25px; /* Margine ridotto */
+    margin-top: 25px;
     text-align: right;
 }
 
 .btn-sm {
-    padding: 9px 16px; /* Padding ridotto */
-    font-size: 0.75em; /* Dimensione font ridotta */
+    padding: 9px 16px;
+    font-size: 0.75em;
     line-height: 1.4;
 }
 
-.btn-delete {
-    background-color: #850000;
+/* Questi sono i bottoni specifici per la galleria e messaggi, che non devono cambiare colore con le variabili generiche dei bottoni. */
+.copy-url-btn {
+    background-color: #007bff;
     color: white;
+    border: 1px solid #007bff;
+}
+
+.copy-url-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
 }
 
 .btn-delete:hover {
-    background-color: #700000;
+    background-color: #bd2130;
+    border-color: #bd2130;
 }
 
 .message-actions::after {
@@ -647,15 +785,15 @@ a:hover {
 }
 
 .search-bar-container {
-    margin-bottom: 50px; /* Margine ridotto */
+    margin-bottom: 50px;
     text-align: center;
 }
 
 .search-form {
     display: flex;
-    max-width: 600px; /* Larghezza massima leggermente ridotta */
+    max-width: 600px;
     margin: 0 auto;
-    border: 1px solid #808080;
+    border: 1px solid var(--form-input-border-day);
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 2px 9px rgba(0,0,0,0.55);
@@ -665,34 +803,34 @@ a:hover {
 .search-input {
     flex-grow: 1;
     border: none;
-    padding: 14px 25px; /* Padding ridotto */
-    font-size: 1em; /* Dimensione font leggermente ridotta */
+    padding: 14px 25px;
+    font-size: 1em;
     outline: none;
-    background-color: #6a6a6a;
-    color: #f5f5f5;
+    background-color: var(--search-bg-day);
+    color: var(--search-text-day);
     transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .search-input::placeholder {
-    color: #a8a8a8;
+    color: var(--search-placeholder-day);
     transition: color 0.8s ease;
 }
 
 .search-button {
-    background-color: #7a7a7a;
-    color: #f5f5f5;
+    background-color: var(--search-btn-bg-day);
+    color: var(--search-text-day);
     border: none;
-    padding: 14px 25px; /* Padding ridotto */
+    padding: 14px 25px;
     cursor: pointer;
-    font-size: 1em; /* Dimensione font leggermente ridotta */
+    font-size: 1em;
     font-weight: 600;
     border-radius: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .search-button:hover {
-    background-color: #6a6a6a;
-    color: #c4a484;
+    background-color: var(--search-btn-hover-bg-day);
+    color: var(--link-hover-color-day);
 }
 
 @media (max-width: 600px) {
@@ -704,7 +842,7 @@ a:hover {
     .search-button {
         width: 100%;
         border-radius: 0 0 4px 4px;
-        margin-top: 12px; /* Margine ridotto */
+        margin-top: 12px;
     }
 
     .search-input {
@@ -716,16 +854,16 @@ a:hover {
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    margin-left: 30px; /* Margine ridotto */
-    font-size: 0.9em; /* Dimensione font leggermente ridotta */
-    color: #d8d8d8;
+    margin-left: 30px;
+    font-size: 0.9em;
+    color: var(--meta-color-day);
 }
 
 .theme-switch {
     display: inline-block;
-    height: 28px; /* Altezza leggermente ridotta */
+    height: 28px;
     position: relative;
-    width: 56px; /* Larghezza leggermente ridotta */
+    width: 56px;
     cursor: pointer;
 }
 
@@ -734,7 +872,7 @@ a:hover {
 }
 
 .slider {
-    background-color: #808080; /* Più chiaro in light mode */
+    background-color: var(--form-input-border-day);
     bottom: 0;
     left: 0;
     right: 0;
@@ -745,23 +883,23 @@ a:hover {
 }
 
 .slider:before {
-    background-color: #f5f5f5; /* Più chiaro in light mode */
-    bottom: 3px; /* Posizione adattata */
+    background-color: var(--text-color-day);
+    bottom: 3px;
     content: "";
-    height: 22px; /* Altezza leggermente ridotta */
-    left: 3px; /* Posizione adattata */
+    height: 22px;
+    left: 3px;
     position: absolute;
     transition: transform 0.4s ease, background-color 0.4s ease;
-    width: 22px; /* Larghezza leggermente ridotta */
+    width: 22px;
 }
 
 input:checked + .slider {
-    background-color: #c4a484; /* Bronzo per il toggle in modalità notte */
+    background-color: var(--link-hover-color-day);
 }
 
 input:checked + .slider:before {
     transform: translateX(28px);
-    background-color: #4a4a4a; /* Nero per il cerchio in modalità notte */
+    background-color: var(--navbar-bg-dark);
 }
 
 .slider.round {
@@ -773,23 +911,165 @@ input:checked + .slider:before {
 }
 
 .theme-text {
-    margin-left: 12px; /* Margine leggermente ridotto */
-    color: #d8d8d8;
+    margin-left: 12px;
+    color: var(--meta-color-day);
     transition: color 0.8s ease;
+}
+
+/* --- Stili per il File Manager e Galleria Immagini --- */
+.file-manager-container {
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
+
+.file-manager-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--heading-color-day);
+}
+
+.upload-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: var(--post-bg-day);
+    border: 1px solid var(--post-border-day);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.upload-section h3 {
+    color: var(--link-hover-color-day);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.upload-form .form-group {
+    margin-bottom: 25px;
+}
+
+.upload-form label {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+    color: var(--text-color-day);
+}
+
+.upload-form input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--form-input-border-day);
+    border-radius: 5px;
+    background-color: var(--form-input-bg-day);
+    color: var(--form-input-text-day);
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.upload-form input[type="file"]:focus {
+    outline: none;
+    border-color: var(--link-hover-color-day);
+}
+
+.upload-form input[type="file"]::file-selector-button {
+    background-color: var(--tag-bg-day);
+    color: var(--tag-text-day);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.upload-form input[type="file"]::file-selector-button:hover {
+    background-color: var(--tag-hover-bg-day);
+    color: var(--link-hover-color-day);
+}
+
+.image-gallery {
+    padding: 30px;
+    background-color: var(--post-bg-day);
+    border: 1px solid var(--post-border-day);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.image-gallery h3 {
+    color: var(--link-hover-color-day);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.gallery-item {
+    background-color: var(--post-bg-day); /* Usa variabile per coerenza */
+    border: 1px solid var(--post-border-day);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.8s ease, border-color 0.8s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-thumbnail {
+    max-width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border: 1px solid var(--post-border-day);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: var(--form-input-bg-day);
+}
+
+.image-filename {
+    font-size: 0.85em;
+    color: var(--text-color-day);
+    word-break: break-all;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.gallery-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto;
+}
+
+.gallery-actions .btn {
+    flex-grow: 1;
+    margin: 0 5px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    border-radius: 4px;
 }
 
 /* --- Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') --- */
 body.dark-mode {
-    background-color: #1a1a1a; /* Nero più profondo per la dark mode */
-    color: #f0f0f0;
-    font-size: 0.95em; /* Mantiene la stessa dimensione base per consistenza */
+    background-color: var(--body-bg-dark);
+    color: var(--text-color-dark);
 }
 
 body.dark-mode header,
 body.dark-mode .navbar {
-    background-color: #121212; /* Nero quasi assoluto */
+    background-color: var(--navbar-bg-dark);
     box-shadow: 0 2px 8px rgba(0,0,0,0.8);
-    border-bottom-color: #2a2a2a;
+    border-bottom-color: var(--navbar-border-dark);
 }
 
 body.dark-mode .navbar .logo img {
@@ -806,41 +1086,41 @@ body.dark-mode h3,
 body.dark-mode h4,
 body.dark-mode h5,
 body.dark-mode h6 {
-    color: #f8f8f8; /* Bianco brillante per i titoli in dark mode */
+    color: var(--heading-color-dark);
     text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
 
 body.dark-mode a {
-    color: #d4b080; /* Bronzo più luminoso per i link in dark mode */
+    color: var(--link-color-dark);
 }
 body.dark-mode a:hover {
-    color: #e6c2a0;
+    color: var(--link-hover-color-dark);
 }
 
 body.dark-mode .nav-items a {
-    color: #f0f0f0;
+    color: var(--text-color-dark);
 }
 
 body.dark-mode .nav-items a:hover {
-    color: #e6c2a0;
+    color: var(--link-hover-color-dark);
 }
 
 body.dark-mode .theme-text {
-    color: #f0f0f0;
+    color: var(--text-color-dark);
 }
 
 body.dark-mode .blog-post,
 body.dark-mode .message-item,
 body.dark-mode .form-container,
 body.dark-mode .dashboard-posts-list li {
-    background-color: #242424;
-    border-color: #3a3a3a;
+    background-color: var(--post-bg-dark);
+    border-color: var(--post-border-dark);
     box-shadow: 0 3px 15px rgba(0,0,0,0.8);
 }
 
 body.dark-mode .blog-post h2 a,
 body.dark-mode .dashboard-posts-list li h4 a {
-    color: #f8f8f8;
+    color: var(--heading-color-dark);
 }
 
 body.dark-mode .blog-post .meta,
@@ -850,26 +1130,26 @@ body.dark-mode .blog-post small,
 body.dark-mode .pagination span,
 body.dark-mode .dashboard-posts-list li p,
 body.dark-mode label {
-    color: #d0d0d0;
+    color: var(--meta-color-dark);
 }
 
 body.dark-mode .blog-post .meta a,
 body.dark-mode .message-header strong a {
-    color: #e6c2a0;
+    color: var(--link-hover-color-dark);
 }
 
 body.dark-mode .blog-post .tags a {
-    background-color: #3a3a3a;
-    color: #d0d0d0;
+    background-color: var(--tag-bg-dark);
+    color: var(--tag-text-dark);
 }
 
 body.dark-mode .blog-post .tags a:hover {
-    background-color: #4a4a4a;
-    color: #e6c2a0;
+    background-color: var(--tag-hover-bg-dark);
+    color: var(--link-hover-color-dark);
 }
 
 body.dark-mode .read-more {
-    color: #e6c2a0;
+    color: var(--link-hover-color-dark);
 }
 
 body.dark-mode footer {
@@ -881,102 +1161,144 @@ body.dark-mode input[type="text"],
 body.dark-mode input[type="password"],
 body.dark-mode input[type="email"],
 body.dark-mode textarea {
-    background-color: #3a3a3a;
-    color: #f0f0f0;
-    border-color: #5a5a5a;
+    background-color: var(--form-input-bg-dark);
+    color: var(--form-input-text-dark);
+    border-color: var(--form-input-border-dark);
 }
 
 body.dark-mode input[type="file"] {
-    color: #f0f0f0;
+    color: var(--form-input-text-dark);
 }
 
 body.dark-mode input[type="text"]::placeholder,
 body.dark-mode textarea::placeholder,
 body.dark-mode .search-input::placeholder {
-    color: #a0a0a0;
+    color: var(--search-placeholder-dark);
 }
 
 body.dark-mode .btn {
-    background-color: #5a5a5a;
-    color: #f0f0f0;
-    border-color: #6a6a6a;
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+    border-color: var(--button-border-dark);
     box-shadow: 0 1px 5px rgba(0,0,0,0.7);
 }
 
 body.dark-mode .btn:hover {
-    background-color: #4a4a4a;
-    border-color: #e6c2a0;
-    color: #e6c2a0;
+    background-color: var(--button-hover-bg-dark);
+    border-color: var(--button-hover-border-dark);
+    color: var(--button-hover-text-dark);
 }
 
 body.dark-mode .btn[type="submit"] {
-    background-color: #c4a484;
-    color: #1a1a1a;
+    background-color: var(--btn-submit-bg-dark);
+    color: var(--btn-submit-text-dark);
 }
 
 body.dark-mode .btn[type="submit"]:hover {
-    background-color: #e6c2a0;
-    color: #121212;
+    background-color: var(--btn-submit-hover-bg-dark);
+    color: var(--btn-submit-hover-text-dark);
 }
 
 body.dark-mode .flash-success {
-    background-color: #456060;
-    color: #fff;
-    border-color: #507070;
+    background-color: var(--flash-success-bg-dark);
+    border-color: var(--flash-success-border-dark);
 }
 
 body.dark-mode .flash-error,
 body.dark-mode .flash-danger {
-    background-color: #950000;
-    color: #fff;
-    border-color: #a50000;
+    background-color: var(--flash-danger-bg-dark);
+    border-color: var(--flash-danger-border-dark);
 }
 body.dark-mode .flash-info {
-    background-color: #50606a;
-    color: #fff;
-    border-color: #60707a;
+    background-color: var(--flash-info-bg-dark);
+    border-color: var(--flash-info-border-dark);
 }
 
+body.dark-mode .pagination-controls .btn,
 body.dark-mode .pagination .btn {
-    background-color: #3a3a3a;
-    border-color: #5a5a5a;
-    color: #f0f0f0;
+    background-color: var(--pagination-btn-bg-dark);
+    border-color: var(--pagination-btn-border-dark);
+    color: var(--pagination-btn-text-dark);
 }
 
+body.dark-mode .pagination-controls .btn.current,
 body.dark-mode .pagination .btn.active {
-    background-color: #e6c2a0;
-    border-color: #e6c2a0;
-    color: #121212;
+    background-color: var(--pagination-current-bg-dark);
+    border-color: var(--pagination-current-bg-dark);
+    color: var(--pagination-current-text-dark);
 }
 
-body.dark-mode .pagination .btn:hover {
-    background-color: #4a4a4a;
-    border-color: #e6c2a0;
-    color: #e6c2a0;
+body.dark-mode .pagination-controls .btn:hover:not(.disabled):not(.current),
+body.dark-mode .pagination .btn:hover:not(.active):not(.disabled) {
+    background-color: var(--pagination-btn-hover-bg-dark);
+    border-color: var(--pagination-btn-hover-border-dark);
+    color: var(--pagination-btn-hover-text-dark);
+}
+
+body.dark-mode .pagination-controls .btn.disabled,
+body.dark-mode .pagination .btn.disabled {
+    background-color: var(--pagination-disabled-bg-dark);
+    border-color: var(--pagination-disabled-border-dark);
+    color: var(--pagination-disabled-text-dark);
 }
 
 body.dark-mode .search-form {
-    border-color: #5a5a5a;
+    border-color: var(--form-input-border-dark); /* Usato form-input-border-dark per coerenza */
     box-shadow: 0 3px 12px rgba(0,0,0,0.7);
 }
 
 body.dark-mode .search-input {
-    background-color: #3a3a3a;
-    color: #f0f0f0;
+    background-color: var(--search-bg-dark);
+    color: var(--search-text-dark);
 }
 
 body.dark-mode .search-button {
-    background-color: #4a4a4a;
-    color: #f0f0f0;
+    background-color: var(--search-btn-bg-dark);
+    color: var(--search-text-dark);
 }
 
 body.dark-mode .search-button:hover {
-    background-color: #3a3a3a;
-    color: #e6c2a0;
+    background-color: var(--search-btn-hover-bg-dark);
+    color: var(--link-hover-color-dark);
 }
 
 body.dark-mode .post-image-thumbnail {
-    border-color: #3a3a3a;
+    border-color: var(--post-border-dark);
 }
 
-/* --- FINE STILI MODALITÀ NOTTE PER TEMA NOIR ELEGANCE REFINED --- */
+body.dark-mode .upload-section,
+body.dark-mode .image-gallery {
+    background-color: var(--gallery-section-bg-dark);
+    border-color: var(--gallery-section-border-dark);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .gallery-item {
+    background-color: var(--gallery-item-bg-dark);
+    border-color: var(--gallery-item-border-dark);
+}
+
+body.dark-mode .upload-form input[type="file"] {
+    background-color: var(--file-input-bg-dark);
+    border-color: var(--file-input-border-dark);
+}
+
+body.dark-mode .upload-form input[type="file"]::file-selector-button {
+    background-color: var(--file-selector-btn-bg-dark);
+    color: var(--file-selector-btn-text-dark);
+}
+
+body.dark-mode .upload-form input[type="file"]::file-selector-button:hover {
+    background-color: var(--file-selector-btn-hover-bg-dark);
+    color: var(--file-selector-btn-hover-text-dark);
+}
+
+body.dark-mode .gallery-thumbnail {
+    border-color: var(--thumbnail-border-dark);
+    background-color: var(--thumbnail-bg-dark);
+}
+
+body.dark-mode .image-filename {
+    color: var(--text-color-dark);
+}
+/* --- FINE STILI MODALITÀ NOTTE --- */
