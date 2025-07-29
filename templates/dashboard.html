@@ -10,6 +10,7 @@
 <ul class="admin-tools-list">
     <li><a href="{{ url_for('create_post') }}" class="btn">New Post</a></li>
     <li><a href="{{ url_for('gallery') }}" class="btn">File manager</a></li>
+    <li><a href="{{ url_for('user_profile', username=current_user.username) }}" class="btn">Edit profile</a></li>
 </ul>
 {# ONLY IF USER IS ADMIN #}
 {% if current_user.is_admin %}

@@ -53,7 +53,7 @@ UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'jpg', 'png', 'jpeg', 'gif', 'webp'}
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
-app.config['MAX_CONTENT_LENGHT'] = 3 * 1024 * 1024
+app.config['MAX_CONTENT_LENGTH'] = 3 * 1024 * 1024
 
 #db: setting and initializing
 app.config['SECRET_KEY'] = 'DEV_SECRET_KEY_123'
@@ -106,8 +106,8 @@ class Comment(db.Model):
     content = db.Column(db.Text, nullable=False)
     creation_date = db.Column(db.DateTime, default=datetime.now())
     
-def __repr__(self):
-    return f"<Comment id: {self.id} from {self.author}>"
+    def __repr__(self):
+        return f"<Comment id: {self.id} from {self.author}>"
     
 
 #user model
@@ -118,10 +118,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(28), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    # role = db.Column(db.String(20), default='contributor', nullable=False)
-    # profile_picture = db.Column(db.String(50), nullable=False, default='default.png')
-    # bio = db.Column(db.Text, nullable=True)
-    # links = db.Column(db.Text, nullable=True)
+    profile_picture = db.Column(db.String(50), nullable=False, default='default.png')
+    role = db.Column(db.String(20), default="contributor", nullable=False)
+    bio = db.Column(db.Text, nullable=True)
+    link = db.Column(db.String(255), nullable=True)
     post = db.relationship('Post', backref='author', lazy='dynamic')
     
     @property
@@ -391,6 +391,10 @@ def delete(post_id):
         
             db.session.delete(post_to_delete)
             db.session.commit()
+            #prova di eliminazione per tag orfani
+            for tag in post_tags:
+                if not tag.posts.count():
+                    db.session.delete(tag)
             flash('Your post have been successfully deleted!', 'success')
             return redirect(url_for('dashboard'))
         except Exception as e:
@@ -644,6 +648,40 @@ def delete_uploaded_image(filename):
     else:
         flash(f'File {filename} not found or extension is not allowed.', 'danger')
     return redirect(url_for('gallery'))
+
+#___user___
+@app.route("/user/<username>")
+def user_profile(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = Post.query.filter_by(author=user).order_by(Post.creation_date.desc()).all()
+    return render_template("user_profile.html", user=user, posts=posts)
+
+#___user edit___
+@app.route("/user/<username>/edit", methods=['GET', 'POST'])
+def edit_profile(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    if user != current_user and not current_user.is_admin:
+        flash("Denied! You cannot modify this profile!", "danger")
+        return redirect(url_for('user_profile', username=username))
+    if request.method == 'POST':
+        user.bio = request.form['bio']
+        user.link = request.form['link']
+        
+        if current_user.is_admin:
+            user.role = request.form['role']
+            
+        if 'profile_picture' in request.files:
+            file = request.files['profile_picture']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+                user.profile_picture = f"uploads/{filename}"
+                
+        db.session.commit()
+        flash('Profile updated!', 'success')
+        return redirect(url_for('user_profile', username=user.username))
+    return render_template('edit_profile.html', user=user)
 
 #______FORMS______
 class ContactForm(FlaskForm):

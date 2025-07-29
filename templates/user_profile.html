@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container author-profile">
+    <div class="profile-header">
+        {% if user.profile_picture %}
+        <img class="profile-picture" src="{{ url_for('static', filename=user.profile_picture) }}" alt="Profile picture">
+        {% endif %}
+
+        <div class="profile-info">
+            <h2>{{ user.username }}</h2>
+
+            {% if user.role %}
+            <p class="role">{{ user.role }}</p>
+            {% endif %}
+
+            {% if user.bio %}
+            <p class="bio">{{ user.bio }}</p>
+            {% endif %}
+
+            {% if user.link %}
+            <p class="personal-link">
+                🔗 <a href="{{ user.link }}" target="_blank" rel="noopener noreferrer">{{ user.link }}</a>
+            </p>
+            {% endif %}
+
+            {% if current_user.is_authenticated and (current_user == user or current_user.is_admin) %}
+            <a class="edit-profile" href="{{ url_for('edit_profile', username=user.username) }}">✏️ Modifica profilo</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

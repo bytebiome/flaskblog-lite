@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Modifica profilo di {{ user.username }}</h2>
+
+<form method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="bio">Bio:</label><br>
+    <textarea name="bio" rows="4" cols="50">{{ user.bio }}</textarea>
+  </div>
+
+  <div>
+    <label for="profile_picture">Profile picture (URL):</label><br>
+    <input type="file" name="profile_picture" id="profile-picture">
+  </div>
+
+  <div>
+    <label for="link">Link personale:</label><br>
+    <input type="text" name="link" value="{{ user.link }}">
+  </div>
+
+  {% if current_user.is_admin %}
+  <div>
+    <label for="role">Ruolo:</label><br>
+    <input type="text" name="role" value="{{ user.role }}">
+  </div>
+  {% endif %}
+
+  <br>
+  <button type="submit">Save modifications</button>
+</form>
+
+<a href="{{ url_for('user_profile', username=user.username) }}">Cancel</a>
+{% endblock %}

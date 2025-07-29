@@ -35,7 +35,7 @@
         {% endif %}
         <p>{{ post.content | safe }}</p>
         <br>
-        <p><i>Author: <a href="{{ url_for('about')}}">{{ post.author.username }}</a> </i></p>
+        <p><i>Author: <a href="{{ url_for('user_profile', username=post.author.username) }}">{{ post.author.username }}</a> </i></p>
         {% if post.tags %}
         <span class="tags">
             Tag:

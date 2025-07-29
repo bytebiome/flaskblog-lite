@@ -1059,6 +1059,59 @@ input:checked + .slider:before {
     border-radius: 4px;
 }
 
+
+.author-profile .profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.profile-info .role {
+  font-style: italic;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.profile-info .bio {
+  margin: 0.8rem 0;
+  color: #444;
+}
+
+.social-links a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+.author-posts ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.author-posts li {
+  margin-bottom: 0.5rem;
+}
+
+
 /* --- Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') --- */
 body.dark-mode {
     background-color: var(--body-bg-dark);
