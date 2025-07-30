@@ -572,7 +572,8 @@ def delete_contact_message(message_id):
 #____about___ (for now a static page)
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    authors = User.query.all()
+    return render_template("about.html", authors=authors)
 
 
 #___preview post___ !!!!!! TO CHECK

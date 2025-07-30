@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/noir.css') }}">
     <title>{% block title %}Flaskblog-lite{% endblock %}</title>
 
@@ -15,7 +17,19 @@
     <header class="navbar">
         <nav>
             <div class="container">
+                <div class="nav-logo-item">
+                    <a href="{{ url_for('index') }}" class="brand-logo"
+                        style="display: flex; align-items: center; text-decoration: none; color: #f5f5f5;">
+                        <img src="{{ url_for('static', filename='images/edulcorante-transparent.png') }}" alt="Noir Logo"
+                            class="logo-image"
+                            style="height: 50px; width: auto; margin-right: 12px; filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.08));">
+                        <span class="site-name" style="font-family: 'Playfair Display', serif; font-size: 1em; color: #f5f5f5; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); letter-spacing: 1.5px; 
+                                text-transform: uppercase;">
+                            Edulcorante per Veleni</span>
+                    </a>
+                </div>
                 <ul class="nav-items">
+
                     <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="{{ url_for('about') }}">About</a></li>
                     <li><a href="{{ url_for('contact') }}">Contacts</a></li>
@@ -25,14 +39,21 @@
                     {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
-                    <li class="theme-switch-wrapper">
+                    <!-- <li class="theme-switch-wrapper">
                         <label class="theme-switch" for="checkbox">
                             <input type="checkbox" id="checkbox" />
                             <div class="slider round"></div>
                         </label>
                         <span class="theme-text">Dark Mode</span>
-                    </li>
+                    </li> -->
                 </ul>
+                <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                        </label>
+                        <span class="theme-text">Dark Mode</span>
+                </div>
             </div>
         </nav>
     </header>

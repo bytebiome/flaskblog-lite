@@ -1,47 +1,76 @@
-/* static/css/noir-elegance-refined.css */
+/* Importazione dei font di Google Fonts per il tema Noir */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@400;700&family=Roboto+Condensed:wght@300;400;700&display=swap');
 
 :root {
-    /* Colori Modalità Giorno (Light/Default) */
-    --body-bg-day: #555555;
-    --text-color-day: #f5f5f5;
-    --heading-color-day: #ffffff;
-    --link-color-day: #d8d8d8;
-    --link-hover-color-day: #c4a484; /* Accento bronzo */
-    --navbar-bg-day: #2a2a2a;
-    --navbar-border-day: #6a6a6a;
-    --post-bg-day: #4a4a4a;
-    --post-border-day: #6a6a6a;
-    --meta-color-day: #d0d0d0;
-    --meta-border-day: #7a7a7a;
-    --tag-bg-day: #6a6a6a;
-    --tag-text-day: #d8d8d8;
-    --tag-hover-bg-day: #7a7a7a;
-    --form-input-bg-day: #6a6a6a;
-    --form-input-border-day: #808080;
-    --form-input-text-day: #f5f5f5;
-    --button-bg-day: #6a6a6a;
-    --button-border-day: #808080;
-    --button-text-day: #f5f5f5;
-    --button-hover-bg-day: #5a5a5a;
-    --button-hover-border-day: #c4a484;
-    --button-hover-text-day: #c4a484;
-    --btn-edit-bg-day: #7a7a7a;
-    --btn-edit-border-day: #909090;
-    --btn-delete-bg-day: #850000;
-    --btn-delete-border-day: #9a0000;
-    --flash-success-bg-day: #28a745; /* Corretto al verde originale */
-    --flash-success-border-day: #218838; /* Corretto al verde originale */
-    --flash-danger-bg-day: #dc3545; /* Corretto al rosso originale */
-    --flash-danger-border-day: #c82333; /* Corretto al rosso originale */
-    --flash-info-bg-day: #405055;
-    --flash-info-border-day: #4a5a60;
-    --search-bg-day: #6a6a6a;
-    --search-text-day: #f5f5f5;
-    --search-placeholder-day: #a8a8a8;
-    --search-btn-bg-day: #7a7a7a;
-    --search-btn-hover-bg-day: #6a6a6a;
+    /* Colori Modalità Giorno (Light/Default) - SCHIARITI con testo scuro */
+    --body-bg-day: #f8f8f8; /* Sfondo generale molto chiaro, quasi bianco */
+    --text-color-day: #2c2c2c; /* Testo scuro, quasi nero */
+    --heading-color-day: #1a1a1a; /* Titoli molto scuri */
+    --link-color-day: #007bff; /* Blu standard per i link */
+    --link-hover-color-day: #c4a484; /* Accento bronzo per hover */
+    --navbar-bg-day: #ffffff; /* Navbar bianca */
+    --navbar-border-day: #e0e0e0; /* Bordo navbar chiaro */
+    --post-bg-day: #ffffff; /* Sfondo post bianco */
+    --post-border-day: #e0e0e0; /* Bordo post chiaro */
+    --meta-color-day: #777777; /* Grigio medio per meta info */
+    --meta-border-day: #eeeeee; /* Bordo meta molto chiaro */
+    --tag-bg-day: #f0f0f0; /* Sfondo tag chiaro */
+    --tag-text-day: #444444; /* Testo tag scuro */
+    --tag-hover-bg-day: #e0e0e0; /* Sfondo tag più scuro al hover */
+    --form-input-bg-day: #ffffff; /* Sfondo input bianco */
+    --form-input-border-day: #cccccc; /* Bordo input medio */
+    --form-input-text-day: #333333; /* Testo input scuro */
+    --button-bg-day: #e9e9e9; /* Sfondo bottoni grigio chiaro */
+    --button-border-day: #cccccc; /* Bordo bottoni medio */
+    --button-text-day: #333333; /* Testo bottoni scuro */
+    --button-hover-bg-day: #d9d9d9; /* Sfondo bottoni più scuro al hover */
+    --button-hover-border-day: #c4a484; /* Bordo bottone bronzo al hover */
+    --button-hover-text-day: #c4a484; /* Testo bottone bronzo al hover */
+    --btn-edit-bg-day: #d4edda; /* Verde chiaro per edit */
+    --btn-edit-border-day: #c3e6cb; /* Bordo verde chiaro per edit */
+    --btn-delete-bg-day: #f8d7da; /* Rosso chiaro per delete */
+    --btn-delete-border-day: #f5c6cb; /* Bordo rosso chiaro per delete */
+    --flash-success-bg-day: #d4edda; /* Verde chiaro per success */
+    --flash-success-border-day: #c3e6cb;
+    --flash-success-text-day: #155724; /* Testo verde scuro */
+    --flash-danger-bg-day: #f8d7da; /* Rosso chiaro per danger */
+    --flash-danger-border-day: #f5c6cb;
+    --flash-danger-text-day: #721c24; /* Testo rosso scuro */
+    --flash-info-bg-day: #d1ecf1; /* Azzurro chiaro per info */
+    --flash-info-border-day: #bee5eb;
+    --flash-info-text-day: #0c5460; /* Testo azzurro scuro */
+    --search-bg-day: #ffffff; /* Sfondo ricerca bianco */
+    --search-text-day: #333333; /* Testo ricerca scuro */
+    --search-placeholder-day: #999999; /* Placeholder ricerca grigio */
+    --search-btn-bg-day: #e0e0e0; /* Bottone ricerca grigio chiaro */
+    --search-btn-hover-bg-day: #d0d0d0; /* Bottone ricerca più scuro al hover */
+    --gallery-section-bg-day: #ffffff; /* Sfondo sezioni galleria bianco */
+    --gallery-section-border-day: #e0e0e0;
+    --gallery-item-bg-day: #ffffff;
+    --gallery-item-border-day: #e0e0e0;
+    --file-input-bg-day: #f8f8f8; /* Sfondo input file molto chiaro */
+    --file-input-border-day: #cccccc;
+    --file-selector-btn-bg-day: #e0e0e0;
+    --file-selector-btn-text-day: #333333;
+    --file-selector-btn-hover-bg-day: #d0d0d0;
+    --file-selector-btn-hover-text-day: #0056b3; /* Blu per hover */
+    --thumbnail-border-day: #dddddd;
+    --thumbnail-bg-day: #f0f0f0;
+    --pagination-btn-bg-day: #e0e0e0;
+    --pagination-btn-border-day: #cccccc;
+    --pagination-btn-text-day: #333333;
+    --pagination-btn-hover-bg-day: #d0d0d0;
+    --pagination-btn-hover-border-day: #c4a484;
+    --pagination-btn-hover-text-day: #c4a484;
+    --pagination-current-bg-day: #c4a484;
+    --pagination-current-text-day: #ffffff; /* Testo bianco su bronzo */
+    --pagination-disabled-bg-day: #f0f0f0;
+    --pagination-disabled-border-day: #e0e0e0;
+    --pagination-disabled-text-day: #aaaaaa;
+    --site-name-color-day: #222222; /* Colore per il nome del sito in day mode */
 
-    /* Colori Modalità Notte (Dark Mode) */
+
+    /* Colori Modalità Notte (Dark Mode) - MANTENUTI COME ERANO */
     --body-bg-dark: #1a1a1a;
     --text-color-dark: #f0f0f0;
     --heading-color-dark: #f8f8f8;
@@ -65,14 +94,14 @@
     --button-hover-bg-dark: #4a4a4a;
     --button-hover-border-dark: #e6c2a0;
     --button-hover-text-dark: #e6c2a0;
-    --btn-submit-bg-dark: #c4a484; /* Specifico per submit in dark mode */
+    --btn-submit-bg-dark: #c4a484;
     --btn-submit-text-dark: #1a1a1a;
     --btn-submit-hover-bg-dark: #e6c2a0;
     --btn-submit-hover-text-dark: #121212;
-    --flash-success-bg-dark: #456060; /* Corretto per dark mode */
-    --flash-success-border-dark: #507070; /* Corretto per dark mode */
-    --flash-danger-bg-dark: #950000; /* Corretto per dark mode */
-    --flash-danger-border-dark: #a50000; /* Corretto per dark mode */
+    --flash-success-bg-dark: #456060;
+    --flash-success-border-dark: #507070;
+    --flash-danger-bg-dark: #950000;
+    --flash-danger-border-dark: #a50000;
     --flash-info-bg-dark: #50606a;
     --flash-info-border-dark: #60707a;
     --search-bg-dark: #3a3a3a;
@@ -80,9 +109,9 @@
     --search-placeholder-dark: #a0a0a0;
     --search-btn-bg-dark: #4a4a4a;
     --search-btn-hover-bg-dark: #3a3a3a;
-    --gallery-section-bg-dark: #242424; /* Nuovo per sezioni galleria */
+    --gallery-section-bg-dark: #242424;
     --gallery-section-border-dark: #3a3a3a;
-    --gallery-item-bg-dark: #242424; /* Nuovo per elementi galleria */
+    --gallery-item-bg-dark: #242424;
     --gallery-item-border-dark: #3a3a3a;
     --file-input-bg-dark: #3a3a3a;
     --file-input-border-dark: #5a5a5a;
@@ -103,6 +132,7 @@
     --pagination-disabled-bg-dark: #2a2a2a;
     --pagination-disabled-border-dark: #3a3a3a;
     --pagination-disabled-text-dark: #777777;
+    --site-name-color-dark: var(--heading-color-dark); /* Il nome del sito in dark mode segue il colore dei titoli scuri */
 }
 
 /* --- Stili Generali (Modalità Giorno - Valori di Default) --- */
@@ -129,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color-day);
     margin-bottom: 25px;
     line-height: 1.25;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.05); /* Ombra molto leggera per sfondi chiari */
     transition: color 0.8s ease, text-shadow 0.8s ease;
 }
 
@@ -158,63 +188,30 @@ a:hover {
 .navbar {
     background-color: var(--navbar-bg-day);
     color: var(--text-color-day);
-    padding: 20px 0;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    padding: 0;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.08); /* Ombra più leggera */
     border-bottom: 1px solid var(--navbar-border-day);
     transition: background-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease, border-bottom-color 0.8s ease;
 }
 
-
-.site-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2em; /* Riduci la dimensione del font, ad esempio da 1.5em a 1.2em o meno */
-    line-height: 1.2;
-    color: var(--site-name-color-day);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: color 0.8s ease, text-shadow 0.8s ease;
-    /* Aggiungi queste due proprietà per incoraggiare il wrap se lo spazio lo richiede */
-    display: inline-block; /* Importante per consentire il wrap */
-    max-width: 150px; /* Imposta una larghezza massima, ad esempio 180px, regolala a seconda delle tue necessità */
-}
-
-.navbar .container {
+/* Contenitore per il logo e nome sito (sezione superiore della navbar) */
+.header-top-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 30px;
 }
 
-/* Logo */
-.navbar .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-.theme-switch-wrapper .theme-text {
-    white-space: nowrap;
+/* Contenitore della Navigazione (l'elemento <nav>) */
+.navbar nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 30px;
 }
 
-.navbar .logo img {
-    height: 40px;
-    width: auto;
-    margin-right: 12px;
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.08));
-    transition: filter 0.3s ease;
-}
-
-.navbar .logo img:hover {
-    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.18));
-}
-
-.navbar .logo h1 {
-    margin: 0;
-    font-size: 1.7em;
-    color: var(--text-color-day);
-    text-shadow: none;
-}
-
+/* Elementi della Navigazione (l'ul.nav-items) */
 .nav-items {
     list-style: none;
     margin: 0;
@@ -226,19 +223,81 @@ a:hover {
 }
 
 .nav-items li {
+    margin-left: 20px;
     margin-right: 0;
-    margin-left: 15px;
     display: flex;
     align-items: center;
     flex-shrink: 0;
 }
 
-.nav-items li:last-child {
+/* Stili specifici per il toggle del tema nella nav */
+.nav-items li.theme-switch-wrapper {
+    margin-left: auto;
     margin-right: 0;
+    order: 1;
+    flex-shrink: 0;
+}
+
+/* Forza il testo dello switcher a non andare a capo */
+.theme-switch-wrapper .theme-text {
+    white-space: nowrap;
+}
+
+/* Logo and Site Name (Brand) */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-day); /* Usa il colore del testo generico come default */
+}
+
+.brand-logo:hover {
+    color: var(--link-hover-color-day);
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    margin-right: 12px;
+    /* In modalità giorno, l'immagine dovrebbe essere nel suo stato originale (presumibilmente scura) */
+    filter: none; /* Nessun filtro, mostra l'originale */
+    transition: filter 0.3s ease;
+}
+
+/* Modalità Notte: Inverti l'immagine (se l'originale è scura) e applica ombra chiara */
+body.dark-mode .logo-image {
+    filter: invert(1) drop-shadow(0 0 7px rgba(255, 255, 255, 0.2)); /* Inverti e ombra chiara */
+}
+
+.site-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    line-height: 1.2;
+    color: var(--site-name-color-day); /* Usa la nuova variabile per il colore del nome del sito */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05); /* Ombra più leggera */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.8s ease, text-shadow 0.8s ease;
+}
+
+/* Stile del nome del sito in modalità notte */
+body.dark-mode .site-name {
+    color: var(--site-name-color-dark); /* Il nome del sito in dark mode segue il colore dei titoli scuri */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.brand-logo:hover .site-name {
+    color: var(--link-hover-color-day);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .brand-logo:hover .site-name {
+    color: var(--link-hover-color-dark);
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
 }
 
 .nav-items a {
-    color: var(--link-color-day);
+    color: var(--text-color-day); /* I link della nav sono scuri in day mode */
     font-weight: 400;
     padding: 4px 0;
     text-transform: uppercase;
@@ -268,19 +327,20 @@ a:hover {
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Ombra più leggera */
 }
 
 .btn:hover, #theme-toggle:hover, #save:hover {
     background-color: var(--button-hover-bg-day);
     border-color: var(--button-hover-border-day);
     color: var(--button-hover-text-day);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombra più leggera */
 }
 
 .btn.edit-post {
     background-color: var(--btn-edit-bg-day);
     border-color: var(--btn-edit-border-day);
+    color: var(--flash-success-text-day); /* Testo scuro del verde */
 }
 .btn.edit-post:hover {
     background-color: var(--button-hover-bg-day);
@@ -290,12 +350,12 @@ a:hover {
 .btn.delete-post {
     background-color: var(--btn-delete-bg-day);
     border-color: var(--btn-delete-border-day);
-    color: white;
+    color: var(--flash-danger-text-day); /* Testo scuro del rosso */
 }
 .btn.delete-post:hover {
     background-color: var(--btn-delete-bg-day);
-    border-color: var(--button-hover-border-day);
-    color: var(--button-hover-text-day);
+    border-color: var(--button-hover-border-day); /* Mantiene il bordo bronzo al hover */
+    color: var(--button-hover-text-day); /* Mantiene il testo bronzo al hover */
 }
 
 /* --- Flash Messages --- */
@@ -305,13 +365,13 @@ a:hover {
 }
 
 .flash-message {
-    padding: 15px 25px; /* Modificato leggermente per coerenza con la tua versione */
+    padding: 15px 25px;
     margin-bottom: 20px;
-    border-radius: 5px; /* Modificato a 5px per coerenza */
+    border-radius: 5px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-color-day);
     border: 1px solid transparent;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
     transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
     display: inline-block;
     max-width: 90%;
@@ -321,14 +381,17 @@ a:hover {
 .flash-success {
     background-color: var(--flash-success-bg-day);
     border-color: var(--flash-success-border-day);
+    color: var(--flash-success-text-day);
 }
 .flash-error, .flash-danger {
     background-color: var(--flash-danger-bg-day);
     border-color: var(--flash-danger-border-day);
+    color: var(--flash-danger-text-day);
 }
 .flash-info {
     background-color: var(--flash-info-bg-day);
     border-color: var(--flash-info-border-day);
+    color: var(--flash-info-text-day);
 }
 
 /* --- Stili per i Post (Index, Dashboard, View) --- */
@@ -337,7 +400,7 @@ a:hover {
     padding: 40px;
     margin-bottom: 40px;
     border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     border: 1px solid var(--post-border-day);
     transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
 }
@@ -368,7 +431,7 @@ a:hover {
 }
 
 .blog-post .meta a {
-    color: var(--text-color-day);
+    color: var(--link-color-day);
     font-weight: 600;
 }
 
@@ -407,7 +470,7 @@ a:hover {
     margin-bottom: 30px;
     border-radius: 4px;
     border: 1px solid var(--post-border-day);
-    box-shadow: 0 1px 7px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 7px rgba(0,0,0,0.1);
     transition: border-color 0.8s ease, filter 0.8s ease;
 }
 
@@ -457,34 +520,34 @@ a:hover {
     font-size: 1em;
     border-radius: 5px;
     text-decoration: none;
-    color: var(--button-text-day);
-    background-color: var(--button-bg-day);
-    border: 1px solid var(--button-border-day);
+    color: var(--pagination-btn-text-day);
+    background-color: var(--pagination-btn-bg-day);
+    border: 1px solid var(--pagination-btn-border-day);
     transition: background-color 0.3s ease, border-color 0.3s ease;
     min-width: 45px;
 }
 
 .pagination-controls .btn:hover:not(.disabled):not(.current),
 .pagination .btn:hover:not(.active):not(.disabled) {
-    background-color: var(--button-hover-bg-day);
-    border-color: var(--button-hover-border-day);
-    color: var(--button-hover-text-day);
+    background-color: var(--pagination-btn-hover-bg-day);
+    border-color: var(--pagination-btn-hover-border-day);
+    color: var(--pagination-btn-hover-text-day);
 }
 
 .pagination-controls .btn.current,
 .pagination .btn.active {
-    background-color: var(--link-hover-color-day);
-    border-color: var(--link-hover-color-day);
-    color: #333333;
+    background-color: var(--pagination-current-bg-day);
+    border-color: var(--pagination-current-bg-day);
+    color: var(--pagination-current-text-day);
     font-weight: bold;
     cursor: default;
 }
 
 .pagination-controls .btn.disabled,
 .pagination .btn.disabled {
-    background-color: #3a3a3a;
-    border-color: #4a4a4a;
-    color: #999999;
+    background-color: var(--pagination-disabled-bg-day);
+    border-color: var(--pagination-disabled-border-day);
+    color: var(--pagination-disabled-text-day);
     cursor: not-allowed;
     opacity: 0.7;
 }
@@ -502,7 +565,7 @@ a:hover {
     background-color: var(--post-bg-day);
     padding: 40px;
     border-radius: 4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     border: 1px solid var(--post-border-day);
     max-width: 650px;
     margin: 45px auto;
@@ -566,7 +629,7 @@ a:hover {
     margin-bottom: 25px;
     border-radius: 4px;
     border: 1px solid var(--post-border-day);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     transition: border-color 0.8s ease, filter 0.8s ease;
 }
 
@@ -577,7 +640,7 @@ a:hover {
     display: block;
     margin-bottom: 35px;
     border-radius: 4px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.6);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     border: 1px solid var(--post-border-day);
 }
 
@@ -586,7 +649,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #909090;
+    color: var(--meta-color-day);
     font-size: 1.6em;
     text-align: center;
     height: 280px;
@@ -605,7 +668,7 @@ a:hover {
     padding: 22px 30px;
     margin-bottom: 18px;
     border-radius: 4px;
-    box-shadow: 0 1px 9px rgba(0,0,0,0.55);
+    box-shadow: 0 1px 9px rgba(0,0,0,0.1);
     border: 1px solid var(--post-border-day);
     display: flex;
     flex-wrap: wrap;
@@ -725,14 +788,14 @@ a:hover {
     padding: 25px;
     margin-bottom: 25px;
     border-radius: 4px;
-    box-shadow: 0 1px 9px rgba(0,0,0,0.55);
+    box-shadow: 0 1px 9px rgba(0,0,0,0.1);
     position: relative;
     transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
 }
 
 .message-item.unread {
-    background-color: #5a5552;
-    border-color: #6a605d;
+    background-color: #fffacd; /* Light goldenrod yellow per unread in day mode */
+    border-color: #fce883; /* Bordo più caldo */
 }
 
 .message-header {
@@ -745,8 +808,8 @@ a:hover {
 .message-status {
     font-size: 0.75em;
     font-weight: 700;
-    color: var(--meta-color-day);
-    background-color: var(--tag-bg-day);
+    color: var(--flash-info-text-day);
+    background-color: var(--flash-info-bg-day);
     padding: 5px 10px;
     border-radius: 3px;
     float: right;
@@ -755,8 +818,8 @@ a:hover {
 }
 
 .message-item.unread .message-status {
-    color: var(--link-hover-color-day);
-    background-color: #6a605d;
+    color: #8a6d3b; /* Testo più scuro per status unread */
+    background-color: #faebcc; /* Sfondo un po' più intenso per status unread */
 }
 
 .message-body p {
@@ -819,7 +882,7 @@ a:hover {
     border: 1px solid var(--form-input-border-day);
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 2px 9px rgba(0,0,0,0.55);
+    box-shadow: 0 2px 9px rgba(0,0,0,0.1);
     transition: border-color 0.8s ease, box-shadow 0.8s ease;
 }
 
@@ -957,7 +1020,7 @@ input:checked + .slider:before {
     background-color: var(--post-bg-day);
     border: 1px solid var(--post-border-day);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .upload-section h3 {
@@ -984,7 +1047,7 @@ input:checked + .slider:before {
     padding: 10px;
     border: 1px solid var(--form-input-border-day);
     border-radius: 5px;
-    background-color: var(--form-input-bg-day);
+    background-color: var(--file-input-bg-day);
     color: var(--form-input-text-day);
     font-size: 0.95em;
     cursor: pointer;
@@ -997,8 +1060,8 @@ input:checked + .slider:before {
 }
 
 .upload-form input[type="file"]::file-selector-button {
-    background-color: var(--tag-bg-day);
-    color: var(--tag-text-day);
+    background-color: var(--file-selector-btn-bg-day);
+    color: var(--file-selector-btn-text-day);
     border: none;
     padding: 8px 15px;
     border-radius: 3px;
@@ -1008,8 +1071,8 @@ input:checked + .slider:before {
 }
 
 .upload-form input[type="file"]::file-selector-button:hover {
-    background-color: var(--tag-hover-bg-day);
-    color: var(--link-hover-color-day);
+    background-color: var(--file-selector-btn-hover-bg-day);
+    color: var(--file-selector-btn-hover-text-day);
 }
 
 .image-gallery {
@@ -1017,7 +1080,7 @@ input:checked + .slider:before {
     background-color: var(--post-bg-day);
     border: 1px solid var(--post-border-day);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .image-gallery h3 {
@@ -1033,11 +1096,11 @@ input:checked + .slider:before {
 }
 
 .gallery-item {
-    background-color: var(--post-bg-day); /* Usa variabile per coerenza */
-    border: 1px solid var(--post-border-day);
+    background-color: var(--gallery-item-bg-day);
+    border: 1px solid var(--gallery-item-border-day);
     border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -1047,17 +1110,17 @@ input:checked + .slider:before {
 
 .gallery-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-thumbnail {
     max-width: 100%;
     height: 180px;
     object-fit: contain;
-    border: 1px solid var(--post-border-day);
+    border: 1px solid var(--thumbnail-border-day);
     border-radius: 5px;
     margin-bottom: 15px;
-    background-color: var(--form-input-bg-day);
+    background-color: var(--thumbnail-bg-day);
 }
 
 .image-filename {
@@ -1105,13 +1168,13 @@ input:checked + .slider:before {
 
 .profile-info .role {
   font-style: italic;
-  color: #fe9797;
+  color: #666;
   margin-top: 0.2rem;
 }
 
 .profile-info .bio {
   margin: 0.8rem 0;
-  color: #cfc9c9;
+  color: #444;
 }
 
 .social-links a {
@@ -1148,12 +1211,13 @@ body.dark-mode .navbar {
     border-bottom-color: var(--navbar-border-dark);
 }
 
-body.dark-mode .navbar .logo img {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.05));
+/* Regola il filtro del logo per la dark mode */
+body.dark-mode .logo-image {
+    filter: invert(1) drop-shadow(0 0 7px rgba(255, 255, 255, 0.2));
 }
 
-body.dark-mode .navbar .logo img:hover {
-    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.15));
+body.dark-mode .navbar .logo-image:hover {
+    filter: invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 body.dark-mode h1,
@@ -1319,7 +1383,7 @@ body.dark-mode .pagination .btn.disabled {
 }
 
 body.dark-mode .search-form {
-    border-color: var(--form-input-border-dark); /* Usato form-input-border-dark per coerenza */
+    border-color: var(--form-input-border-dark);
     box-shadow: 0 3px 12px rgba(0,0,0,0.7);
 }
 
@@ -1376,5 +1440,15 @@ body.dark-mode .gallery-thumbnail {
 
 body.dark-mode .image-filename {
     color: var(--text-color-dark);
+}
+
+body.dark-mode .message-item.unread {
+    background-color: #38382d; /* Tonalità scura per messaggio non letto in dark mode */
+    border-color: #48483d; /* Bordo scuro */
+}
+
+body.dark-mode .message-item.unread .message-status {
+    color: #e6c2a0; /* Testo chiaro per unread status in dark mode */
+    background-color: #48483d; /* Sfondo scuro per unread status in dark mode */
 }
 /* --- FINE STILI MODALITÀ NOTTE --- */

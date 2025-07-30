@@ -1,0 +1,1491 @@
+/* Importazione dei font di Google Fonts per il tema Noir */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@400;700&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+:root {
+    /* Colori Modalità Giorno (Light/Default) */
+    --body-bg-day: #555555;
+    --text-color-day: #f5f5f5;
+    --heading-color-day: #ffffff;
+    --link-color-day: #d8d8d8;
+    --link-hover-color-day: #c4a484; /* Accento bronzo */
+    --navbar-bg-day: #4a4a4a;
+    --navbar-border-day: #6a6a6a;
+    --post-bg-day: #4a4a4a;
+    --post-border-day: #6a6a6a;
+    --meta-color-day: #d8d8d8;
+    --meta-border-day: #7a7a7a;
+    --tag-bg-day: #6a6a6a;
+    --tag-text-day: #d8d8d8;
+    --tag-hover-bg-day: #7a7a7a;
+    --form-input-bg-day: #6a6a6a;
+    --form-input-border-day: #808080;
+    --form-input-text-day: #f5f5f5;
+    --button-bg-day: #6a6a6a;
+    --button-border-day: #808080;
+    --button-text-day: #f5f5f5;
+    --button-hover-bg-day: #5a5a5a;
+    --button-hover-border-day: #c4a484;
+    --button-hover-text-day: #c4a484;
+    --btn-edit-bg-day: #7a7a7a;
+    --btn-edit-border-day: #909090;
+    --btn-delete-bg-day: #850000;
+    --btn-delete-border-day: #9a0000;
+    --flash-success-bg-day: #28a745;
+    --flash-success-border-day: #218838;
+    --flash-danger-bg-day: #dc3545;
+    --flash-danger-border-day: #c82333;
+    --flash-info-bg-day: #405055;
+    --flash-info-border-day: #4a5a60;
+    --search-bg-day: #6a6a6a;
+    --search-text-day: #f5f5f5;
+    --search-placeholder-day: #a8a8a8;
+    --search-btn-bg-day: #7a7a7a;
+    --search-btn-hover-bg-day: #6a6a6a;
+    --gallery-section-bg-day: #4a4a4a; /* Aggiunto per coerenza */
+    --gallery-section-border-day: #6a6a6a; /* Aggiunto per coerenza */
+    --gallery-item-bg-day: #4a4a4a; /* Aggiunto per coerenza */
+    --gallery-item-border-day: #6a6a6a; /* Aggiunto per coerenza */
+    --file-input-bg-day: #6a6a6a; /* Aggiunto per coerenza */
+    --file-input-border-day: #808080; /* Aggiunto per coerenza */
+    --file-selector-btn-bg-day: #6a6a6a; /* Aggiunto per coerenza */
+    --file-selector-btn-text-day: #f5f5f5; /* Aggiunto per coerenza */
+    --file-selector-btn-hover-bg-day: #7a7a7a; /* Aggiunto per coerenza */
+    --file-selector-btn-hover-text-day: #c4a484; /* Aggiunto per coerenza */
+    --thumbnail-border-day: #6a6a6a; /* Aggiunto per coerenza */
+    --thumbnail-bg-day: #6a6a6a; /* Aggiunto per coerenza */
+    --pagination-btn-bg-day: #6a6a6a; /* Aggiunto per coerenza */
+    --pagination-btn-border-day: #808080; /* Aggiunto per coerenza */
+    --pagination-btn-text-day: #f5f5f5; /* Aggiunto per coerenza */
+    --pagination-btn-hover-bg-day: #5a5a5a; /* Aggiunto per coerenza */
+    --pagination-btn-hover-border-day: #c4a484; /* Aggiunto per coerenza */
+    --pagination-btn-hover-text-day: #c4a484; /* Aggiunto per coerenza */
+    --pagination-current-bg-day: #c4a484; /* Accento bronzo per pulsante attivo */
+    --pagination-current-text-day: #333333; /* Testo scuro su accento bronzo */
+    --pagination-disabled-bg-day: #3a3a3a; /* Aggiunto per coerenza */
+    --pagination-disabled-border-day: #4a4a4a; /* Aggiunto per coerenza */
+    --pagination-disabled-text-day: #999999; /* Aggiunto per coerenza */
+}
+
+/* Colori Modalità Notte (Dark Mode) */
+body.dark-mode {
+    --body-bg: var(--body-bg-dark);
+    --text-color: var(--text-color-dark);
+    --heading-color: var(--heading-color-dark);
+    --link-color: var(--link-color-dark);
+    --link-hover-color: var(--link-hover-color-dark);
+    --navbar-bg: var(--navbar-bg-dark);
+    --navbar-border: var(--navbar-border-dark);
+    --post-bg: var(--post-bg-dark);
+    --post-border: var(--post-border-dark);
+    --meta-color: var(--meta-color-dark);
+    --meta-border: var(--meta-border-dark);
+    --tag-bg: var(--tag-bg-dark);
+    --tag-text: var(--tag-text-dark);
+    --tag-hover-bg: var(--tag-hover-bg-dark);
+    --form-input-bg: var(--form-input-bg-dark);
+    --form-input-border: var(--form-input-border-dark);
+    --form-input-text: var(--form-input-text-dark);
+    --button-bg: var(--button-bg-dark);
+    --button-border: var(--button-border-dark);
+    --button-text: var(--button-text-dark);
+    --button-hover-bg: var(--button-hover-bg-dark);
+    --button-hover-border: var(--button-hover-border-dark);
+    --button-hover-text: var(--button-hover-text-dark);
+    --btn-edit-bg: var(--btn-edit-bg-dark); /* Aggiunto per dark mode */
+    --btn-edit-border: var(--btn-edit-border-dark); /* Aggiunto per dark mode */
+    --btn-delete-bg: var(--btn-delete-bg-dark); /* Aggiunto per dark mode */
+    --btn-delete-border: var(--btn-delete-border-dark); /* Aggiunto per dark mode */
+    --flash-success-bg: var(--flash-success-bg-dark);
+    --flash-success-border: var(--flash-success-border-dark);
+    --flash-danger-bg: var(--flash-danger-bg-dark);
+    --flash-danger-border: var(--flash-danger-border-dark);
+    --flash-info-bg: var(--flash-info-bg-dark);
+    --flash-info-border: var(--flash-info-border-dark);
+    --search-bg: var(--search-bg-dark);
+    --search-text: var(--search-text-dark);
+    --search-placeholder: var(--search-placeholder-dark);
+    --search-btn-bg: var(--search-btn-bg-dark);
+    --search-btn-hover-bg: var(--search-btn-hover-bg-dark);
+    --gallery-section-bg: var(--gallery-section-bg-dark);
+    --gallery-section-border: var(--gallery-section-border-dark);
+    --gallery-item-bg: var(--gallery-item-bg-dark);
+    --gallery-item-border: var(--gallery-item-border-dark);
+    --file-input-bg: var(--file-input-bg-dark);
+    --file-input-border: var(--file-input-border-dark);
+    --file-selector-btn-bg: var(--file-selector-btn-bg-dark);
+    --file-selector-btn-text: var(--file-selector-btn-text-dark);
+    --file-selector-btn-hover-bg: var(--file-selector-btn-hover-bg-dark);
+    --file-selector-btn-hover-text: var(--file-selector-btn-hover-text-dark);
+    --thumbnail-border: var(--thumbnail-border-dark);
+    --thumbnail-bg: var(--thumbnail-bg-dark);
+    --pagination-btn-bg: var(--pagination-btn-bg-dark);
+    --pagination-btn-border: var(--pagination-btn-border-dark);
+    --pagination-btn-text: var(--pagination-btn-text-dark);
+    --pagination-btn-hover-bg: var(--pagination-btn-hover-bg-dark);
+    --pagination-btn-hover-border: var(--pagination-btn-hover-border-dark);
+    --pagination-btn-hover-text: var(--pagination-btn-hover-text-dark);
+    --pagination-current-bg: var(--pagination-current-bg-dark);
+    --pagination-current-text: var(--pagination-current-text-dark);
+    --pagination-disabled-bg: var(--pagination-disabled-bg-dark);
+    --pagination-disabled-border: var(--pagination-disabled-border-dark);
+    --pagination-disabled-text: var(--pagination-disabled-text-dark);
+}
+
+/* --- Stili Generali (Uso delle variabili) --- */
+body {
+    font-family: 'Merriweather', serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-day); /* Usa variabili */
+    color: var(--text-color-day); /* Usa variabili */
+    font-size: 0.95em;
+    transition: background-color 0.8s ease, color 0.8s ease; /* Transizione per tutto il body */
+}
+
+/* Modalità notte: ridefinisce le variabili per gli elementi figli */
+body.dark-mode {
+    background-color: var(--body-bg-dark);
+    color: var(--text-color-dark);
+}
+
+.container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 55px 35px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--heading-color-day); /* Usa variabili */
+    margin-bottom: 25px;
+    line-height: 1.25;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    transition: color 0.8s ease, text-shadow 0.8s ease;
+}
+
+p {
+    margin-bottom: 1.3em;
+    font-size: 1em;
+    color: var(--text-color-day); /* Usa variabili */
+    transition: color 0.8s ease;
+}
+
+a {
+    color: var(--link-color-day); /* Usa variabili */
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color-day); /* Usa variabili */
+    text-decoration: underline;
+}
+
+/* Headers sizes */
+h1 { font-size: 2.6em; }
+h2 { font-size: 2.0em; }
+h3 { font-size: 1.6em; }
+
+/* --- Main Header (Navbar) --- */
+.main-header {
+    background-color: var(--navbar-bg-day); /* Usa variabili */
+    color: var(--text-color-day); /* Usa variabili */
+    padding: 20px 0;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    border-bottom: 1px solid var(--navbar-border-day); /* Usa variabili */
+    transition: background-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease, border-bottom-color 0.8s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Logo and Site Name (Brand) */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color-day); /* Usa variabili per il colore del testo */
+}
+
+.brand-logo:hover {
+    color: var(--link-hover-color-day);
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    margin-right: 12px;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.08));
+    transition: filter 0.3s ease;
+}
+
+/* LOGO in modalità Notte (nero -> bianco) */
+body.dark-mode .logo-image {
+    filter: invert(1) brightness(1.2) drop-shadow(0 0 7px rgba(255, 255, 255, 0.2)); /* Inverte e aumenta luminosità */
+}
+
+
+.site-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    color: var(--text-color-day); /* Usa variabili, che poi la dark-mode cambia */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.8s ease, text-shadow 0.8s ease;
+}
+
+/* Stile del nome del sito in modalità notte */
+body.dark-mode .site-name {
+    color: var(--heading-color-dark); /* Bianco per il nome del sito in dark mode */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.brand-logo:hover .site-name {
+    color: var(--link-hover-color-day); /* Effetto hover, gestito dalle variabili */
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3); /* Bagliore debole */
+}
+
+body.dark-mode .brand-logo:hover .site-name {
+    color: var(--link-hover-color-dark);
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Main Navigation */
+.main-nav ul {
+    list-style: none; /* Rimuove i puntini */
+    margin: 0;
+    padding: 0; /* Rimuove il padding di default delle liste */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-nav ul li {
+    margin-left: 25px;
+}
+
+.main-nav ul li:last-child {
+    margin-right: 0;
+}
+
+.main-nav ul li a {
+    color: var(--link-color-day); /* Usa variabili */
+    font-weight: 400;
+    padding: 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: var(--link-hover-color-day); /* Usa variabili */
+    text-decoration: none;
+}
+
+/* --- Bottoni Generici --- */
+.btn, #theme-toggle, #save { /* #save è un id, non una classe, attenzione */
+    display: inline-block;
+    background-color: var(--button-bg-day); /* Usa variabili */
+    color: var(--button-text-day); /* Usa variabili */
+    padding: 12px 25px;
+    border: 1px solid var(--button-border-day); /* Usa variabili */
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.btn:hover, #theme-toggle:hover, #save:hover {
+    background-color: var(--button-hover-bg-day); /* Usa variabili */
+    border-color: var(--button-hover-border-day); /* Usa variabili */
+    color: var(--button-hover-text-day); /* Usa variabili */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+}
+
+.btn.edit-post {
+    background-color: var(--btn-edit-bg-day);
+    border-color: var(--btn-edit-border-day);
+}
+.btn.edit-post:hover {
+    background-color: var(--button-hover-bg-day); /* Usa variabili */
+    border-color: var(--button-hover-border-day); /* Usa variabili */
+    color: var(--button-hover-text-day); /* Usa variabili */
+}
+.btn.delete-post {
+    background-color: var(--btn-delete-bg-day);
+    border-color: var(--btn-delete-border-day);
+    color: white; /* Lasciato bianco fisso per forte contrasto */
+}
+.btn.delete-post:hover {
+    background-color: var(--btn-delete-bg-day); /* Usa variabile per hover, se vuoi un effetto diverso puoi definire --btn-delete-hover-bg-day */
+    border-color: var(--button-hover-border-day);
+    color: var(--button-hover-text-day);
+}
+
+/* --- Flash Messages --- */
+.flash-messages-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.flash-message {
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #ffffff; /* Testo bianco fisso per leggibilità su colori di background */
+    border: 1px solid transparent;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transition: background-color 0.8s ease, border-color 0.8s ease;
+    display: inline-block;
+    max-width: 90%;
+    line-height: 1.4;
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-day);
+    border-color: var(--flash-success-border-day);
+}
+.flash-error, .flash-danger {
+    background-color: var(--flash-danger-bg-day);
+    border-color: var(--flash-danger-border-day);
+}
+.flash-info {
+    background-color: var(--flash-info-bg-day);
+    border-color: var(--flash-info-border-day);
+}
+
+/* --- Stili per i Post (Index, Dashboard, View) --- */
+.blog-post {
+    background-color: var(--post-bg-day);
+    padding: 40px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    border: 1px solid var(--post-border-day);
+    transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
+}
+
+.blog-post h2 {
+    font-size: 2.3em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--heading-color-day);
+}
+
+.blog-post h2 a {
+    color: var(--heading-color-day);
+    text-decoration: none;
+}
+
+.blog-post h2 a:hover {
+    color: var(--link-hover-color-day);
+}
+
+.blog-post .meta {
+    font-size: 0.85em;
+    color: var(--meta-color-day);
+    margin-bottom: 25px;
+    border-bottom: 1px dashed var(--meta-border-day);
+    padding-bottom: 15px;
+    transition: color 0.8s ease, border-bottom-color 0.8s ease;
+}
+
+.blog-post .meta a {
+    color: var(--text-color-day);
+    font-weight: 600;
+}
+
+.blog-post .meta a:hover {
+    color: var(--link-hover-color-day);
+}
+
+.blog-post .tags {
+    display: inline-block;
+    margin-left: 25px;
+}
+
+.blog-post .tags a {
+    background-color: var(--tag-bg-day);
+    color: var(--tag-text-day);
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 0.7em;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.blog-post .tags a:hover {
+    background-color: var(--tag-hover-bg-day);
+    color: var(--link-hover-color-day);
+    text-decoration: none;
+}
+
+/* Stile per l'immagine del post */
+.img-fluid {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    border: 1px solid var(--post-border-day);
+    box-shadow: 0 1px 7px rgba(0,0,0,0.5);
+    transition: border-color 0.8s ease, filter 0.8s ease;
+}
+
+.blog-post p {
+    margin-bottom: 1.4em;
+    line-height: 1.75;
+    font-size: 1em;
+    color: var(--text-color-day);
+    transition: color 0.8s ease;
+}
+
+.blog-post p i {
+    font-style: italic;
+    color: var(--meta-color-day);
+    font-size: 0.95em;
+    transition: color 0.8s ease;
+}
+
+.blog-post small {
+    display: block;
+    color: var(--meta-color-day);
+    margin-top: 15px;
+    transition: color 0.8s ease;
+}
+
+.blog-post hr {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    border: 0;
+    border-top: 1px dashed var(--meta-border-day);
+    transition: border-top-color 0.8s ease;
+}
+
+/* --- Paginazione (Generica, non solo per blog post) --- */
+.pagination-controls, .pagination {
+    margin-top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.pagination-controls .btn, .pagination .btn {
+    padding: 10px 18px;
+    font-size: 1em;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--pagination-btn-text-day);
+    background-color: var(--pagination-btn-bg-day);
+    border: 1px solid var(--pagination-btn-border-day);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    min-width: 45px;
+}
+
+.pagination-controls .btn:hover:not(.disabled):not(.current),
+.pagination .btn:hover:not(.active):not(.disabled) {
+    background-color: var(--pagination-btn-hover-bg-day);
+    border-color: var(--pagination-btn-hover-border-day);
+    color: var(--pagination-btn-hover-text-day);
+}
+
+.pagination-controls .btn.current,
+.pagination .btn.active {
+    background-color: var(--pagination-current-bg-day);
+    border-color: var(--pagination-current-bg-day);
+    color: var(--pagination-current-text-day);
+    font-weight: bold;
+    cursor: default;
+}
+
+.pagination-controls .btn.disabled,
+.pagination .btn.disabled {
+    background-color: var(--pagination-disabled-bg-day);
+    border-color: var(--pagination-disabled-border-day);
+    color: var(--pagination-disabled-text-day);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.pagination span {
+    display: inline-block;
+    padding: 10px 18px;
+    color: var(--meta-color-day);
+    font-weight: 600;
+    transition: color 0.8s ease;
+}
+
+/* --- Stili per i Form --- */
+.form-container {
+    background-color: var(--post-bg-day);
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    border: 1px solid var(--post-border-day);
+    max-width: 650px;
+    margin: 45px auto;
+    transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
+}
+
+.form-container h1, .form-container h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    color: var(--heading-color-day);
+}
+
+.form-container .form-group {
+    margin-bottom: 25px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-color-day);
+    transition: color 0.8s ease;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    border: 1px solid var(--form-input-border-day);
+    border-radius: 3px;
+    font-size: 0.95em;
+    background-color: var(--form-input-bg-day);
+    color: var(--form-input-text-day);
+    transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
+}
+
+.form-container textarea {
+    resize: vertical;
+    min-height: 160px;
+}
+
+.form-container input[type="file"] {
+    margin-top: 12px;
+    margin-bottom: 18px;
+    color: var(--form-input-text-day);
+}
+
+.form-container .btn, .form-container #save {
+    width: 100%;
+    margin-top: 22px;
+}
+
+/* Stile per le immagini nelle pagine di modifica/profilo */
+.post-image-thumbnail {
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin-top: 22px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    border: 1px solid var(--post-border-day);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    transition: border-color 0.8s ease, filter 0.8s ease;
+}
+
+.featured-image {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 35px;
+    border-radius: 4px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.6);
+    border: 1px solid var(--post-border-day);
+}
+
+.default-featured-image {
+    background-color: var(--form-input-bg-day);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #909090;
+    font-size: 1.6em;
+    text-align: center;
+    height: 280px;
+    border-radius: 4px;
+}
+
+/* --- Stili specifici per la Dashboard --- */
+.dashboard-posts-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.dashboard-posts-list li {
+    background-color: var(--post-bg-day);
+    padding: 22px 30px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+    box-shadow: 0 1px 9px rgba(0,0,0,0.55);
+    border: 1px solid var(--post-border-day);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
+}
+
+.dashboard-posts-list li h4 {
+    margin: 0;
+    font-size: 1.2em;
+    flex-grow: 1;
+    margin-right: 20px;
+    color: var(--heading-color-day);
+}
+
+.dashboard-posts-list li h4 a {
+    color: var(--heading-color-day);
+    text-decoration: none;
+}
+
+.dashboard-posts-list li h4 a:hover {
+    color: var(--link-hover-color-day);
+}
+
+.dashboard-posts-list li p {
+    margin: 0 20px 0 0;
+    font-size: 0.85em;
+    color: var(--meta-color-day);
+    flex-shrink: 0;
+}
+
+.dashboard-posts-list li .btn {
+    font-size: 0.65em;
+    padding: 8px 14px;
+    margin-left: 8px;
+    margin-top: 7px;
+}
+
+/* --- Spazio Verticale per admin-tools-list --- */
+.admin-tools-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-tools-list li {
+    margin-bottom: 15px;
+}
+
+.admin-tools-list li:last-child {
+    margin-bottom: 0;
+}
+
+.message-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.message-item {
+    background-color: var(--post-bg-day);
+    border: 1px solid var(--post-border-day);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    box-shadow: 0 1px 9px rgba(0,0,0,0.55);
+    position: relative;
+    transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.message-item.unread {
+    background-color: #5a5552; /* Colore specifico per non letto, non usa variabili */
+    border-color: #6a605d; /* Colore specifico */
+}
+
+.message-header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--meta-border-day);
+    transition: border-bottom-color 0.8s ease;
+}
+
+.message-status {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--meta-color-day); /* Usa variabili */
+    background-color: var(--tag-bg-day); /* Usa variabili */
+    padding: 5px 10px;
+    border-radius: 3px;
+    float: right;
+    text-transform: uppercase;
+    transition: color 0.8s ease, background-color 0.8s ease;
+}
+
+.message-item.unread .message-status {
+    color: var(--link-hover-color-day); /* Usa variabili per questo contrasto specifico */
+    background-color: #6a605d; /* Specifico, non variabile */
+}
+
+.message-body p {
+    margin: 0;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: var(--text-color-day);
+    transition: color 0.8s ease;
+}
+
+.message-actions {
+    margin-top: 25px;
+    text-align: right;
+}
+
+/* Bottone piccolo per azioni (es. messaggi) */
+.btn-sm {
+    padding: 9px 16px;
+    font-size: 0.75em;
+    line-height: 1.4;
+}
+
+/* Questi sono i bottoni specifici per la galleria e messaggi, che non devono cambiare colore con le variabili generiche dei bottoni. */
+.copy-url-btn {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+.copy-url-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-delete { /* Sovrascritto se già .btn lo gestisce? Meglio specificare bene */
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #bd2130;
+    border-color: #bd2130;
+}
+
+.message-actions::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.search-bar-container {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid var(--form-input-border-day); /* Usa variabili */
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 9px rgba(0,0,0,0.55);
+    transition: border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 14px 25px;
+    font-size: 1em;
+    outline: none;
+    background-color: var(--search-bg-day); /* Usa variabili */
+    color: var(--search-text-day); /* Usa variabili */
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.search-input::placeholder {
+    color: var(--search-placeholder-day); /* Usa variabili */
+    transition: color 0.8s ease;
+}
+
+.search-button {
+    background-color: var(--search-btn-bg-day); /* Usa variabili */
+    color: var(--search-text-day); /* Usa variabili */
+    border: none;
+    padding: 14px 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: var(--search-btn-hover-bg-day); /* Usa variabili */
+    color: var(--link-hover-color-day); /* Usa variabili */
+}
+
+/* --- Responsività (Media Queries) --- */
+@media (max-width: 768px) {
+    .header-content { /* Usato main-header .container, ora header-content per coerenza */
+        flex-direction: column;
+        text-align: center;
+        padding: 0 18px;
+    }
+    .main-nav ul { /* Era .nav-items, ora main-nav ul */
+        flex-direction: column;
+        width: 100%;
+        margin-top: 12px;
+    }
+    .main-nav ul li { /* Era .nav-items li */
+        margin-left: 0; /* Assicura che i link siano allineati a sinistra in colonna */
+        margin-bottom: 10px;
+    }
+    .blog-post, .form-container {
+        padding: 25px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .container {
+        padding: 18px;
+    }
+
+    .dashboard-posts-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .dashboard-posts-list li h4,
+    .dashboard-posts-list li p {
+        margin-right: 0;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    .dashboard-posts-list li .btn {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    .brand-logo { /* Era .navbar .logo */
+        flex-direction: column;
+        margin-bottom: 12px;
+    }
+
+    .logo-image { /* Era .navbar .logo img */
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+        border-radius: 4px;
+    }
+
+    .search-button {
+        width: 100%;
+        border-radius: 0 0 4px 4px;
+        margin-top: 12px;
+    }
+
+    .search-input {
+        border-radius: 4px 4px 0 0;
+    }
+}
+
+/* Stili per il toggle della modalità notte */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    font-size: 0.9em;
+    color: var(--meta-color-day); /* Usa variabili */
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 28px;
+    position: relative;
+    width: 56px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: var(--form-input-border-day); /* Usa variabili */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    position: absolute;
+    transition: background-color 0.4s ease;
+}
+
+.slider:before {
+    background-color: var(--text-color-day); /* Usa variabili */
+    bottom: 3px;
+    content: "";
+    height: 22px;
+    left: 3px;
+    position: absolute;
+    transition: transform 0.4s ease, background-color 0.4s ease;
+    width: 22px;
+}
+
+input:checked + .slider {
+    background-color: var(--link-hover-color-day); /* Usa variabili */
+}
+
+input:checked + .slider:before {
+    transform: translateX(28px);
+    background-color: var(--navbar-bg-dark); /* Usa variabili (era navbar-bg-dark, ora usa variabile) */
+}
+
+.slider.round {
+    border-radius: 28px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.theme-text {
+    margin-left: 12px;
+    color: var(--meta-color-day); /* Usa variabili */
+    transition: color 0.8s ease;
+}
+
+/* --- Stili per il File Manager e Galleria Immagini --- */
+.file-manager-container {
+    padding-top: 50px;
+    padding-bottom: 70px;
+}
+
+.file-manager-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--heading-color-day);
+}
+
+.upload-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: var(--gallery-section-bg-day); /* Usa variabili */
+    border: 1px solid var(--gallery-section-border-day); /* Usa variabili */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.upload-section h3 {
+    color: var(--link-hover-color-day);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.upload-form .form-group {
+    margin-bottom: 25px;
+}
+
+.upload-form label {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+    color: var(--text-color-day);
+}
+
+.upload-form input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--file-input-border-day); /* Usa variabili */
+    border-radius: 5px;
+    background-color: var(--file-input-bg-day); /* Usa variabili */
+    color: var(--file-input-text-day); /* Usa variabili */
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.8s ease, color 0.8s ease;
+}
+
+.upload-form input[type="file"]:focus {
+    outline: none;
+    border-color: var(--link-hover-color-day);
+}
+
+.upload-form input[type="file"]::file-selector-button {
+    background-color: var(--file-selector-btn-bg-day); /* Usa variabili */
+    color: var(--file-selector-btn-text-day); /* Usa variabili */
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.upload-form input[type="file"]::file-selector-button:hover {
+    background-color: var(--file-selector-btn-hover-bg-day); /* Usa variabili */
+    color: var(--file-selector-btn-hover-text-day); /* Usa variabili */
+}
+
+.image-gallery {
+    padding: 30px;
+    background-color: var(--gallery-section-bg-day); /* Usa variabili */
+    border: 1px solid var(--gallery-section-border-day); /* Usa variabili */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.image-gallery h3 {
+    color: var(--link-hover-color-day);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.gallery-item {
+    background-color: var(--gallery-item-bg-day);
+    border: 1px solid var(--gallery-item-border-day);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.8s ease, border-color 0.8s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-thumbnail {
+    max-width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border: 1px solid var(--thumbnail-border-day); /* Usa variabili */
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: var(--thumbnail-bg-day); /* Usa variabili */
+    transition: border-color 0.8s ease, background-color 0.8s ease;
+}
+
+.image-filename {
+    font-size: 0.85em;
+    color: var(--text-color-day); /* Usa variabili */
+    word-break: break-all;
+    margin-bottom: 15px;
+    font-weight: 500;
+    transition: color 0.8s ease;
+}
+
+.gallery-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto;
+}
+
+.gallery-actions .btn {
+    flex-grow: 1;
+    margin: 0 5px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    border-radius: 4px;
+}
+
+/* --- User Profile Styles --- */
+.author-profile {
+    background-color: var(--post-bg-day);
+    padding: 40px;
+    margin: 45px auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    border: 1px solid var(--post-border-day);
+    max-width: 800px;
+    transition: background-color 0.8s ease, box-shadow 0.8s ease, border-color 0.8s ease;
+}
+
+.author-profile .profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--meta-border-day); /* Usa variabili */
+  transition: border-color 0.8s ease;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: var(--heading-color-day);
+}
+
+.profile-info .role {
+  font-style: italic;
+  color: var(--meta-color-day); /* Usa variabili */
+  margin-top: 0.2rem;
+  transition: color 0.8s ease;
+}
+
+.profile-info .bio {
+  margin: 0.8rem 0;
+  color: var(--text-color-day); /* Usa variabili */
+  transition: color 0.8s ease;
+}
+
+.social-links a {
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--link-color-day); /* Usa variabili */
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+  color: var(--link-hover-color-day); /* Usa variabili */
+}
+
+.author-posts ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.author-posts li {
+  margin-bottom: 0.5rem;
+}
+
+/* --- Stili per la MODALITÀ NOTTE (quando il body ha la classe 'dark-mode') --- */
+/* Vengono sovrascritte le variabili per usare i colori dark */
+body.dark-mode {
+    --body-bg: var(--body-bg-dark);
+    --text-color: var(--text-color-dark);
+    --heading-color: var(--heading-color-dark);
+    --link-color: var(--link-color-dark);
+    --link-hover-color: var(--link-hover-color-dark);
+    --navbar-bg: var(--navbar-bg-dark);
+    --navbar-border: var(--navbar-border-dark);
+    --post-bg: var(--post-bg-dark);
+    --post-border: var(--post-border-dark);
+    --meta-color: var(--meta-color-dark);
+    --meta-border: var(--meta-border-dark);
+    --tag-bg: var(--tag-bg-dark);
+    --tag-text: var(--tag-text-dark);
+    --tag-hover-bg: var(--tag-hover-bg-dark);
+    --form-input-bg: var(--form-input-bg-dark);
+    --form-input-border: var(--form-input-border-dark);
+    --form-input-text: var(--form-input-text-dark);
+    --button-bg: var(--button-bg-dark);
+    --button-border: var(--button-border-dark);
+    --button-text: var(--button-text-dark);
+    --button-hover-bg: var(--button-hover-bg-dark);
+    --button-hover-border: var(--button-hover-border-dark);
+    --button-hover-text: var(--button-hover-text-dark);
+    --btn-edit-bg: var(--btn-edit-bg-dark);
+    --btn-edit-border: var(--btn-edit-border-dark);
+    --btn-delete-bg: var(--btn-delete-bg-dark);
+    --btn-delete-border: var(--btn-delete-border-dark);
+    --flash-success-bg: var(--flash-success-bg-dark);
+    --flash-success-border: var(--flash-success-border-dark);
+    --flash-danger-bg: var(--flash-danger-bg-dark);
+    --flash-danger-border: var(--flash-danger-border-dark);
+    --flash-info-bg: var(--flash-info-bg-dark);
+    --flash-info-border: var(--flash-info-border-dark);
+    --search-bg: var(--search-bg-dark);
+    --search-text: var(--search-text-dark);
+    --search-placeholder: var(--search-placeholder-dark);
+    --search-btn-bg: var(--search-btn-bg-dark);
+    --search-btn-hover-bg: var(--search-btn-hover-bg-dark);
+    --gallery-section-bg: var(--gallery-section-bg-dark);
+    --gallery-section-border: var(--gallery-section-border-dark);
+    --gallery-item-bg: var(--gallery-item-bg-dark);
+    --gallery-item-border: var(--gallery-item-border-dark);
+    --file-input-bg: var(--file-input-bg-dark);
+    --file-input-border: var(--file-input-border-dark);
+    --file-selector-btn-bg: var(--file-selector-btn-bg-dark);
+    --file-selector-btn-text: var(--file-selector-btn-text-dark);
+    --file-selector-btn-hover-bg: var(--file-selector-btn-hover-bg-dark);
+    --file-selector-btn-hover-text: var(--file-selector-btn-hover-text-dark);
+    --thumbnail-border: var(--thumbnail-border-dark);
+    --thumbnail-bg: var(--thumbnail-bg-dark);
+    --pagination-btn-bg: var(--pagination-btn-bg-dark);
+    --pagination-btn-border: var(--pagination-btn-border-dark);
+    --pagination-btn-text: var(--pagination-btn-text-dark);
+    --pagination-btn-hover-bg: var(--pagination-btn-hover-bg-dark);
+    --pagination-btn-hover-border: var(--pagination-btn-hover-border-dark);
+    --pagination-btn-hover-text: var(--pagination-btn-hover-text-dark);
+    --pagination-current-bg: var(--pagination-current-bg-dark);
+    --pagination-current-text: var(--pagination-current-text-dark);
+    --pagination-disabled-bg: var(--pagination-disabled-bg-dark);
+    --pagination-disabled-border: var(--pagination-disabled-border-dark);
+    --pagination-disabled-text: var(--pagination-disabled-text-dark);
+}
+
+/* Modifiche ai colori degli elementi in modalità notte */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: var(--heading-color);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode .theme-text,
+body.dark-mode .image-filename,
+body.dark-mode .message-body p,
+body.dark-mode .blog-post small,
+body.dark-mode .pagination span,
+body.dark-mode .profile-info .bio,
+body.dark-mode .message-item.unread .message-status { /* Aggiunto qui */
+    color: var(--text-color);
+}
+
+body.dark-mode a {
+    color: var(--link-color);
+}
+body.dark-mode a:hover {
+    color: var(--link-hover-color);
+}
+
+body.dark-mode .main-nav ul li a {
+    color: var(--link-color); /* Per i link della navigazione */
+}
+
+body.dark-mode .main-nav ul li a:hover {
+    color: var(--link-hover-color);
+}
+
+body.dark-mode .blog-post,
+body.dark-mode .message-item,
+body.dark-mode .form-container,
+body.dark-mode .dashboard-posts-list li,
+body.dark-mode .upload-section,
+body.dark-mode .image-gallery,
+body.dark-mode .gallery-item,
+body.dark-mode .author-profile { /* Aggiunto per coerenza */
+    background-color: var(--post-bg);
+    border-color: var(--post-border);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.8);
+}
+
+body.dark-mode .blog-post h2 a,
+body.dark-mode .dashboard-posts-list li h4 a {
+    color: var(--heading-color);
+}
+
+body.dark-mode .blog-post .meta,
+body.dark-mode .message-header strong,
+body.dark-mode .blog-post p i,
+body.dark-mode .dashboard-posts-list li p,
+body.dark-mode .profile-info .role,
+body.dark-mode .profile-picture { /* Aggiunto profile-picture */
+    color: var(--meta-color);
+    border-color: var(--meta-border); /* Per il bordo della profile-picture */
+}
+
+body.dark-mode .blog-post .meta a,
+body.dark-mode .message-header strong a,
+body.dark-mode .social-links a { /* Aggiunto */
+    color: var(--link-hover-color);
+}
+
+body.dark-mode .blog-post .tags a {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+}
+
+body.dark-mode .blog-post .tags a:hover {
+    background-color: var(--tag-hover-bg);
+    color: var(--link-hover-color);
+}
+
+body.dark-mode .read-more {
+    color: var(--link-hover-color);
+}
+
+/* Considerare se footer cambia */
+body.dark-mode footer {
+    background-color: var(--navbar-bg-dark); /* Ad esempio, lo stesso della navbar scura */
+    color: var(--text-color-dark);
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"],
+body.dark-mode input[type="email"],
+body.dark-mode textarea,
+body.dark-mode .upload-form input[type="file"],
+body.dark-mode .search-input { /* Aggiunto search-input */
+    background-color: var(--form-input-bg);
+    color: var(--form-input-text);
+    border-color: var(--form-input-border);
+}
+
+body.dark-mode input[type="file"]::file-selector-button {
+    background-color: var(--file-selector-btn-bg);
+    color: var(--file-selector-btn-text);
+}
+
+body.dark-mode input[type="file"]::file-selector-button:hover {
+    background-color: var(--file-selector-btn-hover-bg);
+    color: var(--file-selector-btn-hover-text);
+}
+
+body.dark-mode input[type="text"]::placeholder,
+body.dark-mode textarea::placeholder,
+body.dark-mode .search-input::placeholder {
+    color: var(--search-placeholder);
+}
+
+body.dark-mode .btn,
+body.dark-mode #theme-toggle,
+body.dark-mode #save,
+body.dark-mode .gallery-actions .btn,
+body.dark-mode .pagination-controls .btn,
+body.dark-mode .pagination .btn,
+body.dark-mode .search-button { /* Aggiunto search-button */
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border-color: var(--button-border);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.7);
+}
+
+body.dark-mode .btn:hover,
+body.dark-mode #theme-toggle:hover,
+body.dark-mode #save:hover,
+body.dark-mode .gallery-actions .btn:hover,
+body.dark-mode .pagination-controls .btn:hover:not(.disabled):not(.current),
+body.dark-mode .pagination .btn:hover:not(.active):not(.disabled),
+body.dark-mode .search-button:hover { /* Aggiunto search-button */
+    background-color: var(--button-hover-bg);
+    border-color: var(--button-hover-border);
+    color: var(--button-hover-text);
+}
+
+body.dark-mode .btn[type="submit"] {
+    background-color: var(--btn-submit-bg-dark); /* Variabile specifica per submit in dark mode */
+    color: var(--btn-submit-text-dark);
+}
+
+body.dark-mode .btn[type="submit"]:hover {
+    background-color: var(--btn-submit-hover-bg-dark);
+    color: var(--btn-submit-hover-text-dark);
+}
+
+body.dark-mode .btn.edit-post {
+    background-color: var(--btn-edit-bg); /* Usa variabili */
+    border-color: var(--btn-edit-border); /* Usa variabili */
+}
+
+body.dark-mode .btn.edit-post:hover {
+    background-color: var(--button-hover-bg); /* Usa variabili generiche per hover */
+    border-color: var(--button-hover-border);
+    color: var(--button-hover-text);
+}
+
+body.dark-mode .btn.delete-post {
+    background-color: var(--btn-delete-bg); /* Usa variabili */
+    border-color: var(--btn-delete-border); /* Usa variabili */
+    color: white;
+}
+body.dark-mode .btn.delete-post:hover {
+    background-color: var(--btn-delete-bg); /* Mantiene lo stesso colore, ma puoi aggiungere una variabile hover se vuoi */
+    border-color: var(--button-hover-border);
+    color: var(--button-hover-text);
+}
+
+body.dark-mode .flash-success {
+    background-color: var(--flash-success-bg);
+    border-color: var(--flash-success-border);
+}
+
+body.dark-mode .flash-error,
+body.dark-mode .flash-danger {
+    background-color: var(--flash-danger-bg);
+    border-color: var(--flash-danger-border);
+}
+body.dark-mode .flash-info {
+    background-color: var(--flash-info-bg);
+    border-color: var(--flash-info-border);
+}
+
+body.dark-mode .img-fluid,
+body.dark-mode .post-image-thumbnail,
+body.dark-mode .featured-image,
+body.dark-mode .gallery-thumbnail { /* Aggiunto gallery-thumbnail */
+    border-color: var(--post-border); /* Per coerenza */
+}
+
+body.dark-mode .gallery-thumbnail { /* Questo è ridondante se già sopra */
+    background-color: var(--thumbnail-bg);
+}
+
+body.dark-mode .search-form {
+    border-color: var(--form-input-border);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.7);
+}
+
+body.dark-mode .slider {
+    background-color: var(--form-input-border);
+}
+
+body.dark-mode input:checked + .slider {
+    background-color: var(--link-hover-color);
+}
+
+body.dark-mode input:checked + .slider:before {
+    background-color: var(--navbar-bg); /* Sfera del toggle dark */
+}
+
+body.dark-mode .message-item.unread { /* Mantiene il colore specifico per "non letto" */
+    background-color: #5a5552;
+    border-color: #6a605d;
+}
+
+body.dark-mode .message-item.unread .message-status { /* Mantiene il colore specifico */
+    color: var(--link-hover-color);
+    background-color: #6a605d;
+}
+
+/* --- FINE STILI MODALITÀ NOTTE --- */

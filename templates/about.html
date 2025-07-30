@@ -1,10 +1,52 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }} - Flask-Blog{% endblock %}
+{% block title %}About - Flaskblog-lite{% endblock %}
 
 {% block content %}
-  
-<h2>About</h2>
-<p>Here we have some information about the blog.</p>
+<div class="about-page-container">
 
+    <section class="about-section site-info-section">
+        <h1 class="section-title">About the project</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet efficitur est at molestie. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in vulputate risus. Duis eget tristique tellus.
+            Donec euismod tincidunt aliquet. Praesent viverra volutpat mi vitae vestibulum. Nunc venenatis felis velit.
+            Praesent eu ex tempus, volutpat leo in, faucibus purus.
+
+        </p>
+        <p>
+            Morbi sed neque a nulla ullamcorper feugiat. Vestibulum malesuada urna in ex vulputate rutrum. Ut rutrum
+            elementum velit, vel tempor orci convallis nec. Vivamus bibendum nulla at lorem gravida, vitae commodo nisl
+            fringilla. Mauris pulvinar eget nulla ac volutpat. Suspendisse porta magna nec fermentum sodales.
+        </p>
+        <p>
+            Cras nibh neque, varius a tellus sed, vulputate tempor elit. Vestibulum finibus pretium eros, nec cursus
+            nisl feugiat at. Nulla nec enim tincidunt, varius metus sed, congue quam. Duis quis fermentum turpis, porta
+            ultricies leo.
+        </p>
+    </section>
+
+    <section class="about-section author-section">
+        <h2 class="section-title">About us</h2>
+        <div class="authors-grid">
+            {% if authors %}
+            {% for author in authors %}
+            <div class="author-card">
+                <h3 class="author-name">{{ author.username }}</h3>
+                <p class="role"> {{ author.role }}</p>
+                <p class="bio">
+                    {{ author.bio if author.bio else "Nessuna biografia disponibile." }}
+                </p>
+
+                <a href="{{ url_for('user_profile', username=author.username) }}" class="btn view-profile-btn">Vedi
+                    Profilo</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>Nessun autore registrato al momento.</p>
+            {% endif %}
+        </div>
+    </section>
+
+</div>
 {% endblock %}
