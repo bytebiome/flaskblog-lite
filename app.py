@@ -30,7 +30,7 @@ ALLOWED_ATTRIBUTES = {
     'a': ['href', 'title'],
     'abbr': ['title'],
     'acronym': ['title'],
-    'img': ['src', 'alt', 'width', 'height', 'style'],
+    'img': ['src', 'alt', 'width', 'height', 'style', 'class'],
     'div': ['class'],
     'span': ['class']
 }
@@ -382,28 +382,35 @@ def view_post(post_id):
 @app.route('/delete/<int:post_id>', methods=['POST'])
 @login_required
 def delete(post_id):
-    if request.method == 'POST':
-        try:
-            post_to_delete = Post.query.get_or_404(post_id)
-            if post_to_delete.user_id != current_user.id and not current_user.is_admin: #try this logic
-                flash('You do not have the permission to delete this post', 'danger')
-                return redirect(url_for('dashboard'))
+    post_to_delete = Post.query.get_or_404(post_id)
+    
+    if post_to_delete.user_id != current_user.id and not current_user.is_admin:
+        flash('Non hai il permesso per cancellare questo post', 'danger')
+        return redirect(url_for('dashboard'))
+
+    try:
+
+        tags_associated_with_post = list(post_to_delete.tags) 
+
+        db.session.delete(post_to_delete)
+        db.session.commit() 
+
+
+        for tag in tags_associated_with_post:
+
+            if tag.posts.count() == 0: 
+                db.session.delete(tag)
         
-            db.session.delete(post_to_delete)
-            db.session.commit()
-            #prova di eliminazione per tag orfani
-            for tag in post_tags:
-                if not tag.posts.count():
-                    db.session.delete(tag)
-            flash('Your post have been successfully deleted!', 'success')
-            return redirect(url_for('dashboard'))
-        except Exception as e:
-            db.session.rollback()
-            flash(f'error while deleting', 'error')
-            print(f'error while deleting {post_id} error {e}')
-            return 'Error during the elimination of the content', 500
+        db.session.commit() 
+        flash('Il post è stato cancellato con successo!', 'success')
+        return redirect(url_for('dashboard'))
         
-    return redirect(url_for('dashboard'))
+    except Exception as e:
+        db.session.rollback()
+        flash('Errore durante la cancellazione', 'error')
+        print(f'Errore durante la cancellazione di {post_id}: {e}')
+        return 'Error during the elimination of the content', 500
+
     
 #edit post
 @app.route('/post/<int:post_id>/edit', methods=['GET', 'POST'])

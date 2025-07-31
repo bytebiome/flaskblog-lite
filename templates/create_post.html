@@ -16,6 +16,7 @@
         <textarea name="text_content" id="editor" rows="20" cols="80" placeholder="Start writing..."></textarea>
         <label for="post_picture">Image (opional)</label>
         <input type="file" id="post_picture" name="post_picture" accept="image/*">
+        <a href="{{ url_for('gallery') }}" target="_blank">Open media gallery</a>
     <button type="submit" id="save">Publish</button>
     <button type="submit" class="btn btn-secondary" formaction="{{ url_for('preview_post' )}}" formtarget="_blank">Preview</button>
     </div>

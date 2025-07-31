@@ -4,6 +4,15 @@
 
 {% block content %}
 
+ <div class="important-tags-section">
+        <h2>Important Tags:</h2>
+        <div class="tags-list">
+            <a href="{{ url_for('posts_by_tags', tag_name='prova') }}">#prova</a>
+            <a href="{{ url_for('posts_by_tags', tag_name='post') }}">#post</a>
+            <a href="{{ url_for('posts_by_tags', tag_name='immagini') }}">#immagini</a>
+        </div>
+    </div>
+
 <div class="container">
     {# Barra di ricerca #}
     <div class="search-bar-container">

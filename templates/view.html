@@ -1,41 +1,43 @@
 {% extends "base.html" %}
 
 {% block title %} View Post - Fblog-lite {% endblock %}
-{% block head %} 
-    <title>{{ post.title }} - Fblog-lite</title>
+{% block head %}
+<title>{{ post.title }} - Fblog-lite</title>
 
-    {# Meta tag OpenGraph (Facebook, WhatsApp, Telegram, LinkedIn, etc.) #}
-    <meta property="og:title" content="{{ post.title }}">
-    <meta property="og:description" content="{{ post.content | truncate(150, True) | striptags }}">
-    <meta property="og:image" content="{{ url_for('static', filename='uploads/' + post.image_file, _external=True) }}">
-    <meta property="og:url" content="{{ url_for('view_post', post_id=post.id, _external=True) }}">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Fblog-lite">
-    <meta property="og:image:width" content="1200"> {# lenght for OG#}
-    <meta property="og:image:height" content="630"> {# heigth for OG #}
+{# Meta tag OpenGraph (Facebook, WhatsApp, Telegram, LinkedIn, etc.) #}
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.content | truncate(150, True) | striptags }}">
+<meta property="og:image" content="{{ url_for('static', filename='uploads/' + post.image_file, _external=True) }}">
+<meta property="og:url" content="{{ url_for('view_post', post_id=post.id, _external=True) }}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fblog-lite">
+<meta property="og:image:width" content="1200"> {# lenght for OG#}
+<meta property="og:image:height" content="630"> {# heigth for OG #}
 
-    {# Metatag for Twitter Cards #}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@IlTuoTwitterHandle"> {# insert your twitter handle #}
-    <meta name="twitter:title" content="{{ post.title }}">
-    <meta name="twitter:description" content="{{ post.content | truncate(150, True) | striptags }}">
-    <meta name="twitter:image" content="{{ url_for('static', filename='uploads/' + post.image_file, _external=True) }}">
+{# Metatag for Twitter Cards #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@IlTuoTwitterHandle"> {# insert your twitter handle #}
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:description" content="{{ post.content | truncate(150, True) | striptags }}">
+<meta name="twitter:image" content="{{ url_for('static', filename='uploads/' + post.image_file, _external=True) }}">
 
-    {# Fallback for general descriptions of the site #}
-    <meta name="description" content="A simple blog powered by Flask."> 
-    {# other meta tags #}
+{# Fallback for general descriptions of the site #}
+<meta name="description" content="A simple blog powered by Flask.">
+{# other meta tags #}
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<!-- <div class="container"> -->
     <article class="blog-post">
         <h2>{{ post.title }}</h2>
-         {% if post.image_file and post.image_file != 'default.jpg' %}
-            <img src="{{ url_for('static', filename='uploads/' + post.image_file) }}" alt="{{ post.title }}" class="featured-image">
+        {% if post.image_file and post.image_file != 'default.jpg' %}
+        <img src="{{ url_for('static', filename='uploads/' + post.image_file) }}" alt="{{ post.title }}"
+            class="featured-image">
         {% endif %}
-        <p>{{ post.content | safe }}</p>
+        <div class="post-content-body">{{ post.content | safe }}</div>
         <br>
-        <p><i>Author: <a href="{{ url_for('user_profile', username=post.author.username) }}">{{ post.author.username }}</a> </i></p>
+        <p><i>Author: <a href="{{ url_for('user_profile', username=post.author.username) }}">{{ post.author.username
+                    }}</a> </i></p>
         {% if post.tags %}
         <span class="tags">
             Tag:
@@ -61,6 +63,6 @@
         </form>
         {% endif %}
     </article>
-</div>
+<!-- </div> -->
 
 {% endblock%}

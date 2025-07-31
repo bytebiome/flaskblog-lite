@@ -37,7 +37,6 @@
                 <p class="bio">
                     {{ author.bio if author.bio else "Nessuna biografia disponibile." }}
                 </p>
-
                 <a href="{{ url_for('user_profile', username=author.username) }}" class="btn view-profile-btn">Vedi
                     Profilo</a>
             </div>

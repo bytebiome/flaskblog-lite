@@ -118,9 +118,9 @@ body {
 }
 
 .container {
-    max-width: 880px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 55px 35px;
+    padding: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -497,6 +497,364 @@ a:hover {
     transition: color 0.8s ease;
 }
 
+
+/* --- Sezione Autori (About Us) --- */
+.authors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Crea una griglia reattiva */
+    gap: 30px; /* Spazio tra le card degli autori */
+}
+
+.author-card {
+    background-color: var(--form-input-bg-day); /* Sfondo della card (chiaro in day, scuro in dark) */
+    border: 1px solid var(--form-input-border-day); /* Bordo della card */
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Ombra leggera */
+    transition: all 0.3s ease; /* Transizione fluida per gli hover */
+}
+
+.author-card:hover {
+    transform: translateY(-5px); /* Solleva la card all'hover */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Ombra più pronunciata all'hover */
+}
+
+.author-name {
+    font-size: 1.6em;
+    color: var(--heading-color-day); /* Colore per i titoli */
+    margin-bottom: 10px;
+}
+
+.author-card .role {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: #DA2C3A; /* Rosso più deciso per il ruolo in day mode */
+    margin-top: -5px;
+    margin-bottom: 15px;
+}
+
+.author-card .bio {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: var(--text-color-day); /* Colore del testo principale */
+    margin-bottom: 20px;
+    min-height: 60px; /* Altezza minima per uniformità */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.author-card .btn.view-profile-btn {
+    margin-top: 15px; /* Spazio sopra il bottone */
+    display: inline-block; /* Assicura che sia un bottone flex */
+    padding: 10px 20px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+}
+
+/* Modalità Notte */
+body.dark-mode .author-card {
+    background-color: var(--form-input-bg-dark);
+    border-color: var(--form-input-border-dark);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .author-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9);
+}
+
+body.dark-mode .author-name {
+    color: var(--heading-color-dark);
+}
+
+body.dark-mode .author-card .role {
+    color: #FF6B6B; /* Rosso più chiaro per il ruolo in dark mode */
+}
+
+body.dark-mode .author-card .bio {
+    color: var(--text-color-dark);
+}
+
+/* --- Sezione Link Social (Pagina Contatti) --- */
+/* Riusiamo la classe generale per le sezioni */
+.social-links-section {
+    background-color: var(--post-bg-day);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--post-border-day);
+    max-width: 650px;
+    margin: 40px auto 60px auto;
+    text-align: center;
+    transition: background-color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* Riusiamo lo stile per i titoli di sezione */
+.social-links-section h2 {
+    font-size: 2em; /* Potrebbe anche usare section-title se vuoi lo stesso stile di "Informazioni sul Sito" */
+    color: var(--heading-color-day);
+    margin-bottom: 25px;
+}
+
+/* Riusiamo lo stile generico per i paragrafi */
+.social-links-section p {
+    font-size: 0.95em;
+    color: var(--meta-color-day);
+    margin-top: 25px;
+    line-height: 1.6;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.social-icon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1) contrast(1);
+    transition: filter 0.8s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Modalità Notte (per i Link Social) --- */
+body.dark-mode .social-links-section {
+    background-color: var(--post-bg-dark);
+    border-color: var(--post-border-dark);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .social-links-section h2 {
+    color: var(--heading-color-dark);
+}
+
+body.dark-mode .social-links-section p {
+    color: var(--meta-color-dark);
+}
+
+body.dark-mode .social-icon {
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .social-icon img {
+    filter: invert(0.9) hue-rotate(180deg) brightness(1.2); /* Regola questo filtro in base alle tue icone */
+}
+
+body.dark-mode .social-icon:hover {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.9);
+}
+
+/* --- Stili per le Immagini all'interno del Contenuto dei Post (in view.html) --- */
+
+/* Contenitore principale del corpo del post */
+.post-content-body {
+    line-height: 1.8; /* Migliora la leggibilità del testo */
+    margin-bottom: 25px; /* Spazio sotto il contenuto */
+    overflow-x: hidden; /* Nasconde overflow orizzontale, utile per contenuti troppo larghi */
+}
+
+/* Contenitore generale per le immagini del post (quello che inserisci nel content) */
+.post-image-container {
+    display: flex; /* Utilizza Flexbox per allineare le immagini */
+    flex-wrap: wrap; /* Permette alle immagini di andare a capo su schermi piccoli */
+    gap: 10px; /* Spazio tra le immagini */
+    margin: 30px auto; /* Margine sopra e sotto, e centrato */
+    justify-content: center; /* Centra le immagini se non riempiono lo spazio */
+    align-items: flex-start; /* Allinea in alto se le immagini hanno altezze diverse */
+    max-width: 100%; /* Assicura che il contenitore non sbordi dal .post-content-body */
+    box-sizing: border-box; /* Include padding e border nella larghezza totale */
+}
+
+
+/* Stile per le singole immagini all'interno del post */
+.post-image-container .post-image {
+    max-width: 100%; /* L'immagine non supera la larghezza del suo contenitore */
+    height: auto; /* Mantieni le proporzioni dell'immagine */
+    /* Flex-basis per due immagini affiancate con gap. Se ne hai solo una, occupa 100%*/
+    flex: 1 1 calc(50% - 15px); /* Prova a creare due colonne per le immagini, con gap */
+    
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Effetti di transizione */
+}
+
+/* Effetto hover per le immagini singole */
+.post-image-container .post-image:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile specifico per una singola immagine o un gruppo che deve occupare tutta la larghezza */
+.post-image-container.full-width {
+    display: block; /* Rimuovi flex per questo contenitore specifico */
+    width: 100%; /* Occupa tutta la larghezza del suo genitore */
+    margin: 30px 0; /* Margine senza auto-centramento orizzontale per full-width */
+}
+
+.post-image-container.full-width .post-image {
+    width: 100%; /* Immagine a tutta larghezza */
+    max-width: 100%; /* Assicura che non sbordi */
+    height: auto;
+    object-fit: cover; /* Adatta l'immagine mantenendo le proporzioni e tagliando se necessario */
+    max-height: 550px; /* Limita l'altezza per le immagini a tutta larghezza */
+    display: block; /* Assicura che non ci siano spazi extra sotto l'immagine */
+}
+
+/* Gestione responsive su schermi più piccoli */
+@media (max-width: 768px) {
+    .post-image-container {
+        flex-direction: column; /* Impila le immagini verticalmente su mobile */
+        align-items: center; /* Centra le immagini impilate */
+        gap: 10px; /* Riduci il gap su mobile */
+    }
+
+    .post-image-container .post-image {
+        flex: 0 0 100%; /* Ogni immagine occupa il 100% della larghezza */
+        width: 100%; /* Assicura che riempia la larghezza disponibile */
+    }
+
+    .post-image-container.full-width .post-image {
+        max-height: 300px; /* Riduci altezza max per mobile */
+    }
+}
+
+
+/* --- Modalità Notte (per Immagini nei Post) --- */
+body.dark-mode .post-image-container .post-image {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .post-image-container .post-image:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+/* Stili per la sezione "Important Tags" sulla homepage - STILE MINIMALE */
+.important-tags-section {
+    padding: 30px 0 20px 0; /* Padding sopra e sotto, senza padding laterale visibile */
+    margin-bottom: 40px;
+    text-align: center;
+    /* Rimuoviamo sfondo, bordo e ombra per un look pulitissimo */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    transition: all 0.5s ease; /* Transizioni leggere per il tema */
+}
+
+.important-tags-section h2 {
+    font-size: 1.6em; /* Titolo leggermente più piccolo */
+    color: var(--heading-color-day); /* Colore del titolo */
+    margin-top: 0;
+    margin-bottom: 20px; /* Spazio sotto il titolo */
+    text-shadow: none; /* Rimuoviamo l'ombra dal testo del titolo */
+    font-weight: 600; /* Leggermente meno grassetto */
+    text-transform: uppercase; /* Rendi il titolo in maiuscolo */
+    letter-spacing: 0.05em; /* Aumenta leggermente la spaziatura delle lettere */
+    opacity: 0.85; /* Leggermente meno prominente */
+}
+
+.important-tags-section .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Spazio leggermente aumentato tra i tag per respiro */
+    max-width: 800px; /* Consenti una larghezza maggiore per più tag su una riga */
+    margin: 0 auto;
+}
+
+.important-tags-section .tags-list a {
+    /* Stile "fantasma": quasi invisibile fino all'interazione */
+    background-color: transparent; /* Sfondo trasparente */
+    color: var(--meta-color-day); /* Colore del testo più neutro */
+    border: 1px solid var(--meta-border-day); /* Bordo sottile e discreto */
+    padding: 8px 16px;
+    border-radius: 20px; /* Bordi molto arrotondati (pill-shaped) */
+    font-size: 0.9em;
+    text-decoration: none;
+    font-weight: 500; /* Peso del font più leggero */
+    transition: all 0.3s ease; /* Transizioni più fluide */
+    white-space: nowrap;
+    opacity: 0.7; /* Leggermente trasparente per un effetto minimale */
+}
+
+.important-tags-section .tags-list a:hover {
+    background-color: var(--link-hover-color-day); /* Sfondo bronzo all'hover */
+    color: var(--navbar-bg-day); /* Testo scuro contrastante all'hover */
+    border-color: var(--link-hover-color-day); /* Bordo uguale allo sfondo all'hover */
+    transform: translateY(-2px) scale(1.03); /* Piccolo sollevamento e ingrandimento */
+    opacity: 1; /* Completamente opaco all'hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombra discreta all'hover */
+}
+
+/* --- Modalità Notte (Dark Mode) per Stile Minimale --- */
+body.dark-mode .important-tags-section {
+    /* Mantiene trasparenza e assenza di ombra */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+body.dark-mode .important-tags-section h2 {
+    color: var(--heading-color-dark);
+    opacity: 0.8;
+}
+
+body.dark-mode .important-tags-section .tags-list a {
+    color: var(--meta-color-dark);
+    border-color: var(--meta-border-dark);
+    opacity: 0.6; /* Ancora più discreto in dark mode */
+}
+
+body.dark-mode .important-tags-section .tags-list a:hover {
+    background-color: var(--link-hover-color-dark); /* Sfondo bronzo chiaro all'hover */
+    color: var(--navbar-bg-dark); /* Testo molto scuro contrastante all'hover */
+    border-color: var(--link-hover-color-dark);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7); /* Ombra più scura all'hover in dark mode */
+}
+
+/* --- Responsività per Stile Minimale --- */
+@media (max-width: 480px) {
+    .important-tags-section {
+        padding: 20px 0 15px 0;
+    }
+    .important-tags-section h2 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    .important-tags-section .tags-list {
+        gap: 10px;
+        padding: 0 10px; /* Piccolo padding laterale per evitare che i tag tocchino i bordi */
+    }
+    .important-tags-section .tags-list a {
+        padding: 7px 14px;
+        font-size: 0.85em;
+    }
+}
+
 /* --- Stili per i Form --- */
 .form-container {
     background-color: var(--post-bg-day);
@@ -682,9 +1040,6 @@ a:hover {
         padding: 25px;
         margin-left: 10px;
         margin-right: 10px;
-    }
-    .container {
-        padding: 18px;
     }
 
     .dashboard-posts-list li {
