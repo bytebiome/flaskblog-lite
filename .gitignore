@@ -1,0 +1,32 @@
+# Python
+# ===============================
+*.pyc
+*.pyo
+__pycache__/
+venv/
+env/
+pip-log.txt
+.tox/
+.coverage
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+
+# Database
+# ===============================
+db.sqlite
+
+# Caricamenti e Media
+# ===============================
+/static/uploads/
+
+
+.env
+.flaskenv
+
+# File di log
+# ===============================
+*.log
+logs/

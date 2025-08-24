@@ -1,0 +1,306 @@
+:root {
+    /* Colori Modalità Giorno (Light/Default) - Inalterati */
+    --body-bg-day: #f7f7f7;
+    --text-color-day: #333333;
+    --heading-color-day: #111111;
+    --link-color-day: #0077b6;
+    --link-hover-color-day: #0096c7;
+    --navbar-bg-day: #ffffff;
+    --navbar-border-day: #e0e0e0;
+    --post-bg-day: #ffffff;
+    --post-border-day: #e8e8e8;
+    --meta-color-day: #666666;
+    --tag-bg-day: #eeeeee;
+    --tag-text-day: #555555;
+    --tag-hover-bg-day: #dddddd;
+    --form-input-bg-day: #ffffff;
+    --form-input-border-day: #cccccc;
+    --form-input-text-day: #333333;
+    --button-bg-day: #e8e8e8;
+    --button-border-day: #cccccc;
+    --button-text-day: #333333;
+    --button-hover-bg-day: #dddddd;
+    --flash-success-bg-day: #d4edda;
+    --flash-success-border-day: #c3e6cb;
+    --flash-danger-bg-day: #f8d7da;
+    --flash-danger-border-day: #f5c6cb;
+    --flash-info-bg-day: #cfe2ff;
+    --flash-info-border-day: #b6d4fe;
+}
+
+/* Colori Modalità Notte (Dark Mode) - REVISIONATI */
+:root.dark-mode {
+    --body-bg-dark: #121212; /* Molto scuro, quasi nero */
+    --text-color-dark: #f0f0f0;
+    --heading-color-dark: #ffffff;
+    --link-color-dark: #8ab4f8; /* Un blu più chiaro che risalta */
+    --link-hover-color-dark: #a2c4fd;
+    --navbar-bg-dark: #1a1a1a;
+    --navbar-border-dark: #3a3a3a;
+    --post-bg-dark: #1a1a1a;
+    --post-border-dark: #3a3a3a;
+    --meta-color-dark: #a0a0a0;
+    --tag-bg-dark: #2a2a2a;
+    --tag-text-dark: #e0e0e0;
+    --tag-hover-bg-dark: #3a3a3a;
+    --form-input-bg-dark: #2a2a2a;
+    --form-input-border-dark: #555555;
+    --form-input-text-dark: #f0f0f0;
+    --button-bg-dark: #3a3a3a;
+    --button-border-dark: #555555;
+    --button-text-dark: #f0f0f0;
+    --button-hover-bg-dark: #4a4a4a;
+    --flash-success-bg-dark: #1c522f;
+    --flash-success-border-dark: #216d40;
+    --flash-danger-bg-dark: #7e3535;
+    --flash-danger-border-dark: #9e4646;
+    --flash-info-bg-dark: #274c77;
+    --flash-info-border-dark: #335f93;
+}
+
+/* Tutti gli stili successivi rimangono invariati,
+   poiché si basano sulle variabili di colore */
+
+/* Stili Generali */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--body-bg-day);
+    color: var(--text-color-day);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--heading-color-day);
+    margin-bottom: 20px;
+    transition: color 0.4s ease;
+}
+
+a {
+    color: var(--link-color-day);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color-day);
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg-day);
+    border-bottom: 1px solid var(--navbar-border-day);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.4s ease, border-bottom-color 0.4s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: var(--heading-color-day);
+}
+
+.nav-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-items li {
+    margin-left: 20px;
+}
+
+.nav-items a {
+    color: var(--text-color-day);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Bottoni */
+.btn {
+    display: inline-block;
+    background-color: var(--button-bg-day);
+    color: var(--button-text-day);
+    padding: 10px 20px;
+    border: 1px solid var(--button-border-day);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--button-hover-bg-day);
+}
+
+/* Flash Messages */
+.flash-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.flash-success {
+    background-color: var(--flash-success-bg-day);
+    border-color: var(--flash-success-border-day);
+}
+
+.flash-danger {
+    background-color: var(--flash-danger-bg-day);
+    border-color: var(--flash-danger-border-day);
+}
+
+.flash-info {
+    background-color: var(--flash-info-bg-day);
+    border-color: var(--flash-info-border-day);
+}
+
+/* Post, Form, Dashboard */
+.blog-post, .form-container, .dashboard-posts-list li, .gallery-item {
+    background-color: var(--post-bg-day);
+    border: 1px solid var(--post-border-day);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.blog-post h2 a {
+    color: var(--heading-color-day);
+    transition: color 0.3s ease;
+}
+
+.blog-post .meta, .blog-post .tags a {
+    color: var(--meta-color-day);
+    background-color: var(--tag-bg-day);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.blog-post .tags a:hover {
+    background-color: var(--tag-hover-bg-day);
+}
+
+/* Form */
+.form-container input, .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--form-input-border-day);
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: var(--form-input-bg-day);
+    color: var(--form-input-text-day);
+    box-sizing: border-box;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Galleria */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.gallery-thumbnail {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--post-border-day);
+    border-radius: 4px;
+    transition: border-color 0.4s ease;
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-items {
+        margin-top: 10px;
+    }
+    .nav-items li {
+        margin: 0 10px;
+    }
+}
+
+---
+
+### Stili per la Modalità Notte (revisionati)
+
+body.dark-mode {
+    background-color: var(--body-bg-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-mode .navbar {
+    background-color: var(--navbar-bg-dark);
+    border-bottom-color: var(--navbar-border-dark);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color-dark);
+}
+
+body.dark-mode a {
+    color: var(--link-color-dark);
+}
+
+body.dark-mode a:hover {
+    color: var(--link-hover-color-dark);
+}
+
+body.dark-mode .blog-post, .form-container, .dashboard-posts-list li, .gallery-item {
+    background-color: var(--post-bg-dark);
+    border-color: var(--post-border-dark);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .blog-post h2 a {
+    color: var(--heading-color-dark);
+}
+
+body.dark-mode .blog-post .meta, .blog-post .tags a {
+    color: var(--meta-color-dark);
+    background-color: var(--tag-bg-dark);
+}
+
+body.dark-mode .btn {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+    border-color: var(--button-border-dark);
+}
+
+body.dark-mode .btn:hover {
+    background-color: var(--button-hover-bg-dark);
+}
+
+body.dark-mode input, body.dark-mode textarea {
+    background-color: var(--form-input-bg-dark);
+    color: var(--form-input-text-dark);
+    border-color: var(--form-input-border-dark);
+}
